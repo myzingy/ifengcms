@@ -15,25 +15,11 @@ Examples can be seen below for menu_bep_system
         </ul>
     </li>
     <?php endif;?>
-    <li id="menu_bep_system"><span class="icon_computer">公众平台基础设置</span>
+    <li id="menu_bep_system"><span class="icon_computer">新闻管理系统</span>
         <ul>
-			<li><?php print anchor('wxbase/admin/wxbase','基本信息',array('class'=>'icon_pencil'))?></li>
-        </ul>
-    </li>
-    <li id="menu_bep_system"><span class="icon_computer">定制导航</span>
-        <ul>
-			<li><?php print anchor('wxbase/admin/wxbase','定制导航',array('class'=>'icon_pencil'))?></li>
-        </ul>
-    </li>
-    <li id="menu_bep_system"><span class="icon_computer">微网站建设</span>
-        <ul>
-			<li><?php print anchor('sc_vendors/admin','首页工程',array('class'=>'icon_pencil'))?></li>
-        </ul>
-    </li>
-    <li id="menu_bep_system"><span class="icon_computer">付费服务</span>
-        <ul>
-			<li><?php print anchor('sc_vendors/admin','微站模块',array('class'=>'icon_pencil'))?></li>
-			<li><?php print anchor('sc_vendors/admin','微站模板',array('class'=>'icon_pencil'))?></li>
+        	<li><?php print anchor('article/admin/article/update','添加新闻',array('class'=>'icon_add'))?></li>
+			<li><?php print anchor('article/admin/article/articleList','新闻管理',array('class'=>'icon_pencil'))?></li>
+			<li><?php print anchor('article/admin/article/classifyList','分类管理',array('class'=>'icon_application'))?></li>
         </ul>
     </li>
 </ul>

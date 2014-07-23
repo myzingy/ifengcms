@@ -25,6 +25,7 @@ define('BEP_VERSION','0.6.1');
  */
 $config['backendpro_table_prefix'] = 'be_';
 $config['weixin_table_prefix'] = 'wx_';
+$config['ifengcms_table_prefix'] = 'cms_';
 
 /*
  |--------------------------------------------------------------------------

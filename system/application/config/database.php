@@ -37,17 +37,11 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'sqld.duapp.com';
-$db['default']['port'] = '4050';
-$db['default']['username'] = 'WT84X5LKDlaUOccXFmCZkdOw';
-$db['default']['password'] = 'FO781sHmC9fBG0vNDhqTNmfaoO2Zes2c';
-$db['default']['database'] = "wByyIGQSOgvwdcNgEMpV"; 
-/*
-$db['default']['hostname'] = "localhost";
+$db['default']['hostname'] = "127.0.0.1";
 $db['default']['username'] = "root";
 $db['default']['password'] = "";
-$db['default']['database'] = "wByyIGQSOgvwdcNgEMpV";
-*/
+$db['default']['database'] = "ifengcms";
+
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;

@@ -65,8 +65,8 @@ $config['asset'][] = array('file'=>'bep_icons.php','type'=>'css');
 $config['asset'][] = array('file'=>'demo_table.css');
 
 // BackendPro JS
-$config['asset'][] = array('file'=>'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', 'name'=>'jquery');
-$config['asset'][] = array('file'=>'http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js', 'name' => 'jquery_ui', 'needs'=>'jquery');
+$config['asset'][] = array('file'=>'jquery.min.js', 'name'=>'jquery');
+$config['asset'][] = array('file'=>'jquery-ui.min.js', 'name' => 'jquery_ui', 'needs'=>'jquery');
 $config['asset'][] = array('file'=>'jquery.cookie.js', 'needs'=>'jquery');
 $config['asset'][] = array('file'=>'jquery.treeview.js', 'needs'=>'jquery.cookie');
 $config['asset'][] = array('file'=>'bep_dashboard.js', 'needs'=>'jquery_ui|jquery.cookie');
@@ -109,14 +109,14 @@ $config['asset'][] = array('file'=>base_url().'assets/zhangwen/js/page_init.js',
 //$config['asset_group']['SITE'] = 'reset|typography';
 $config['asset_group']['SITE'] = '';
 $config['asset_group']['PUBLIC'] = 'bep_front_layout|FlashStatus|reset|typography';
-$config['asset_group']['ADMIN'] = 'reset|typography|bep_admin_layout|bep_admin_style|FlashStatus|forms|buttons|bep_navigation|treeview|bep_icons|bep_select_all|common';
+$config['asset_group']['ADMIN'] = 'reset|typography|bep_admin_layout|bep_admin_style|FlashStatus|forms|buttons|bep_navigation|treeview|bep_icons|bep_select_all|common|bep_generate_password.css|bep_generate_password.js';
 
 $config['asset_group']['FORMS'] = "buttons|forms|validate";
-$config['asset_group']['GENERATE_PASSWORD'] = "bep_generate_password.css|bep_generate_password.js";
+//$config['asset_group']['GENERATE_PASSWORD'] = "bep_generate_password.js";
 
 $config['asset_group']['MOBILE'] = "style_css|page_init";
 
-
+$config['asset_group']['TEXTAREA3'] = "xheditor1114";
 // -----------------------------------------------------------------------
 
 
