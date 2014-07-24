@@ -254,6 +254,9 @@ class Articlelib
 			$this->_classify();
 		}
 	}
+	function order($id,$order){
+		$this->CI->article_model->update('A',array('order'=>$order+0),array('id'=>$id));
+	}
 }
 /* End of file Userlib.php */
 /* Location: ./modules/auth/libraries/Userlib.php */

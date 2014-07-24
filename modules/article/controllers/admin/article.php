@@ -55,6 +55,9 @@ class article extends Admin_Controller
 	function update($aid=''){
 		$this->articlelib->article_form($this->_container,'admin',$aid);
 	}
+	function order($id,$order){
+		$this->articlelib->order($id,$order);
+	}
 	function delete()
 	{
 		if(FALSE === ($selected = $this->input->post('select')))

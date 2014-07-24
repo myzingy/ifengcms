@@ -17,9 +17,15 @@ Examples can be seen below for menu_bep_system
     <?php endif;?>
     <li id="menu_bep_system"><span class="icon_computer">新闻管理系统</span>
         <ul>
-        	<li><?php print anchor('article/admin/article/update','添加新闻',array('class'=>'icon_add'))?></li>
-			<li><?php print anchor('article/admin/article/articleList','新闻管理',array('class'=>'icon_pencil'))?></li>
+        	<li><?php print anchor('article/admin/article/articleList','新闻管理',array('class'=>'icon_pencil'))?></li>
+			<li><?php print anchor('article/admin/article/update','添加新闻',array('class'=>'icon_add'))?></li>
 			<li><?php print anchor('article/admin/article/classifyList','分类管理',array('class'=>'icon_application'))?></li>
         </ul>
+    </li>
+    <li id="menu_bep_system"><span class="icon_computer">专题管理系统</span>
+        <ul>
+        	<li><?php print anchor('special/admin/special/index','专题管理',array('class'=>'icon_pencil'))?></li>
+			<li><?php print anchor('special/admin/special/update','添加专题',array('class'=>'icon_add'))?></li>
+		</ul>
     </li>
 </ul>
