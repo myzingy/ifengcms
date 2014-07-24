@@ -42,14 +42,17 @@ class article extends Admin_Controller
 	}
 	function articleList(){
 		$limit=array('offset'=>$page,'limit'=>15);
-		$info=$this->article_model->getArticleList(null,$limit,true);
+		$data['params']=$this->uri->getParamsArr();
+		$where=array('A.type'=>1);
+		$info=$this->article_model->getArticleList($where,$limit,true,$data['params']['classify']);
+		echo $this->article_model->db->last_query();
 		$data['members'] = $info['data'];
 		$data['pagination']=$info['pagination'];
-
 		// Display Page
 		$data['header'] = '新闻管理';
 		$data['page'] = $this->config->item('backendpro_template_dir') . "list_article";
 		$data['module'] = 'article';
+		$data['classify'] =$this->article_model->classifyData();
 		$this->load->view($this->_container,$data);
 	}
 	function update($aid=''){

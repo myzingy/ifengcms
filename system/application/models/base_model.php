@@ -172,25 +172,25 @@ class Base_model extends Model
 			switch($a){
 				case "ae":
 					$this->db->where($b,$v);
-					$where.="\$this->db->where($b,$v);";
+					$where.="\$this->db->where('$b',$v);";
 				break;
 				case "oe":
 					$this->db->or_where($b,$v);
-					$where.="\$this->db->or_where($b,$v);";
+					$where.="\$this->db->or_where('$b',$v);";
 				break;
 				case "al":
 					$this->db->like($b,$v);
-					$where.="\$this->db->like($b,$v);";
+					$where.="\$this->db->like('$b',$v);";
 				break;
 				case "ol":
 					$this->db->or_like($b,$v);
-					$where.="\$this->db->or_like($b,$v);";
+					$where.="\$this->db->or_like('$b',$v);";
 				break;
 				case "ai":
 					$v=explode(",",$v);
 					$this->db->where_in($b,$v);
 					$v=var_export($v,true);
-					$where.="\$this->db->where_in($b,$v);";
+					$where.="\$this->db->where_in('$b',$v);";
 				break;
 				case "agt":
 					$this->db->where("$b >",$v);
@@ -202,7 +202,7 @@ class Base_model extends Model
 				break;
 				case "oo":
 					$this->db->order_by($b,$v);
-					$where.="\$this->db->order_by($b,$v);";
+					$where.="\$this->db->order_by('$b',$v);";
 				break;
 			}
 		}

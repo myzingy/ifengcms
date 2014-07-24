@@ -1,19 +1,19 @@
 <h2><?php print $header?></h2>
 
 <div class="buttons">                
-	<a href="<?php print  site_url('article/admin/article/update')?>">
+	<a href="<?php print  site_url('special/admin/special/update')?>">
     <?php print  $this->bep_assets->icon('add');?>
-    	添加新闻
+    	添加专题
     </a>
 </div><br/><br/>
 
-<?php print form_open('article/admin/article/delete')?>
+<?php print form_open('special/admin/special/delete')?>
 <table class="data_grid" cellspacing="0">
     <thead>
         <tr>
             <th width=5%><?php print $this->lang->line('general_id')?></th>
-            <th width=55%>推荐名称</th>
-            <th>排序</th>
+            <th width=50%>专题名称</th>
+            <th>点击查看</th>
             <th>发布时间</th>
             <th>状态</th>
             <th>修改</th>
@@ -39,10 +39,10 @@
             <td><?php print $row['id']?></td>
             <td><?php print $row['title']?></td>
             
-            <td><input rowid="<?php print $row['id']?>" class="order" size="4" value="<?php print $row['order']?>" /></td>
+            <td><a target="_blank" href="<?php print base_url().$row['url']?>">右键复制链接地址</a></td>
             <td><?php print date("Y-m-d H:i:s",$row['addtime'])?></td>
             <td><?php print $this->bep_assets->icon($active);?></td>
-            <td class="middle"><a href="<?php print site_url('article/admin/article/update/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a></td>
+            <td class="middle"><a href="<?php print site_url('special/admin/special/update/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a></td>
             <td><?php print $delete?></td>
         </tr>
         <?php endforeach; ?>
@@ -51,10 +51,6 @@
 <?php print form_close()?>
 <script type="text/javascript">
 	pageinit=function(){
-		$(".order").change(function(){
-			var id=$(this).attr('rowid');
-			var order=this.value;
-			$.get("<?php print site_url('article/admin/article/order/')?>/"+id+"/"+order);
-		});
+		
 	};
 </script>

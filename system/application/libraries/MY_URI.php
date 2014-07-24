@@ -13,4 +13,11 @@ class MY_URI extends CI_URI {
 		}
 		return $str;
 	}
+	function getParamsArr($key=''){
+		$arr=array();
+		for($i=1;$i<count($this->rsegments);$i+=2){
+			$arr[$this->rsegments[$i]]=$this->rsegments[$i+1];
+		}
+		return $arr;
+	}
 }

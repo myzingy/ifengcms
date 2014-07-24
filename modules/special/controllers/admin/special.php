@@ -10,9 +10,39 @@ class special extends Admin_Controller
 		$this->load->library('special_lib');
 	}
 	function index(){
-		
+		$limit=array('offset'=>$page,'limit'=>15);
+		$info=$this->special_model->getSpecialList(null,$limit,true);
+		$data['members'] = $info['data'];
+		$data['pagination']=$info['pagination'];
+
+		// Display Page
+		$data['header'] = '专题管理';
+		$data['page'] = $this->config->item('backendpro_template_dir') . "list";
+		$data['module'] = 'special';
+		$this->load->view($this->_container,$data);
 	}
-	function update(){
-		$this->special_lib->update($this->_container);
+	function update($id=0){
+		$this->special_lib->update($this->_container,$id);
+	}
+	function delete()
+	{
+		if(FALSE === ($selected = $this->input->post('select')))
+		{
+			redirect('special/admin/special/index/','location');
+		}
+		$this->load->helper('file');
+		foreach($selected as $aid)
+		{
+			$res=$this->special_model->fetch('S','*',null,array('id'=>$aid));
+			if($res->num_rows()>0){
+				$row=$res->row();
+				@unlink(FCPATH.$row->src);
+				delete_files(FCPATH.$row->url,true);
+				@rmdir(FCPATH.$row->url);
+				@unlink(FCPATH.$row->url.".zip");
+				$this->special_model->delete('S',array('id'=>$aid));
+			}
+		}
+		redirect('special/admin/special/index/','location');
 	}
 }

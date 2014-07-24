@@ -32,7 +32,6 @@ class Article_model extends Base_model
 		$this->_prefix = $this->config->item('ifengcms_table_prefix');
 		$this->_TABLES = array(    'A' => $this->_prefix . 'article',
                                     'AC' => $this->_prefix . 'article_content',
-                                    'AP' => $this->_prefix . 'article_pop',
                                     'C'=>$this->_prefix . 'classify',
                                     'ACL'=>$this->_prefix . 'article_classify',
                                     );
@@ -59,8 +58,8 @@ class Article_model extends Base_model
 		}
 		return $info;
 	}
-	function getArticleList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false,$like=null){
-		$where_fileds=array('title');
+	function getArticleList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false,$classify=0){
+		$where_fileds=array('A.title');
 		if($count){
 			if( ! is_null($where))
 			{
@@ -69,6 +68,9 @@ class Article_model extends Base_model
 			$autowhere=$this->autowhere($where_fileds);	
 			$this->db->select('count(*)',false);
 			$this->db->from($this->_TABLES['A']." A");
+			if($classify>0){
+				$this->db->where("A.id in (select aid from {$this->_TABLES['ACL']} where cid=$classify)");
+			}
 			$datarows=$this->db->count_all_results();
 			$pagination=$this->autopage($datarows,$limit['limit']);
 		}
@@ -87,6 +89,9 @@ class Article_model extends Base_model
 		if($autowhere){eval($autowhere);}
 		$this->db->order_by('A.order','desc');
 		$this->db->order_by('A.id','desc');
+		if($classify>0){
+			$this->db->where("A.id in (select aid from {$this->_TABLES['ACL']} where cid=$classify)");
+		}
 		if( ! is_null($limit['limit']))
 		{
 			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));

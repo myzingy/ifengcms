@@ -3,13 +3,12 @@
 #classify_dispaly label.error{vertical-align:top;width:auto; border: 0px;}
 </style>
 <h3><?php print $header?></h3>
-<?php print form_open_multipart('article/admin/article/update',array('class'=>'horizontal','id'=>'articleForm'))?>
+<?php print form_open_multipart('special/admin/special/update',array('class'=>'horizontal','id'=>'articleForm'))?>
     <input type="hidden" name="id" value="<?php print $editinfo['id'];?>" />
-    <input type="hidden" name="type" value="1" />
     <fieldset>
         <ol>
             <li>
-                <label for="title">专题标题</label>
+                <label for="title">专题名称</label>
                 <input type="text" name="title" id="title" class="text" value="<?php print $editinfo['title'];?>"/>
             </li>
             <li>
@@ -21,9 +20,9 @@
                 <input type="file" name="src" id="src" class="text"/>
             </li>
             <li>
-                <label for="content">专题简介</label>
-                <textarea name="content" class="text" rows="10"><?php print $editinfo['content'];?></textarea>
-                <label for="content" generated="true" class="error" style="display: inline-block;"></label>
+                <label for="subject">专题简介</label>
+                <textarea name="subject" class="text" rows="10"><?php print $editinfo['subject'];?></textarea>
+                <label for="subject" generated="true" class="error" style="display: inline-block;"></label>
             </li>
             <li>
                 <label for="thumb1">专题文件包</label>

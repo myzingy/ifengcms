@@ -5,6 +5,21 @@
     <?php print  $this->bep_assets->icon('add');?>
     	添加新闻
     </a>
+    
+    <a href="#" style="float: right; display: inline-block;">
+    	分类：
+    	<select id="serSelectedClassify">
+    	<option value="">全部</option>
+    	<?php foreach($classify as $i=>$val):?>
+    		<option value="<?php print $i;?>" <?php print ($params['classify']==$i)?'selected':'';?> ><?php print $val;?></option>
+    	<?php endforeach;?>
+    </select>
+    标题：
+    <input id="serTitle" value="<?php print $params['al-A.title']?>" />
+    
+    <?php print  $this->bep_assets->icon('arrow_refresh');?>
+    	<span id="serButton">搜 索</span>
+    </a>
 </div><br/><br/>
 
 <?php print form_open('article/admin/article/delete')?>
@@ -12,7 +27,7 @@
     <thead>
         <tr>
             <th width=5%><?php print $this->lang->line('general_id')?></th>
-            <th width=55%>推荐名称</th>
+            <th width=55%>新闻标题</th>
             <th>排序</th>
             <th>发布时间</th>
             <th>状态</th>
@@ -55,6 +70,18 @@
 			var id=$(this).attr('rowid');
 			var order=this.value;
 			$.get("<?php print site_url('article/admin/article/order/')?>/"+id+"/"+order);
+		});
+		$('#serButton').click(function(){
+			var classify=$('#serSelectedClassify').val();
+			var title=$.trim($('#serTitle').val());
+			var url='<?php print site_url('article/admin/article/articleList')?>';
+			if(title){
+				url+='/al-A.title/'+title;
+			}
+			if(classify){
+				url+='/classify/'+classify;
+			}
+			location.href=url;
 		});
 	};
 </script>

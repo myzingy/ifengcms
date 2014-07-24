@@ -108,6 +108,7 @@ class Articlelib
 					'id'=>$data['article']['id']
 			));
 		}else{
+			$data['article']['modtime']=TIME;
 			$this->CI->article_model->insert('A',$data['article']);
 			$data['article']['id']=$this->CI->article_model->db->insert_id();
 		}
