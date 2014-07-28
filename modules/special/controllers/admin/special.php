@@ -11,7 +11,8 @@ class special extends Admin_Controller
 	}
 	function index(){
 		$limit=array('offset'=>$page,'limit'=>15);
-		$info=$this->special_model->getSpecialList(null,$limit,true);
+		$where=array('S.type'=>2);
+		$info=$this->special_model->getSpecialList($where,$limit,true);
 		$data['members'] = $info['data'];
 		$data['pagination']=$info['pagination'];
 

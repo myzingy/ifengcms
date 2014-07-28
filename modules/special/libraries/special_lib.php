@@ -129,6 +129,7 @@ class special_lib
 			}
 		}
 		$data['modtime']=TIME;
+		$data['type']=2;
 		if($this->CI->input->post('id')){//update
 			$this->CI->special_model->update('S'
 				,$data

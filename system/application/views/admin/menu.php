@@ -28,4 +28,9 @@ Examples can be seen below for menu_bep_system
 			<li><?php print anchor('special/admin/special/update','添加专题',array('class'=>'icon_add'))?></li>
 		</ul>
     </li>
+    <li id="menu_bep_system"><span class="icon_computer">评论管理系统</span>
+        <ul>
+        	<li><?php print anchor('comment/admin/comment/index','评论管理',array('class'=>'icon_pencil'))?></li>
+		</ul>
+    </li>
 </ul>

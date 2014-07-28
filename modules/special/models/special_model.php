@@ -6,7 +6,7 @@ class special_model extends Base_model
 
 		$this->_prefix = $this->config->item('ifengcms_table_prefix');
 		$this->_TABLES = array(
-			'S' => $this->_prefix . 'special'
+			'S' => $this->_prefix . 'article'
         );
 	}
 	function getSpecialList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false,$like=null){
@@ -29,10 +29,6 @@ class special_model extends Base_model
 		if( ! is_null($where))
 		{
 			$this->db->where($where);
-		}
-		if($like['A.position'])
-		{
-			$this->db->like($like);
 		}
 		if($autowhere){eval($autowhere);}
 		$this->db->order_by('S.id','desc');
