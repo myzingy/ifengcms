@@ -56,7 +56,9 @@ class Articlelib
 		$data['article']['status']=$data['article']['type']==1?0:1;
 		$data['article']['source']=$this->CI->input->post('source');//来源
 		$data['content']['content']=$this->CI->input->post('content');
-		$data['article']['subject']=preg_replace("/<[^>]+>/", "", $data['content']['content']);
+		$data['article']['url']=$this->CI->input->post('url');
+		$subject=$this->CI->input->post('subject');
+		$data['article']['subject']=$subject?$subject:preg_replace("/<[^>]+>/", "", $data['content']['content']);
 		if ($_FILES['src']['name']){ //需要图片的资讯
 			
 			//game thumb
@@ -99,6 +101,9 @@ class Articlelib
 			if($data['article']['src']){
 				$update['src']=$data['article']['src'];
 			}
+			if($data['article']['url']){
+				$update['url']=$data['article']['url'];
+			}
 			if($data['article']['subject']){
 				$update['subject']=$data['article']['subject'];
 			}
@@ -117,8 +122,11 @@ class Articlelib
 		
 		//img width 100%
 		$data['content']['content']=preg_replace("/width[ :=]+[^ ]+/", "", $data['content']['content']);
-		$data['content']['content']=preg_replace("/<img.*src=([^ ]+)[^>]+>/", "<img src=\$1 width=\"100%\"/>", $data['content']['content']);
-		
+		$data['content']['content']=preg_replace_callback("/<img[^>]+>/", create_function('$img'
+			,'preg_match("/src=([^ ]+)/",$img[0],$arr);'
+			.'return "<img src=$arr[1] width=\"100%\">";'
+			), $data['content']['content']);
+		//die('<textarea style="width:100%; height:500px;">'.$data['content']['content'].'</textarea>');
 		if($this->CI->input->post('id')){//update
 			$this->CI->article_model->update('AC'
 				,$data['content']
@@ -163,10 +171,14 @@ class Articlelib
 		switch($pagename){
 			case "admin":
 				$fields['source']='新闻来源';
+				$fields['url']='外链地址';
+				$fields['subject']='新闻简介';
 				$fields['content']='新闻详情';
 				$fields['classify[]']='新闻分类';
 				$fields['src']='资讯 图片';
 				
+				$rules['url']='trim|valid_url';
+				$rules['subject']='trim|max_length[255]';
 				$rules['source']='trim|required|max_length[20]';
 				$rules['classify[]']='required';
 				$rules['content']='trim|required';
@@ -257,6 +269,105 @@ class Articlelib
 	}
 	function order($id,$order){
 		$this->CI->article_model->update('A',array('order'=>$order+0),array('id'=>$id));
+	}
+	//点赞
+	function applaud($uid){
+		$data['id']=$this->CI->input->post('id');
+		$data['uid']=$uid;
+		$res=$this->CI->article_model->fetch('AA','*',null,$data);
+		if($res->num_rows()>0){
+			return array('status'=>10000,'error'=>'你已经点过赞了');
+		}
+		$data['ip']=$this->CI->input->ip_address();
+		$data['addtime']=TIME;
+		$this->CI->article_model->insert('AA',$data);
+		return array('status'=>0);
+	}
+	//早晚报
+	function xwzwb_thumbHeight($oldWidth,$oldHeight,$newWidth){
+		return ceil(($newWidth*$oldHeight)/$oldWidth);
+	}
+	function xwzwb_getImgRes($imgpath,$type){
+		$type = image_type_to_extension($type);
+		$fun='imagecreatefrom'.substr($type,1);
+		eval("\$img=$fun(\$imgpath);");
+		return $img;
+	}
+	function xwzwb_margeImg($img1,$img2,$old_title){
+		$new_width=480;
+		//标题文字处理
+		$font_file = FCPATH.'/assets/fonts/SIMHEI.TTF';
+		$font_size=20;
+		$font_space=16;
+		$tbox=imagettfbbox ($font_size,0,$font_file,"凤凰陕西");
+		$title=mb_substr($old_title, 0,(int)($new_width/abs($tbox[6]+$tbox[7])-2),'UTF-8');
+		$tbox=imagettfbbox ($font_size,0,$font_file,$title);
+		$font_height=abs($tbox[6]+$tbox[7])+$font_space;
+		
+		list($width1, $height1, $type1, $attr) = getimagesize($img1);
+		list($width2, $height2, $type2, $attr) = getimagesize($img2);
+		$new_height1=$this->xwzwb_thumbHeight($width1, $height1,$new_width);
+		$new_height2=$this->xwzwb_thumbHeight($width2, $height2,$new_width);
+		$new_height=$new_height1+$new_height2;
+		
+		$new_img=imagecreatetruecolor($new_width,$new_height);
+		$bgColor = imagecolorallocate($new_img, 255,255,255);
+		$c_font_back = imagecolorallocatealpha($new_img, 0, 0, 0,80);
+		imagefill($new_img , 0,0 , $bgColor);
+		
+		$old_img1=$this->xwzwb_getImgRes($img1,$type1);
+		imagecopyresized($new_img,$old_img1,0,0,0,0,$new_width,$new_height1,$width1,$height1);
+		imagedestroy($old_img1);
+		
+		//添加文字背景色
+		imagefilledrectangle($new_img,0,$new_height1-$font_height,$new_width,$new_height1,$c_font_back);
+		//添加文字
+		imagettftext($new_img, $font_size, 0, $new_width-$tbox[2]-$font_space, $new_height1-$font_space/2, $bgColor, $font_file, $title);
+		
+		$old_img2=$this->xwzwb_getImgRes($img2,$type2);
+		imagecopyresized($new_img,$old_img2,0,$new_height1,0,0,$new_width,$new_height2,$width2,$height2);
+		imagedestroy($old_img2);
+		
+		@mkdir('uploads/xwzwb/');
+		$ymd=date('ymd',TIME);
+		@mkdir('uploads/xwzwb/'.$ymd);
+		$filename=date('ymdh',TIME).'.jpeg';
+		$img_file='uploads/xwzwb/'.$ymd.'/'.$filename;
+		imagejpeg($new_img,$img_file);
+		imagedestroy($new_img);
+		return $img_file;
+	}
+	function xwzwb(){
+		//读取幻灯 limit 1
+		$limit=array('offset'=>0,'limit'=>1);
+		$where=array('A.type'=>1,'A.status'=>0);
+		$classify=1;
+		$res=$this->CI->article_model->getArticleList($where,$limit,false,$classify);
+		if($res->num_rows()>0){
+			$data['img']=$res->row();
+		}
+		//读取首页新闻
+		$limit=array('offset'=>0,'limit'=>10);
+		$where=array('A.type'=>1,'A.status'=>0);
+		$classify=2;
+		$res=$this->CI->article_model->getArticleList($where,$limit,false,$classify);
+		if($res->num_rows()>0){
+			$data['news']=$res->result();
+		}
+		//读取首页广告
+		$limit=array('offset'=>0,'limit'=>4);
+		$where=array('A.type'=>1,'A.status'=>0);
+		$classify=3;
+		$res=$this->CI->article_model->getArticleList($where,$limit,false,$classify);
+		if($res->num_rows()>0){
+			$data['ad']=$res->result();
+			$data['first_ad']=array_shift($data['ad']);
+		}
+		//合并幻灯图片与广告图片
+		if(file_exists($data['img']->src) && file_exists($data['first_ad']->src)){
+			$data['first_ad']->src=$this->xwzwb_margeImg($data['img']->src,$data['first_ad']->src,$data['img']->title);
+		}
+		return $data;
 	}
 }
 /* End of file Userlib.php */

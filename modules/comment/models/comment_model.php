@@ -19,11 +19,13 @@ class comment_model extends Base_model
 	}
 	function getCommentList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false,$articleTitle=''){
 		$where_fileds=array('C.type','C.subject');
+		$uid=$this->session->userdata(id);
 		if($count){
 			if( ! is_null($where))
 			{
 				$this->db->where($where);
 			}
+			$this->db->or_where('C.uid',$uid);
 			$autowhere=$this->autowhere($where_fileds);	
 			$this->db->select('count(*)',false);
 			$this->db->from($this->_TABLES['C']." C");
@@ -42,6 +44,7 @@ class comment_model extends Base_model
 			$this->db->where($where);
 		}
 		if($autowhere){eval($autowhere);}
+		$this->db->or_where('C.uid',$uid);
 		$this->db->order_by('C.id','desc');
 		if($articleTitle){
 				$this->db->where("C.aid in (select id from {$this->_TABLES['A']} where title like '%$articleTitle%')");

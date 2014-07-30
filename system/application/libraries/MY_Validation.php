@@ -180,6 +180,10 @@ class MY_Validation extends CI_Validation
 		//^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$
 		return ( ! preg_match("/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/", $phone)) ? FALSE : TRUE;
 	}
+	function valid_url($url){
+		$this->CI->validation->set_message('valid_url', '链接地址必须以http://开头');
+		return (! preg_match("/^http:\/\/.+/", $url))?false:true;
+	}
 	function min_number($num,$val){
 		if (preg_match("/[^0-9\.]/", $val))
 		{

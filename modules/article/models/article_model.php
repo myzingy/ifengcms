@@ -34,6 +34,7 @@ class Article_model extends Base_model
                                     'AC' => $this->_prefix . 'article_content',
                                     'C'=>$this->_prefix . 'classify',
                                     'ACL'=>$this->_prefix . 'article_classify',
+                                    'AA'=>$this->_prefix . 'article_applaud',
                                     );
 	}
 	function getArticleAllInfo($aid){

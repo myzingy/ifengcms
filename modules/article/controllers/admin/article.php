@@ -61,15 +61,25 @@ class article extends Admin_Controller
 	{
 		if(FALSE === ($selected = $this->input->post('select')))
 		{
-			redirect('article/admin/article/articleList/','location');
+			redirect($_SERVER['HTTP_REFERER'],'location');
 		}
-		foreach($selected as $aid)
-		{
-			$this->article_model->delete('A',array('id'=>$aid));
-			$this->article_model->delete('AC',array('aid'=>$aid));
-			$this->article_model->delete('ACL',array('aid'=>$aid));
+		$claen=$this->input->post('clean');
+		if($claen){
+			$clean_classify=$this->input->post('clean_classify');
+			foreach($selected as $aid)
+			{
+				$this->article_model->delete('ACL',array('aid'=>$aid,'cid'=>$clean_classify));
+			}
+		}else{
+			foreach($selected as $aid)
+			{
+				$this->article_model->delete('A',array('id'=>$aid));
+				$this->article_model->delete('AC',array('aid'=>$aid));
+				$this->article_model->delete('ACL',array('aid'=>$aid));
+			}
 		}
-		redirect('article/admin/article/articleList/','location');
+		
+		redirect($_SERVER['HTTP_REFERER'],'location');
 	}
 	function switchStatus($id,$status){
 		$this->article_model->update('FA',array('status'=>$status),array('id'=>$id));	
@@ -98,6 +108,14 @@ class article extends Admin_Controller
 		$this->article_model->delete('C',array('id'=>$classifyID));
 		$this->article_model->classifyData('W');
 		die('{"status":0}');
+	}
+	function xwzwb(){
+		parent::Ajax_Controller();
+		$data['header'] = '新闻早晚报';
+		$data['page'] = $this->config->item('backendpro_template_dir') . "xwzwb";
+		$data['module'] = 'article';
+		$data['data'] =$this->articlelib->xwzwb();
+		$this->load->view($this->_container,$data);
 	}
 }
 /* End of file auth.php */

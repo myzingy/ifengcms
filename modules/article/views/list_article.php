@@ -5,7 +5,10 @@
     <?php print  $this->bep_assets->icon('add');?>
     	添加新闻
     </a>
-    
+    <a target="_blank" href="<?php print  site_url('article/admin/article/xwzwb')?>">
+    <?php print  $this->bep_assets->icon('page');?>
+    	导出彩信
+    </a>
     <a href="#" style="float: right; display: inline-block;">
     	分类：
     	<select id="serSelectedClassify">
@@ -23,6 +26,7 @@
 </div><br/><br/>
 
 <?php print form_open('article/admin/article/delete')?>
+<input name="clean_classify" type="hidden" value="<?php print $params['classify'];?>" />
 <table class="data_grid" cellspacing="0">
     <thead>
         <tr>
@@ -32,13 +36,14 @@
             <th>发布时间</th>
             <th>状态</th>
             <th>修改</th>
-            <th width=10%><?php print form_checkbox('all','select',FALSE)?><?php print $this->lang->line('general_delete')?></th>        
+            <th width=10%><?php print form_checkbox('all','select',FALSE)?>选择</th>        
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <td colspan=6><?php print $pagination;?></td>
-            <td><?php print form_submit('delete','删除','onClick="return confirm(\'确认要删除吗？\');"')?></td>
+            <td colspan=3><?php print $pagination;?></td>
+            <td colspan=3 style="text-align: right;"><?php print $params['classify']?form_submit('clean','清理此分类','onClick="return true;"'):'';?></td>
+            <td><?php print form_submit('delete','删除资讯','onClick="return confirm(\'确认要删除吗？\');"')?></td>
         </tr>
     </tfoot>
     <tbody>
@@ -52,7 +57,7 @@
         ?>
         <tr>
             <td><?php print $row['id']?></td>
-            <td><?php print $row['title']?></td>
+            <td><?php print anchor('xwzwb/show/'.$row['id'],$row['title'],'target="_blank"');?></td>
             
             <td><input rowid="<?php print $row['id']?>" class="order" size="4" value="<?php print $row['order']?>" /></td>
             <td><?php print date("Y-m-d H:i:s",$row['addtime'])?></td>
@@ -82,6 +87,9 @@
 				url+='/classify/'+classify;
 			}
 			location.href=url;
+		});
+		$('#serSelectedClassify').change(function(){
+			$('#serButton').trigger('click');
 		});
 	};
 </script>

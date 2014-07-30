@@ -48,6 +48,6 @@ class open extends Public_Controller
 		),$AppSecret);
 		$url="http://mophpweb.duapp.com/index.php/open/act/login?".$param;
 		$cont=$this->open->http_post($url,"");
-		var_dump($url,$cont);
+		die($cont);
 	}
 }

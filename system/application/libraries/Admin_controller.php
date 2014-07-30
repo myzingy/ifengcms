@@ -56,6 +56,21 @@ class Admin_Controller extends Site_Controller
 
 		log_message('debug','BackendPro : Admin_Controller class loaded');
 	}
+	function Ajax_Controller()
+	{
+		parent::Site_Controller();
+
+		// Set container variable
+		$this->_container = $this->config->item('public_template_libs') . "ajax.php";
+
+		// Set public meta tags
+		//$this->bep_site->set_metatag('name','content',TRUE/FALSE);
+
+		// Load the PUBLIC asset group
+		$this->bep_assets->load_asset_group('PUBLIC');
+		
+		log_message('debug','BackendPro : Public_Controller class loaded');
+	}
 }
 
 /* End of Admin_controller.php */
