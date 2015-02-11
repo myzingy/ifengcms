@@ -20,6 +20,7 @@ class praise extends Public_Controller
 				$info=array('status'=>10000,'error'=>'你已经投过票了');
 			}else{
 				$data['addtime']=TIME;
+				$data['type']=($action=='down')?1:0;
 				$this->praise_model->insert('P',$data);
 			}
 		}

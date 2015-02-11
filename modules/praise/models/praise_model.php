@@ -14,7 +14,7 @@ class praise_model extends Base_model
 		$this->db->from($this->_TABLES['P']);
 		$this->db->group_by('type');
 		$this->db->where('pkid',$pkid);
-		$this->db->order_by('type','desc');
+		$this->db->order_by('type','asc');
 		return $this->db->get();
 	}
 }
