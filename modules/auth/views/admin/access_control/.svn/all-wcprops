@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control
+END
+form_resource.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/form_resource.php
+END
+resources.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/resources.php
+END
+view_advanced_permissions.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/view_advanced_permissions.php
+END
+form_permission.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/form_permission.php
+END
+permissions.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/permissions.php
+END
+form_group.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/form_group.php
+END
+groups.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/groups.php
+END
+actions.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/actions.php
+END
+home.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/appidwmne423gkg/!svn/ver/2/ifengcms/modules/auth/views/admin/access_control/home.php
+END

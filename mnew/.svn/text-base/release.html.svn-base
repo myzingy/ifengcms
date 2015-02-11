@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>发布新闻</title>
+    <!-- 为了确保适当的绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 可以禁用其缩放（zooming）功能 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 对手机设备的一些设置 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 样式表的引用 -->
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jq的引用 -->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <!-- 左侧导航js -->
+    <script src="js/jquery.mmenu.min.js"></script>
+    <!--去掉微信底部返回栏-->
+    <script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+    });
+    </script>
+</head>
+    <body>
+    	<div>
+        <header class="header1">
+            <div class="headbox">
+                <div class="backbtn" onclick="location.href='javascript:history.go(-1);'"><i class="iconfont">&#xe617;</i></div>
+                <div class="title"><h1>发布新闻</h1></div>
+                <a href="#menu" class="ui-link user"><i class="iconfont">&#xe600;</i></a>
+            </div>
+        </header>
+        <div id="release">
+            <form class="form-horizontal" role="form" method="post" id="login_form">
+            	<div class="form-group">
+                    <div class="inputbox"><label for="title"></label><input type="text"  id="title" name="title" placeholder="标题"></div>
+                </div>
+                <div class="form-group">
+                    <div class="textarea">
+                        <div class="tip"><i class="iconfont">&#xe609;&nbsp;<span>你要发布的内容</span></i></div>
+                        <textarea class="form-control" name="content" id="content"  rows="10" placeholder=""></textarea>
+                        <input id="imgfile" type="file" name="files"/>
+                        <button id="imgntn" type="button"><i class="iconfont fr">&#xe608;</i></button>
+                    </div>
+                </div>
+                <script type="text/html" id="upload_display_tpl">
+                	<img style="width:50px; height:50px;" src="{src}"/>
+                	<input type="hidden" name="hideimg[]" value="{src}" />
+                </script>
+                <div class="form-group" id="upload_display"></div>
+                <div class="form-group">
+                    <div class="btngroup fl"><button type="submite">发布<i class="iconfont fr">&#xe60a;</i></button></div>
+                </div>
+            </form>
+        </div>
+        </div>
+        <!-- 侧边导航开始 -->
+        <nav id="menu"></nav>
+        <!-- 侧边导航结束 -->
+    </body>
+    <!-- 自己写的一些 -->
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/release.js"></script>
+</html>

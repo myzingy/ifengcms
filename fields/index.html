@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.bootcss.com/p/bootstrap-form-builder/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Bootstrap表单构造器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="基于Bootstrap的web表单构造器，通过拖拽组件的方式生成完整可用的表单">
+    <meta name="keywords" content="Bootstrap,Form,表单,拖拽">
+    <meta name="author" content="Bootstrap中文网">
+
+    <link href="http://cdn.bootcss.com/twitter-bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-bottom: 10px;
+      }
+      #components{
+        min-height: 600px;
+      }
+      #target{
+        min-height: 200px;
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      #target .component{
+        border: 1px solid #fff;
+      }
+      #temp{
+        width: 500px;
+        background: white;
+        border: 1px dotted #ccc;
+        border-radius: 10px;
+      }
+
+      .popover-content form {
+        margin: 0 auto;
+        width: 213px;
+      }
+      .popover-content form .btn{
+        margin-right: 10px
+      }
+      #source{
+        min-height: 500px;
+      }
+      #source_mobile{
+        min-height: 500px;
+      }
+    </style>
+    <link href="http://cdn.bootcss.com/twitter-bootstrap/2.0.4/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="http://www.bootcss.com/p/bootstrap-form-builder/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://www.bootcss.com/p/bootstrap-form-builder/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://www.bootcss.com/p/bootstrap-form-builder/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://www.bootcss.com/p/bootstrap-form-builder/images/apple-touch-icon-114x114.png">
+    <link href="../assets/css/fields.upload.css" rel="stylesheet">
+  <style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style></head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="bak.htm">Bootstrap 表单构造器</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row clearfix" id="step1">
+
+				<form class="form-horizontal" id="setp1save_form">
+					<input id="field_id" type="hidden" name="id" />
+					<fieldset>
+						<div id="legend" class="">
+							<legend class="">
+								表单名
+							</legend>
+						</div>
+						<div class="control-group">
+
+							<!-- Text input-->
+							<label class="control-label" for="input01">表单名称</label>
+							<div class="controls">
+								<input type="text" placeholder="表单名称" class="input-xlarge" name="name">
+								<p class="help-block">
+									请输入表单名称
+								</p>
+							</div>
+						</div>
+
+						<div class="control-group">
+
+							<!-- Text input-->
+							<label class="control-label" for="input01">开始时间</label>
+							<div class="controls">
+								<input type="text" placeholder="2014-08-08" class="input-xlarge" name="stime">
+								<p class="help-block">
+									请按2014-08-08 09:00:00格式填写
+								</p>
+							</div>
+						</div>
+						<div class="control-group">
+
+							<!-- Text input-->
+							<label class="control-label" for="input01">结束时间</label>
+							<div class="controls">
+								<input type="text" placeholder="2014-09-09" class="input-xlarge" name="etime">
+								<p class="help-block">
+									请按2014-09-09 23:59:59格式填写
+								</p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label"></label>
+
+							<!-- Button -->
+							<div class="controls">
+								<button class="btn btn-success" type="button" id="setp1save_but">
+									下一步
+								</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+			</div>
+      <div class="row clearfix"  id="step2" style="display: none;">
+        <div class="span6">
+          <div class="clearfix">
+            <h2>Your Form</h2>
+            <hr>
+            <div id="build">
+              <form id="target" class="form-horizontal" style="background-color: rgb(255, 255, 255);">
+                <fieldset>
+                  <div id="legend" rel="popover" trigger="manual" data-original-title="Form Title" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-style: none;">
+                    <legend id="step2_name" data-valtype="text">表单名</legend>
+                  </div>
+                </fieldset>
+              </form>
+              
+            </div>
+            <form class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label"></label>
+
+							<!-- Button -->
+							<div class="controls">
+								<button class="btn btn-success" id="setp2save_but" type="button">
+									请及时保存数据
+								</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+          </div>
+        </div>
+
+        <div class="span6">
+            <h2>拖拽下面的组件到左侧</h2>
+            <hr>
+          <div class="tabbable">
+            <ul class="nav nav-tabs" id="navtab">
+              <li class="active"><a href="http://www.bootcss.com/p/bootstrap-form-builder/#1" data-toggle="tab">常用</a></li>
+              <li class=""><a href="http://www.bootcss.com/p/bootstrap-form-builder/#2" data-toggle="tab">Select</a></li>
+              <li class=""><a href="http://www.bootcss.com/p/bootstrap-form-builder/#3" data-toggle="tab">Checkbox / Radio</a></li>
+              <li class=""><a href="http://www.bootcss.com/p/bootstrap-form-builder/#4" data-toggle="tab">文件/按钮</a></li>
+              <li class=""><a id="sourcetab" href="http://www.bootcss.com/p/bootstrap-form-builder/#5" data-toggle="tab">调整样式</a></li>
+              <li class=""><button class="btn btn-success" id="setp2save_but_go">
+									下一步
+								</button></li>
+            </ul>
+            <form class="form-horizontal" id="components">
+              <fieldset>
+                <div class="tab-content">
+
+                  <div class="tab-pane active" id="1">
+					<div class="control-group component" data-type="text" rel="popover" title="Text Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Placeholder&lt;/label&gt; &lt;input type=&#39;text&#39; name=&#39;placeholder&#39; id=&#39;placeholder&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Help Text&lt;/label&gt; &lt;input type=&#39;text&#39; name=&#39;help&#39; id=&#39;help&#39;&gt;
+                          &lt;label class=&#39;control-rules&#39;&gt;字段规则&lt;/label&gt;
+                          	&lt;select name=&#39;rules&#39; id=&#39;rules&#39; &gt;
+                          		&lt;option value=&#39;trim&#39;&gt;通用&lt;/option&gt;
+                          		&lt;option value=&#39;trim|field_truename&#39;&gt;姓名&lt;/option&gt;
+                          		&lt;option value=&#39;trim|field_phone[{table}]&#39;&gt;手机&lt;/option&gt;
+                          		&lt;option value=&#39;trim|field_mancode[{table}]&#39;&gt;身份证&lt;/option&gt;
+                          	&lt;/select&gt;
+                          &lt;label class=&#39;control-isnull&#39;&gt;&lt;input type=&#39;checkbox&#39; value=&#39;isnull&#39; name=&#39;isnull&#39; id=&#39;isnull&#39; /&gt; 用户可以不填&lt;/label&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+
+                      <!-- Text input-->
+                      <label class="control-label valtype" for="input01" data-valtype="label">label name</label>
+                      <div class="controls">
+                        <input type="text" placeholder="placeholder" class="input-xlarge valtype" data-valtype="placeholder">
+                        <p class="help-block valtype" data-valtype="help">label help</p>
+                      </div>
+                    </div>
+                    
+                    <div class="control-group component" rel="popover" title="Search Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-isnull&#39;&gt;&lt;input type=&#39;checkbox&#39; value=&#39;isnull&#39; name=&#39;isnull&#39; id=&#39;isnull&#39; /&gt; 用户可以不填&lt;/label&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+
+                      <!-- Textarea -->
+                      <label class="control-label valtype" data-valtype="label">textarea</label>
+                      <div class="controls">
+                        <div class="textarea">
+                              <textarea type="" class="valtype" data-valtype="textarea"> </textarea>
+                        </div>
+                      </div>
+                    </div>
+					
+                  </div>
+
+                  <div class="tab-pane" id="2">
+
+                    <div class="control-group component" rel="popover" title="Search Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Options: &lt;/label&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;option&#39;&gt; &lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+
+                      <!-- Select Basic -->
+                      <label class="control-label valtype" data-valtype="label">Select - Basic</label>
+                      <div class="controls">
+                        <select class="input-xlarge valtype" data-valtype="option">
+                          <option>Enter</option>
+                          <option>Your</option>
+                          <option>Options</option>
+                          <option>Here!</option>
+                        </select>
+                      </div>
+
+                    </div>
+
+                    <div class="control-group component" rel="popover" title="Search Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Options: &lt;/label&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;option&#39;&gt;&lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+
+                      <!-- Select Multiple -->
+                      <label class="control-label valtype" data-valtype="label">Select - Multiple</label>
+                      <div class="controls">
+                        <select class="input-xlarge valtype" multiple="multiple" data-valtype="option">
+                          <option>Enter</option>
+                          <option>Your</option>
+                          <option>Options</option>
+                          <option>Here!</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="tab-pane" id="3">
+
+
+                    <div class="control-group component" rel="popover" title="Multiple Checkboxes" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Options: &lt;/label&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;checkboxes&#39;&gt; &lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <label class="control-label valtype" data-valtype="label">Checkboxes</label>
+                      <div class="controls valtype" data-valtype="checkboxes">
+
+                        <!-- Multiple Checkboxes -->
+                        <label class="checkbox">
+                          <input type="checkbox" value="Option one">
+                          Option one
+                        </label>
+                        <label class="checkbox">
+                          <input type="checkbox" value="Option two">
+                          Option two
+                        </label>
+                      </div>
+
+                    </div>
+
+                    <div class="control-group component" rel="popover" title="Multiple Radios" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Options: &lt;/label&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;radios&#39;&gt;&lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <label class="control-label valtype" data-valtype="label">Radio buttons</label>
+                      <div class="controls valtype" data-valtype="radios">
+
+                        <!-- Multiple Radios -->
+                        <label class="radio">
+                          <input type="radio" value="Option one" name="group" checked="checked">
+                          Option one
+                        </label>
+                        <label class="radio">
+                          <input type="radio" value="Option two" name="group">
+                          Option two
+                        </label>
+                      </div>
+
+                    </div>
+
+                    <div class="control-group component" rel="popover" title="Inline Checkboxes" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;inline-checkboxes&#39;&gt;&lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <label class="control-label valtype" data-valtype="label">Inline Checkboxes</label>
+
+                      <!-- Multiple Checkboxes -->
+                      <div class="controls valtype" data-valtype="inline-checkboxes">
+                        <label class="checkbox inline">
+                          <input type="checkbox" value="1"> 1
+                        </label>
+                        <label class="checkbox inline">
+                          <input type="checkbox" value="2"> 2
+                        </label>
+                        <label class="checkbox inline">
+                          <input type="checkbox" value="3"> 3
+                        </label>
+                      </div>
+
+                    </div>
+
+                    <div class="control-group component" rel="popover" title="Inline radioes" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;inline-radios&#39;&gt;&lt;/textarea&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <label class="control-label valtype" data-valtype="label">Inline radios</label>
+                      <div class="controls valtype" data-valtype="inline-radios">
+
+                        <!-- Inline Radios -->
+                        <label class="radio inline">
+                          <input type="radio" value="1" checked="checked" name="group">
+                          1
+                        </label>
+                        <label class="radio inline">
+                          <input type="radio" value="2" name="group">
+                          2
+                        </label>
+                        <label class="radio inline">
+                          <input type="radio" value="3">
+                          3
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  
+                  <div class="tab-pane" id="4">
+                  	<div class="control-group component" rel="popover" title="File Upload" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label_imgfile&#39; id=&#39;label_imgfile&#39;&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <label class="control-label valtype" data-valtype="label_imgfile">Image Button</label>
+                       <!-- File Upload -->
+                      <div class="controls">
+	                  	<div class="kiss_upload_photo">
+						    <div class="photo">
+						        <div class="kiss_loading"></div>
+						        <div class="exp"></div>
+						        <div class="upload_btn webuploader-container">
+							        <div class="webuploader-pick"></div>
+							        <div id="rt_rt_18u5iu5do84v44rb941c1j164r1" style="position: absolute; top: 0px; left: 0px; width: 254px; height: 210px; overflow: hidden; bottom: auto; right: auto;">
+							        	<input type="file" name="图片" class="webuploader-element-invisible" accept="image/*">
+							        	<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"></label>
+							        </div>
+							    </div>
+							</div>
+					    </div>
+					    <div class="kiss_upload_success">
+						    <div class="photo">
+						        <div class="preview">
+						            <img src="./assets/blank.gif">
+						        </div>
+						    </div>
+						    <div class="msg"></div>
+						</div>
+					  </div>
+					</div>  
+                    
+                    <div class="control-group component" data-type="text" rel="popover" title="Text Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Help Text&lt;/label&gt; &lt;input type=&#39;text&#39; name=&#39;help&#39; id=&#39;help&#39;&gt;
+                          &lt;label class=&#39;control-filetype&#39;&gt;File Type&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; value=&#39;doc|docx&#39; name=&#39;filetype&#39; id=&#39;filetype&#39;&gt;
+                          &lt;label class=&#39;control-filesize&#39;&gt;File Size&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; value=&#39;10M&#39; name=&#39;filesize&#39; id=&#39;filesize&#39;&gt;
+                          &lt;label class=&#39;control-isnull&#39;&gt;&lt;input type=&#39;checkbox&#39; value=&#39;isnull&#39; name=&#39;isnull&#39; id=&#39;isnull&#39; /&gt; 用户可以不填&lt;/label&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+
+                      <!-- Text input-->
+                      <label class="control-label valtype" for="input01" data-valtype="label">label name</label>
+                      <div class="controls">
+                        <input type="file" placeholder="placeholder" class="input-xlarge valtype" data-valtype="placeholder">
+                        <p class="help-block valtype" data-valtype="help">label help</p>
+                      </div>
+                    </div>
+                    
+                    <div class="control-group component" rel="popover" title="Search Input" trigger="manual" data-content="
+                      &lt;form class=&#39;form&#39;&gt;
+                        &lt;div class=&#39;controls&#39;&gt;
+                          &lt;label class=&#39;control-label&#39;&gt;Button Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;button&#39;&gt;
+                          &lt;label class=&#39;control-label&#39; id=&#39;&#39;&gt;Type: &lt;/label&gt;
+                          &lt;select class=&#39;input&#39; id=&#39;color&#39;&gt;
+                            &lt;option id=&#39;btn-default&#39;&gt;Default&lt;/option&gt;
+                            &lt;option id=&#39;btn-primary&#39;&gt;Primary&lt;/option&gt;
+                            &lt;option id=&#39;btn-info&#39;&gt;Info&lt;/option&gt;
+                            &lt;option id=&#39;btn-success&#39;&gt;Success&lt;/option&gt;
+                            &lt;option id=&#39;btn-warning&#39;&gt;Warning&lt;/option&gt;
+                            &lt;option id=&#39;btn-danger&#39;&gt;Danger&lt;/option&gt;
+                            &lt;option id=&#39;btn-inverse&#39;&gt;Inverse&lt;/option&gt;
+                          &lt;/select&gt;
+                          &lt;hr/&gt;
+                          &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/form&gt;">
+                      <!-- Button -->
+                      <div class="controls valtype full-button" data-valtype="button">
+                        <button class="btn btn-success">Button</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="tab-pane" id="5">
+                  	<label class="radio inline"><input type="radio" value="pc" name="source_type" checked="checked" />PC 版</label>
+                  	<label class="radio inline"><input type="radio" value="mobile" name="source_type" />Mobile 版</label>
+                  	<textarea id="source" class="span6"><style type="text/css">
+#target .full-button{text-align:center}
+</style>
+<script type="text/javascript">
+$(function(){
+	
+});
+</script>
+                  	</textarea>
+                  	<textarea id="source_mobile" class="span6"><style type="text/css">
+#target button{width:100%}
+</style>
+<script type="text/javascript">
+$(function(){
+	
+});
+</script>                  		
+                  	</textarea>
+                  </div>
+
+
+                  
+                </div></fieldset>
+              </form>
+            </div>
+          </div> <!-- row -->
+         </div>
+         
+         <div class="row clearfix" id="step3" style="display: none;">
+         	<div class="span12">
+			<p>请复制以下内容到你的页面中，请根据表单高度自行设置<code>iframe.style.height</code>，多个来源请调整src中的<code>fromaddr</code></p>
+			<pre>
+				&lt;!--请保证iframe id 与地址中 ifname值相同-->
+				&lt;iframe src="{iframesrc}?type=iframe&fromaddr=snifeng&ifname={ifname}" 
+					id="{ifname}" 
+					name="{ifname}" 
+					scrolling="no"
+					frameborder="no" 
+					style="border: 0;width:100%;height:500px;">
+				&lt;/iframe>
+				&lt;!--
+				设置iframe功能,可传递参数：
+					height 		禁止自动高度
+					fromaddr	禁止记录来源
+				传递多个参数用&分隔，默认全开，传递后禁止此功能。如：{iframeheightsrc}/height&fromaddr  
+				//-->
+				&lt;script src="{iframeheightsrc}">&lt;/script>
+			</pre>
+			</div>
+		</div>
+          
+          <div class="row clearfix">
+            <div class="span12">
+              <hr>
+              <p>凤凰陕西专用表单工具</p>
+            </div>
+          </div>
+        </div> <!-- /container -->
+        
+        
+			
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/jquery.md5.js"></script>
+    <script src="./assets/jquery.form.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <script src="./assets/fb.js"></script>      
+	<div id="style_script"></div>
+</body></html>

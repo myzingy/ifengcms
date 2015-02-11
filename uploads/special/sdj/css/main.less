@@ -1,0 +1,544 @@
+
+// 清除浏览器的默认样式开始
+* { margin: 0; padding: 0; list-style: none; }
+/* KISSY CSS Reset
+理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
+2. reset 的目的不是让默认样式在所有浏览器下一致，而是减少默认样式有可能带来的问题。
+3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
+特色：1. 适应中文；2. 基于最新主流浏览器。
+维护：玉伯<lifesinger@gmail.com>, 正淳<ragecarrier@gmail.com> */
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ { margin: 0; padding: 0; }
+/** 设置默认字体 **/
+body, button, input, select, textarea /* for ie */ { font: 12px/1.5 tahoma, arial, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; }
+/* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; }
+/* 统一等宽字体 */
+small { font-size: 12px; }
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+/** 重置表单元素 **/
+legend { color: #000; }
+/* for ie6 */
+fieldset, img { border: 0; }
+/* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea { font-size: 100%; }
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table { border-collapse: collapse; border-spacing: 0; }
+// 清除浏览器的默认样式结束
+
+// 图标字体话开始
+@font-face {
+  font-family: 'iconfont';
+  src: url('http://at.alicdn.com/t/font_1417594221_5857193.eot'); /* IE9*/
+  src: url('http://at.alicdn.com/t/font_1417594221_5857193.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://at.alicdn.com/t/font_1417594221_5857193.woff') format('woff'), /* chrome、firefox */
+  url('http://at.alicdn.com/t/font_1417594221_5857193.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('http://at.alicdn.com/t/font_1417594221_5857193.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {font-family:"iconfont" !important; font-size:16px; font-style:normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale;}
+/* 图标字体话使用示例<i class="iconfont">&#xe666;</i>*/
+// 图标字体话结束
+
+
+
+/* 浮动 */
+.fl{float:left;}
+.fr{float:right;}
+
+/* 清除浮动 */
+.clear{clear: both; _zoom:1; width:0; height:0; line-height:0; display:block; margin:0; padding:0;}
+.ks-clear:after, .clear:after {content: '\20'; display: block; height: 0; clear: both;}
+.ks-clear, .clear {*zoom: 1;}
+
+
+/*布局使用样式开始*/
+.fl{float:left;}
+.fr{float:right;}
+.clear{clear:both;}
+.col-md-1{padding:0;}
+.col-md-2{padding:0;}
+.col-md-3{padding:0;}
+.col-md-4{padding:0;}
+.col-md-5{padding:0;}
+.col-md-6{padding:0;}
+.col-md-1{width:8.33333333%;}
+.col-md-2{width:16.6666667%;}
+.col-md-3{width:25%;}
+.col-md-4{width:33.3333333%;}
+.col-md-5{width:41.666666%;}
+.col-md-6{width:50%;}
+.col-md-7{width:58.3333333%;}
+.col-md-8{width:66.6666666%;}
+.col-md-9{width:75%;}
+.col-md-10{width:83.3333333%;}
+.col-md-11{width:91.6666666%;}
+.col-md-12{width:100%;}
+.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12{
+padding:0;
+float:left;
+display:block; 
+}
+
+
+
+img{width:100%;}
+
+
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+.placeholder(@color: @input-color-placeholder) {
+  &::-moz-placeholder           { color: @color; } // Firefox
+  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+
+
+@keyframes ballmove
+{
+  0%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  25%{
+    transform:rotate(6deg);
+    -ms-transform:rotate(6deg);/* IE 9 */
+    -moz-transform:rotate(6deg);/* Firefox */
+    -webkit-transform:rotate(6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(6deg);  /* Opera */
+  }
+  50%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  75%{
+    transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);/* IE 9 */
+    -moz-transform:rotate(-6deg);/* Firefox */
+    -webkit-transform:rotate(-6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(-6deg);  /* Opera */
+  }
+  100%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+}
+
+@-moz-keyframes ballmove /* Firefox */
+{
+  0%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  25%{
+    transform:rotate(6deg);
+    -ms-transform:rotate(6deg);/* IE 9 */
+    -moz-transform:rotate(6deg);/* Firefox */
+    -webkit-transform:rotate(6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(6deg);  /* Opera */
+  }
+  50%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  75%{
+    transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);/* IE 9 */
+    -moz-transform:rotate(-6deg);/* Firefox */
+    -webkit-transform:rotate(-6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(-6deg);  /* Opera */
+  }
+  100%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+}
+
+@-webkit-keyframes ballmove /* Safari 和 Chrome */
+{
+  0%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  25%{
+    transform:rotate(6deg);
+    -ms-transform:rotate(6deg);/* IE 9 */
+    -moz-transform:rotate(6deg);/* Firefox */
+    -webkit-transform:rotate(6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(6deg);  /* Opera */
+  }
+  50%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  75%{
+    transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);/* IE 9 */
+    -moz-transform:rotate(-6deg);/* Firefox */
+    -webkit-transform:rotate(-6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(-6deg);  /* Opera */
+  }
+  100%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+}
+
+@-o-keyframes ballmove /* Opera */
+{
+  0%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  25%{
+    transform:rotate(6deg);
+    -ms-transform:rotate(6deg);/* IE 9 */
+    -moz-transform:rotate(6deg);/* Firefox */
+    -webkit-transform:rotate(6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(6deg);  /* Opera */
+  }
+  50%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+  75%{
+    transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);/* IE 9 */
+    -moz-transform:rotate(-6deg);/* Firefox */
+    -webkit-transform:rotate(-6deg);/* Safari 和 Chrome */
+    -o-transform:rotate(-6deg);  /* Opera */
+  }
+  100%{
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg);/* IE 9 */
+    -moz-transform:rotate(0deg);/* Firefox */
+    -webkit-transform:rotate(0deg);/* Safari 和 Chrome */
+    -o-transform:rotate(0deg);  /* Opera */
+  }
+}
+
+
+
+.btn{
+  border:0;
+  border-radius:3px;
+  background-color:#b20f0e;
+  padding:6px 15px;
+  color:#fff;
+  margin:10px auto;
+  text-align:center;
+  font:bold 14px/1.5 "微软雅黑";
+}
+#main{
+  width:100%;
+  height:100%;
+  background:url(../images/bg.jpg) no-repeat 0 0;
+  background-size:100% 100%;
+  .title{
+    padding-top:20px;
+  }
+  .content{
+    position:relative;
+    width:80%;
+    margin:0 10%;
+    .apples{
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      .apple_box{
+        width:100%;
+        position:relative;
+        .apple{
+          cursor:pointer;
+          position:absolute;
+          width:30%;
+          animation: ballmove 5s linear 2s infinite alternate;
+          /* Firefox: */
+          -moz-animation: ballmove 5s linear 2s infinite alternate;
+          /* Safari 和 Chrome: */
+          -webkit-animation: ballmove 5s linear 2s infinite alternate;
+          /* Opera: */
+          -o-animation: ballmove 5s linear 2s infinite alternate;
+
+        }
+        .apple1{
+          top:10%;
+          right:10%;
+        }
+        .apple2{
+          width:32%;
+          top:22%;
+          left:6%;
+        }
+        .apple3{
+          width:28%;
+          top:40%;
+          left:30%;
+        }
+        .apple4{
+          top:60%;
+          left:0;
+        }
+        .apple5{
+          width:26%;
+          top:60%;
+          right:10%;
+        }
+      }
+    }
+  }
+}
+
+.layer{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:10%;
+  width:70%;
+  padding:20px 5%;
+  border-radius:8px;
+  background-color:#f4e6b6;
+}
+.layer1{
+  display:block;
+  height:262px;
+  margin-top:-150px;
+  color:#b50201;
+  font:bold 14px/1.5 "微软雅黑";
+  h3{
+    font:bold 16px/1.5 "微软雅黑";
+  }
+  .btn_group{
+    width:100px;
+    margin:0 auto;
+    .btn{
+      width:100px;
+    }
+  }
+}
+
+.layer2{
+  width:80%;
+  padding:20px 5%;
+  height:110px;
+  left:5%;
+  margin-top:-55px;
+  color:#b50201;
+  font:bold 14px/1.5 "微软雅黑";
+  h3{
+    font:bold 16px/1.5 "微软雅黑";
+  }
+  ul{
+    margin:10px 0;
+  }
+  li{
+    float:left;
+    width:25%;
+    text-align:center;
+    font:bold 16px/30px "微软雅黑";
+  }
+  li.selected{
+    background-color:#e0bb3c;
+    border-radius:3px;
+  }
+  .btn_group{
+    width:72px;
+    margin:0 auto;
+  }
+}
+
+.layer3{
+  height:216px;
+  margin-top:-100px;
+  color:#b50201;
+  font:bold 14px/1.5 "微软雅黑";
+  h3{
+    font:bold 16px/1.5 "微软雅黑";
+    text-align:center;
+  }
+  .form-group{
+    margin:10px 0;
+    float:left;
+    input{
+      width:100%;
+      border:1px solid #b50201;
+      height:30px;
+      padding:5px 0;
+      text-indent:0.5em;
+      color:#b50201;
+      background-color:transparent;
+      font:bold 16px/30px "微软雅黑";
+      .placeholder(@color:#b50201;)
+    }
+  }
+  .form-group1{
+    width:30%;
+    margin-right:2%;
+  }
+  .form-group2{
+    width:68%;
+    margin:10px 0;
+  }
+
+  canvas{background-color: transparent;}
+  .scratch{
+    width:224px;
+    height:80px;
+    padding:0;
+    position:relative;
+    background-color:#b50201;
+    color:#e0bb3c;
+    #result{
+      padding:10px 0;
+      // position:absolute;
+      // top:0;
+      // left:0;
+      // z-index:3000;
+      text-align:center;
+      font:bold 20px/1.5 "微软雅黑";
+    }
+    .ScratchPad{
+      position: absolute;
+      top:0;
+      left:0;
+    }
+    .Scratch_cover{
+      width:224px;
+      height:80px;
+      position: absolute;
+      top:0;
+      left:0;
+      z-index:20;
+      cursor:pointer;
+    }
+    #wScratchPad{
+        position:relative;
+        width:224px;
+        height:80px;
+        top:0;
+        left:0;
+        canvas{
+          top:0;
+          left:0;
+        }
+        img{
+          top:0;
+          left:0;
+        }
+    }
+  }
+  .sharebtns{
+    width:100px;
+    margin:10px auto;
+    .btn{
+      width:100px;
+    }
+    .sharebtn{
+      display:none;
+    }
+  }
+}
+
+
+.cover{
+  display:none;
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+  .coverbg{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:#000;
+    opacity:0.8;
+  }
+  .img{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    height:auto;
+  }
+  .top_img{
+    width:60%;
+    position:absolute;
+    top:10px;
+    right:10px;
+  }
+  .bottom_img{
+    width:80%;
+    text-align:center;
+    color:#fff;
+    font:18px/1.5 "微软雅黑";
+    position:absolute;
+    top:50%;
+    left:10%;
+  }
+}
+
+
+
+
+
+

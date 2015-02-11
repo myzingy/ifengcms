@@ -1,0 +1,44 @@
+*{ margin:0px; padding:0px;}
+body{ font-family:微软雅黑; font-size:14px;}
+a{text-decoration:none;}
+a:link,a:hover,a:visited{text-decoration:none;}
+img{ border:0px; width:100%; height:auto;}
+ul{ list-style:none;}
+.fl{float:left;}
+.fr{float:right;}
+.clear{clear:both;}
+
+
+/*活动页面*/
+body{background-color:#ddfafd; color:#01aad5;}
+header{padding:0;}
+#main{padding:0 2%;}
+#main .top{position:relative; top:-4px;}
+#main .top div{width:50%;}
+#main .content01{font:12px/22px "微软雅黑"; padding:10px 0;}
+#main .content01 .form-control-static{padding:0 2%;}
+#main .content01 .form-control-static .form-group{width:100%; padding:10px 0; margin:0;}
+#main .content01 .form-control-static .form-group label{display:none;}
+#main .content01 .form-control-static .form-group .btn-group{width:100%;}
+#main .content01 .form-control-static .form-group .form-control{padding:10px; border:1px solid #01aad5; font:bold 14px/20px "微软雅黑"; background-color:transparent;}
+#main .content01 .form-control-static .qiangbtn{width:100%; border-radius:3px; font:bold 18px/40px "微软雅黑"; height:40px; color:#fff; background-color:#11b2e9;}
+#main .content01 .form-control-static .btn-group{} 
+#main .content01 .form-control-static .btn-group label{display:block; color:#01aad5; font:bold 14px/22px "微软雅黑";} 
+#main .content01 .form-control-static .btn-group input{}
+#main .content01 .form-control-static .form-control{color:#01aad5;}
+#main .content01 .form-control-static .btn-group  .active{background-color:#01aad5; border:0;}
+
+
+#main .content02{font:12px/22px "微软雅黑";}
+#main .content02 ul li{padding-left:20px; position:relative;}
+#main .content02 ul li span{position:absolute; display:block; border-radius:5px; left:4px; top:6px; width:10px; height:10px; background-color:#01aad5;}
+footer{font:12px/22px "微软雅黑"; padding:10px 0; text-align:center;}
+footer a{color:#ea028c;}
+
+#main .content03{}
+#main .content03 .results table{width:100%; border:1px solid #01aad5; text-align:center;}
+#main .content03 .results table tr{border:0;}
+#main .content04{padding:10px 3%;}
+#main .content04 h2{font:bold 16px/24px "微软雅黑"; text-align:center; padding-bottom:10px;}
+#main .content04 h3{font:bold 14px/22px "微软雅黑";}
+#main .content04 p{font:12px/22px "微软雅黑";  text-indent:2em;}

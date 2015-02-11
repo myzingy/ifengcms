@@ -1,0 +1,182 @@
+.kiss_loading {
+	-webkit-animation: loading-animation 1s step-start infinite;
+	animation: loading-animation 1s step-start infinite;
+	background: url(http://p2.qhimg.com/t013870e8ffbfd0b9c4.png) no-repeat;
+	-webkit-background-size: 32px 32px;
+	background-size: 32px 32px;
+	height: 32px;
+	width: 32px
+}
+.kiss_loading_wrap {
+	background-color: rgba(0,0,0,.3);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 11
+}
+.kiss_loading_wrap .kiss_loading {
+	left: 50%;
+	margin-left: -16px;
+	margin-top: -16px;
+	position: absolute;
+	top: 50%
+}@-webkit-keyframes loading-animation{8.32%,
+from {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg)
+}16.65%,8.33%{-webkit-transform:rotate(30deg);transform:rotate(30deg)}16.66%,24.99%{-webkit-transform:rotate(60deg);transform:rotate(60deg)}25%,33.32%{-webkit-transform:rotate(90deg);transform:rotate(90deg)}33.33%,41.65%{-webkit-transform:rotate(120deg);transform:rotate(120deg)}41.66%,49.99%{-webkit-transform:rotate(150deg);transform:rotate(150deg)}50%,58.32%{-webkit-transform:rotate(180deg);transform:rotate(180deg)}58.33%,66.65%{-webkit-transform:rotate(210deg);transform:rotate(210deg)}66.66%,74.99%{-webkit-transform:rotate(240deg);transform:rotate(240deg)}75%,83.32%{-webkit-transform:rotate(270deg);transform:rotate(270deg)}83.33%,91.65%{-webkit-transform:rotate(300deg);transform:rotate(300deg)}91.66%,99.99%{-webkit-transform:rotate(330deg);transform:rotate(330deg)}
+to {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg)
+}}@keyframes loading-animation{8.32%,
+from {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg)
+}16.65%,8.33%{-webkit-transform:rotate(30deg);transform:rotate(30deg)}16.66%,24.99%{-webkit-transform:rotate(60deg);transform:rotate(60deg)}25%,33.32%{-webkit-transform:rotate(90deg);transform:rotate(90deg)}33.33%,41.65%{-webkit-transform:rotate(120deg);transform:rotate(120deg)}41.66%,49.99%{-webkit-transform:rotate(150deg);transform:rotate(150deg)}50%,58.32%{-webkit-transform:rotate(180deg);transform:rotate(180deg)}58.33%,66.65%{-webkit-transform:rotate(210deg);transform:rotate(210deg)}66.66%,74.99%{-webkit-transform:rotate(240deg);transform:rotate(240deg)}75%,83.32%{-webkit-transform:rotate(270deg);transform:rotate(270deg)}83.33%,91.65%{-webkit-transform:rotate(300deg);transform:rotate(300deg)}91.66%,99.99%{-webkit-transform:rotate(330deg);transform:rotate(330deg)}
+to {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg)
+}}
+.kiss_info_preview {
+	margin-bottom: 0;
+	overflow: hidden
+}
+.kiss_upload_photo, .kiss_upload_success {
+	overflow: hidden;
+	width:254px;
+	height:210px;
+}
+.kiss_upload_success {
+	display: none;
+	text-align: center
+}
+.kiss_upload_photo .photo {
+	background: url(http://p1.qhimg.com/t01cb666160f720c467.png) no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	height: 100%;
+	position: relative;
+	width: 100%
+}
+.kiss_upload_photo .samples {
+	margin: 0 auto 20px;
+	text-align: center;
+	width: 100%
+}
+.kiss_upload_success .photo {
+	-webkit-border-image: url(http://p3.qhimg.com/t018198f5e07563e083.png) 7 0 13 0;
+	border-width: 7px 0 13px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 0 7px;
+	width: 100%
+}
+.kiss_upload_success .preview {
+	font-size: 0;
+	height: 100%;
+	max-height: 360px;
+	overflow: hidden
+}
+.kiss_upload_success .preview, .kiss_upload_success .preview img {
+	width: 100%
+}
+.kiss_upload_success .msg {
+	display:none;
+	background: url(http://p2.qhimg.com/t0137fdc89bdd8b46d3.png) no-repeat;
+	-webkit-background-size: 190px 25px;
+	background-size: 190px 25px;
+	height: 25px;
+	margin: 20px auto 30px;
+	width: 80%
+}
+.kiss_upload_success .kiss_btn_share {
+	margin-bottom: 52px
+}
+.kiss_upload_photo .samples ul {
+	list-style: none;
+	margin: 0;
+	padding: 0
+}
+.kiss_upload_photo .samples li {
+	background-repeat: no-repeat;
+	background-color: rgba(255,255,255,.8);
+	-webkit-background-size: 60px 60px;
+	background-size: 60px 60px;
+	display: inline-block;
+	height: 60px;
+	margin-right: 33px;
+	width: 60px
+}
+.kiss_upload_photo .photo .exp {
+	background: url(http://p1.qhimg.com/t0166c44746ba2e85d1.png) no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	height: 50px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	width: 156px
+}
+.kiss_upload_photo .photo .kiss_loading {
+	display: none;
+	left: 50%;
+	margin-top: -16px;
+	margin-left: -16px;
+	position: absolute;
+	top: 50%
+}
+.kiss_upload_photo .samples .p1 {
+	background-image: url(http://p2.qhimg.com/t019e5f55cff4094eb5.jpg)
+}
+.kiss_upload_photo .samples .p2 {
+	background-image: url(http://p3.qhimg.com/t015d4814734baa2024.jpg)
+}
+.kiss_upload_photo .samples .p3 {
+	background-image: url(http://p2.qhimg.com/t0119e08d82281bc40b.jpg)
+}
+.kiss_upload_photo .samples .exp {
+	line-height: 1rem;
+	margin-top: 12px
+}
+.kiss_upload_photo .photo .upload_btn div {
+	height: 100% !important;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	width: 100% !important;
+	z-index: 8
+}
+.kiss_upload_photo .photo .upload_btn input {
+	clip: rect(1px 1px 1px 1px);
+	position: absolute
+}
+.kiss_upload_photo .samples li:last-child {
+	margin-right: 0
+}
+@media screen and (min-width: 360px) {
+	.kiss_upload_success {
+		padding-bottom: 10px
+	}
+	.kiss_upload_photo .photo {
+	}
+	.kiss_upload_photo .samples {
+		padding-bottom: 30px
+	}
+	.kiss_upload_photo .samples .exp {
+		margin: 20px auto
+	}
+}
+#modalhelp .modal{ top:auto;}
+#modalhelp .fade{bottom: -25%;}
+#modalhelp .in{ bottom: 20%;}
+#target label.inline{ margin-left: 0; margin-right: 10px;}
+#target .full-button{ margin-left: 0;}
+
+#buttonPlaceholderDiv{ margin: 0px 6px 0 6px; background: #fff; height: 100%; position:absolute;z-index: 99;}

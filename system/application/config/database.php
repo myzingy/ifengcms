@@ -37,14 +37,14 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "127.0.0.1";
+$db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
-$db['default']['password'] = "";
+$db['default']['password'] = "weilan001";
 $db['default']['database'] = "ifengcms";
 
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
-$db['default']['pconnect'] = TRUE;
+$db['default']['pconnect'] = false;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = "";

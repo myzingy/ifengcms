@@ -1,0 +1,249 @@
+body{background:#f1f5f6;}
+
+.height10{height:10px;}
+
+/*头部样式*/
+.header1{width:100%; top:0; left:0; z-index:1000; height:40px; background-color:#fff;}
+.header1 .headbox{}
+.header1 .backbtn{position:absolute; top:0; left:0; width:40px; height:40px; cursor:pointer; text-align:center;}
+.header1 .backbtn i{font-size:20px; line-height:40px; color:#666;}
+.header1 .title{padding-left:40px; font:16px/40px "微软雅黑"; color:#000; height:40px; overflow:hidden;}
+.header1 .title h1{font:16px/40px "微软雅黑"; color:#000;}
+
+/*新闻详情页开始*/
+#details{padding-bottom:40px;}
+#details a{color:#7d7d7d;}
+
+#details .back{position:fixed; top:6px; left:6px; z-index:1000;}
+#details .backbtn{position:absolute; cursor:pointer;  top:0;  left:0; color:#fff; border-radius:20px; -moz-border-radius:20px; width:40px; height:40px; z-index:1002;}
+#details .backbtn-bg{position:absolute; top:0;  left:0; border-radius:20px; -moz-border-radius:20px; background-color:#000; width:40px; height:40px; opacity:0.5; z-index:1001;}
+#details .backbtn i{text-align:center; color:#fff; line-height:40px; margin:0 auto; font-size:20px; padding-left:7px;}
+
+#details .img{position:relative;}
+#details .collection{position:absolute; bottom:3px; left:0; width:100%;}
+#details .collection div{width:50%; color:#fff;}
+#details .collection div button{width:100%; color:#fff; text-align:center; height:30px; background-color:transparent; border:none;}
+#details .collection .bg{width:100%; position:absolute; bottom:0; z-index:0; height:30px; background-color:#000; opacity:0.5;}
+#details .collection .box{position:absolute; width:100%; bottom:0; z-index:2;}
+#details .collection i{font-size:20px;}
+#details .collected i{color:#25b5c2;}
+
+#details .newdetails h1{padding:0 4%; font:bold 18px/1.5 "微软雅黑"; color:#000; margin-bottom:4px;}
+#details .newmag{width:92%; padding:0 4%;  padding-bottom:10px; color:#666; font:12px/1em "微软雅黑";}
+#details .newmag p{width:33.33%;}
+#details .text{padding:0 4%;}
+#details .text p{font:16px/1.5 "微软雅黑"; color:#333; margin-bottom:1em;}
+
+#details .praise{padding:20px 0;}
+#details .praise p{color:#7d7d7d;}
+#details .praise div{width:33.33%; text-align:center;}
+#details .praise div a{display:block; width:40px; height:40px; margin:0 auto; border-radius:50%; border:1px solid #7d7d7d;}
+#details .praise a i{font-size:30px; line-height:40px;}
+#details .praise .actived a{border:1px solid #25b5c2; color:#25b5c2;}
+
+#details .banner{padding:10px 4%; width:92%}
+#details .banner a{display:block; padding:10px; border-radius:3px; background-color:#fff;}
+#details .banner .img{width:30%; padding-right:2%;}
+#details .banner .mag{width:68%; position:relative;}
+#details .banner .mag h3{color:#333; font:14px/20px "微软雅黑";  height:20px; margin-bottom:4px; overflow:hidden;}
+#details .banner .mag p.text{height:36px; overflow:hidden;}
+#details .banner .mag .thread{position:absolute; right:10px; bottom:0;}
+#details .banner .mag .thread span{color:#25b5c2; padding-left:4px;}
+
+#details .line{position:relative; top:-10px; z-index:-1; border-top:1px solid #d9dadc; border-bottom:1px solid #fff;}
+#details .title{margin:0 4%; padding:0 4px; width:100px; font:bold 14px/20px "微软雅黑"; color:#25b5c2; background-color:#f1f5f6;}
+
+#details .review{padding:10px 0;}
+#details .review .reviewhead{position:relative;}
+#details .review .reviewnum{position:absolute; top:0; right:0; margin-right:20px; padding:0 10px; color:#25b5c2; background-color:#f1f5f6; }
+#details .review ul{padding:10px 4%; padding-top:5px;}
+#details .review li{margin-bottom:10px; padding:10px 0; padding-bottom:0; background-color:#fff; text-align:left;}
+#details .review li a{color:#7d7d7d; display:block; font:12px/18px "微软雅黑"; position:relative; padding-left:50px; padding-right:10px;}
+#details .review li .mag h3{color:#333; font:14px/20px "微软雅黑";  height:20px; margin-bottom:4px; overflow:hidden; }
+#details .review li .mag p.text{height:36px; overflow:hidden;}
+#details .review li .userimg{position:absolute; left:10px; top:0; width:30px; height:30px;}
+#details .review li .userimg img{border-radius:50%;}
+#details .review li .name p{width:50%; text-align:left; font:14px/26px "微软雅黑"; color:#000;}
+#details .review li .name p.time{font:12px/26px "微软雅黑"; color:#666; text-align:right;}
+#details .review li .mag{padding:10px 0;}
+
+#details .relatednews{}
+#details .relatednews ul{padding:10px 4%; padding-top:20px;}
+#details .relatednews ul a{display:block; font:16px/40px "微软雅黑"; color:#000; height:40px; overflow:hidden;}
+/*新闻详情页结束*/
+
+/*底部回复开始*/
+#details .reply{position:fixed; bottom:0; border-top:1px solid #BEBEBE; left:0; width:96%; background-color:#E2E2E2; padding:5px 2%;}
+#details .reply .backbtn{left:6px;}
+#details .reply .backbtn i{color:#808080;}
+#details .reply .replybox{padding:0 40px; position:relative;}
+#details .reply .replybox .replybg{width:100%; position:relative;}
+#details .reply .replybox .tip{position:absolute; top:0; left:0;  color:#808080;}
+#details .reply .replybox .tip i{font-size:24px; line-height:24px;}
+#details .reply .replybox .tip i span{font:12px/24px "微软雅黑";}
+#details .reply input{width:96%; padding:3px 2%; font:12px/24px "微软雅黑"; border:0; border-radius:3px; background-color:#f1f5f6;}
+#details .reply .selease{position:absolute; right:8px; top:6px; width:30px; height:30px; border:none; background-color:transparent; color:#808080; cursor:pointer;}
+#details .reply .selease i{font-size:24px; line-height:24px;}
+#details .focus .selease{color:#25b5c2;}
+#details .focus input{border:1px solid #25b5c2; padding:2px 2%;}
+#details .focus .tip{display:none;}
+/*底部回复开始*/
+
+/*打赏小编页面开始*/
+#rewards .editormag{background-color:#fff; padding:10px 0; color:#7d7d7d; display:block; font:12px/18px "微软雅黑"; position:relative; padding-left:50px; padding-right:10px;}
+#rewards .editormag .mag h3{color:#333; font:14px/20px "微软雅黑";  height:20px; margin-bottom:4px; overflow:hidden; }
+#rewards .editormag .mag p.text{height:36px; overflow:hidden;}
+#rewards .editormag .userimg{position:absolute; left:10px; top:10px; width:30px; height:30px;}
+#rewards .editormag .userimg img{border-radius:50%;}
+#rewards .editormag .name p{width:50%; text-align:left; font:14px/26px "微软雅黑"; color:#000;}
+#rewards .editormag .name p.gold{font:12px/26px "微软雅黑"; color:#666; text-align:right;}
+#rewards .editormag .name p.gold b{padding-left:10px; font:bold 14px/26px "微软雅黑"; color:#ff6000;}
+#rewards .editormag .name p.gold i{padding-left:10px; font:18px/26px "微软雅黑"; color:#fdc83c;}
+#rewards .editormag .mag{padding-top:4px;}
+#rewards .form{padding:10px;}
+#rewards .form .textarea{padding:5px 2%; border:1px solid #d9dadc; border-radius:3px; background-color:#fff;}
+#rewards .form textarea{width:100%; font:12px/26px "微软雅黑"; color:#333; resize: none; border:none;}
+#rewards .form .amount{padding:10px 0;}
+#rewards .form .amount input{width:100%;}
+#rewards .form .submitbtn{padding-top:20px; width:100%;}
+#rewards .form .submitbtn .btn{width:100%; cursor:pointer; font:16px/40px "微软雅黑"; color:#fff; border:0; background-color:#25b5c2; border-radius:3px;}
+#rewards .range{position:relative; margin:10px 0; padding-right:100px;}
+#rewards .ui-state-default{width:30px; height:30px; top:-13px; border-radius:50%; background-color:#25b5c2;}
+#rewards #slider{width:100%; height:4px; background-color:#ddd;}
+#rewards .rangeed{position:absolute; top:1px; left:0; width:10%; height:4px; background-color:#666; border-radius:3px;}
+#rewards .amount-gold{position:absolute; width:60px; right:10px; top:-10px;}
+#rewards #amount{font:bold 16px/20px "微软雅黑"; color:#ff6000; border:none; background-color:transparent;}
+#rewards .amount-gold input{font:bold 16px/20px "微软雅黑";}
+#rewards .amount-gold i{position:absolute; top:-2px; right:6px; font: 20px/26px "微软雅黑"; color: #fdc83c;}
+#rewards .amountbox{position:relative;}
+/*打赏小编页面结束*/
+
+/*登陆开始*/
+#login .form-horizontal{padding-top:10px;}
+#login .form-group{padding:0 2%; padding-bottom:10px;}
+#login .form-group .inputbox{position:relative; padding-left:40px; background-color:#fff; border-radius:3px;  border:1px solid #d9dadc;}
+#login .form-group .inputbox input{width:96%; border:none; height:20px; padding:10px 2%;}
+#login .form-group .inputl{position:absolute; top:0; left:8px;}
+#login .form-group .inputl i{color:#d9dadc; font-size:26px;}
+#login .focus .inputbox{border:1px solid #25b5c2;}
+#login .focus .inputl i{color:#25b5c2;}
+#login .form-group .forget{display:block; padding:10px 2%; color:#25b5c2;}
+#login .form-group .btngroup{width:48%; margin:0 1%;}
+#login .form-group .btngroup button{width:100%; cursor:pointer; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#25b5c2; text-align:center;}
+#login .form-group .btngroup a{display:block; width:100%; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#4a9cd2; text-align:center;}
+/*登陆结束*/
+
+/*注册开始*/
+#register .form-horizontal{padding-top:10px;}
+#register .form-group{padding:0 2%; padding-bottom:10px;}
+#register .form-group .inputbox{position:relative; padding-left:40px; background-color:#fff; border-radius:3px;  border:1px solid #d9dadc;}
+#register .form-groupv{padding-right:94px; position:relative;}
+#register .form-groupv .validate_btn{position:absolute; width:82px; text-align:center; cursor:pointer; top:0; right:2%; border:none; border-radius:3px; background-color:#25b5c2; color:#fff; font:12px/40px "微软雅黑";}
+#register .form-groupv .disabled{background-color:#999;}
+#register .form-group .inputbox input{width:96%; font:14px/20px "微软雅黑"; border:none; height:20px; padding:10px 2%;}
+#register .form-group .inputl{position:absolute; top:0; left:8px;}
+#register .form-group .inputl i{color:#d9dadc; font-size:26px;}
+#register .focus .inputbox{border:1px solid #25b5c2;}
+#register .focus .inputl i{color:#25b5c2;}
+#register .form-group .forget{padding:10px 2%; color:#25b5c2;}
+#register .form-group .btngroup{width:100%; padding-top:10px;}
+#register .form-group .btngroup button{width:100%; cursor:pointer; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#25b5c2; text-align:center;}
+#register .form-group .btngroup a{display:block; width:100%; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#25b5c2; text-align:center;}
+#register .tip{padding:40px 2%; text-align:center; font:14px/2 "微软雅黑"; color:#7d7d7d;}
+/*注册结束*/
+
+/*修改密码开始*/
+#changepassword .form-horizontal{padding-top:10px;}
+#changepassword .form-group{padding:0 2%; padding-bottom:10px;}
+#changepassword .form-group .inputbox{position:relative; padding-left:40px; background-color:#fff; border-radius:3px;  border:1px solid #d9dadc;}
+#changepassword .form-group .inputbox input{width:96%; border:none; height:20px; padding:10px 2%;}
+#changepassword .form-group .inputl{position:absolute; top:0; left:8px;}
+#changepassword .form-group .inputl i{color:#d9dadc; font-size:26px;}
+#changepassword .focus .inputbox{border:1px solid #25b5c2;}
+#changepassword .focus .inputl i{color:#25b5c2;}
+#changepassword .form-group .forget{padding:10px 2%; color:#25b5c2;}
+#changepassword .form-group .btngroup{width:100%; padding-top:10px;}
+#changepassword .form-group .btngroup button{width:100%; cursor:pointer; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#25b5c2; text-align:center;}
+/*修改密码结束*/
+
+/*消息记录和我的收藏开始*/
+#thelist {padding: 10px 0;}
+#thelist  .tip{font:12px/24px "微软雅黑"; color:#ADADAD;}
+#thelist li{padding:10px 2%; position:relative; background-color:#fff; margin-bottom:10px;}
+#thelist li a{display:block; color:#7d7d7d; font:14px/18px "微软雅黑";}
+#thelist li .img{width:30%; padding-right:2%; height:60px; overflow:hidden;}
+#thelist li .mag{width:68%; position:relative;}
+#thelist li.textlist .mag{width:100%;}
+#thelist li .mag h3{color:#333; font:16px/20px "微软雅黑";  height:20px; margin-bottom:4px; overflow:hidden;}
+#thelist li p.text{max-height:36px; overflow:hidden;}
+#thelist li .thread{}
+#thelist li .thread span{color:#25b5c2; padding-left:4px; font:12px/20px "微软雅黑";}
+#thelist li .text{width:100%; position:relative;}
+#thelist li .deletbnt{ cursor:pointer;}
+#thelist li .deletbnt button{background-color:#e85d57; cursor:pointer; font:12px/24px "微软雅黑"; border-radius:3px; color:#fff; border:none; width:40px;}
+/*消息记录和我的收藏结束*/
+
+/*我的更贴开始*/
+#reply .switch{padding:10px;}
+#reply .switch li{width:50%; text-align:center; font:14px/30px"微软雅黑";}
+#reply .switch li:nth-child(1) a{display:block; width:100%; color:#25b5c2; border:1px solid #25b5c2; border-right:transparent; border-top-left-radius:5px; -moz-border-top-left-radius:5px; border-bottom-left-radius:5px; -moz-border-bottom-left-radius:5px;}
+#reply .switch li:nth-child(2) a{display:block; width:100%; color:#25b5c2; border:1px solid #25b5c2; border-left:transparent; border-top-right-radius:5px; -moz-border-top-right-radius:5px; border-bottom-right-radius:5px; -moz-border-bottom-right-radius:5px;}
+#reply .switch li.active a{background-color:#25b5c2; border-color:#25b5c2; color:#fff;}
+#reply .column{display:none;}
+#reply .columnbox .open{display:block;}
+#reply .title{background-color:#fff; position:relative; padding:0 2%; font:14px/40px"微软雅黑"; color:#333;}
+#reply .title a{display:block; height:40px; overflow:hidden;}
+#reply .title span{background-color:#25b5c2; font:12px/1 "微软雅黑"; color:#fff; padding:2px 4px; margin-right:4px; border-radius:2px;}
+#reply .title .triangle{display:block; position:absolute; left:16%; bottom:-16px; width:0; height:0; border-width:8px; border-style:solid; border-color:#fff transparent transparent  transparent;}
+
+#reply .review{padding:10px 2%;}
+#reply .review li.list{padding:10px 0; border-top:1px solid #fff; border-bottom:1px solid #d9dadc;}
+#reply .review li.list:first-child{border-top:none;}
+#reply .review li.list a{color:#7d7d7d; display:block; font:12px/18px "微软雅黑"; position:relative; padding-left:50px; padding-right:10px;}
+#reply .review li.list .mag h3{color:#333; font:14px/20px "微软雅黑";  height:20px; margin-bottom:4px; overflow:hidden; }
+#reply .review li.list .mag p.text{height:36px; overflow:hidden;}
+#reply .review li.list .userimg{position:absolute; left:10px; top:0; border-radius:50%; width:30px; height:30px; overflow:hidden;}
+#reply .review li.list .name p{width:50%; text-align:left; font:14px/26px "微软雅黑"; color:#000;}
+#reply .review li.list .name p.time{font:12px/26px "微软雅黑"; color:#666; text-align: right;}
+#reply .review li.list .mag{padding:10px 0;}
+
+/*发布新闻*/
+#release {padding: 10px 0;}
+#release .form-horizontal{padding:0 2%;}
+#release .form-group{padding-bottom:10px;}
+#release .form-group .inputbox{border-radius:3px; border:1px solid #d9dadc; background-color:#fff; width:96%; padding:5px 2%;}
+#release .form-group input{width:100%; border-radius:3px; font:12px/30px "微软雅黑"; border:none;}
+#release .form-group .textarea{position:relative; border-radius:3px; border:1px solid #d9dadc;  background-color:#fff; width:96%; padding:5px 2%; padding-bottom:20px;}
+#release .form-group .textarea textarea{width:100%; font:12px/1.5 "微软雅黑"; color:#333; resize: none; border:none;}
+#release .form-group .btngroup{width:100%;}
+#release .form-group button{width:100%; cursor:pointer; border-radius:3px; font:16px/40px "微软雅黑";  color:#fff; border:0; background-color:#25b5c2; text-align:center;}
+#release .form-group button i{padding-right:20px; font-size:26px; line-height:40px;}
+#release .form-group #imgfile{position:absolute; opacity:0; text-align:center; right:3px; bottom:3px; width:40px; height:40px; border-radius:50%; background-color:transparent; border:1px solid #25b5c2; overflow:hidden;}
+#release .form-group .textarea #imgntn{position:absolute; text-align:center; right:3px; bottom:3px; width:40px; height:40px; border-radius:50%; background-color:transparent; border:1px solid #25b5c2;}
+#release .form-group .textarea #imgntn i{color:#25b5c2; padding:0; font-size:30px; line-height:40px; text-align:center; padding-right:4px;}
+#release .form-group .textarea .tip{position:absolute; top:5px; left:2%; font:12px/20px "微软雅黑"; color:#999;}
+#release .form-group .textarea .tip span{font-size:12px; color:#999;}
+#release .form-group .textarea .tip i{font-size:20px; color:#999;}
+#release .focus .textarea .tip{display:none;}
+
+/*图集*/
+#atlas{background-color:#000; color:#fff;}
+#atlas .header1{background-color:#000; color:#fff;}
+#atlas .header1 i{color:#fff;}
+#atlas .header1 .title{color:#fff; font:14px/40px "微软雅黑";}
+#atlas .header1 h1{color:#fff;}
+#phones{padding:40px 0;}
+#slider li p{display:none;}
+#slider li img{vertical-align:middle;}
+#phones .introduction{position:fixed; padding:10px; bottom:0; left:0; font:14px/1.5 "微软雅黑";}
+#phones .itntn{padding:5px 0; font:14px/1.5 "微软雅黑";}
+#phones .itntn .count{font:14px/1.5 "微软雅黑"; padding-right:10px;}
+#phones .itntnt{padding:0 10px; font:bold 14px/22px "微软雅黑"; background-color:#fff; color:#000; border-radius:3px;}
+
+/*加载更多按钮*/
+.more{padding:10px 0; position:relative;}
+.more .buttonbox{width:100px; margin:0 auto;}
+.more .morebtn{width:100px; cursor:pointer; font:14px/30px "微软雅黑"; border:0; background-color:#f1f5f6; color:#25b5c2;}
+.more .line{position:absolute; left:0; top:24px; z-index:-1;  width:100%; height:0; border-top:1px solid #fff; border-bottom:1px solid #d9dadc;}
+
+.ui-loader{display:none;}

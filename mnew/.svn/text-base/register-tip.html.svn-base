@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>注册提示信息</title>
+    <!-- 为了确保适当的绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 可以禁用其缩放（zooming）功能 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 对手机设备的一些设置 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 样式表的引用 -->
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jq的引用 -->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <!-- jqmobile的引用 -->
+    <script src="js/jquery.mobile-1.4.2.js"></script>
+    <!-- 拖拽js -->
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!--去掉微信底部返回栏-->
+    <script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+    });
+    </script>
+</head>
+    <body>
+        <header class="header1">
+            <div class="headbox">
+                <div class="backbtn" onclick="location.href='javascript:history.go(-1);'"><i class="iconfont">&#xe617;</i></div>
+                <div class="title"><h1>注册提示信息</h1></div>
+            </div>
+        </header>
+        <div id="register">
+            <div class="tip">亲，你的账号和密码已发送到你的邮箱。</div>
+            <div class="form-group">
+                <div class="btngroup fl"><a href="#">去邮箱查看</a></div>
+            </div>
+        </div>
+    </body>
+    <!-- 自己写的一些 -->
+    <script type="text/javascript" src="js/public.js"></script>
+</html>

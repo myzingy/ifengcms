@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>惊喜苹安夜 欢影圣诞节</title>
+    <!-- 为了确保适当的绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 可以禁用其缩放（zooming）功能 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 对手机设备的一些设置 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- 引入初始化样式 -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript">
+	var PUBLIC__WECHAT_OPENID = Math.random();
+	</script>
+	<script src="http://cms.wisheli.com/assets/js/getWechatAuth.js"></script>
+	<!-- 引入jq -->
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <!--去掉微信底部返回栏--> 
+    <script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+    });
+    </script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+
+    <div id="main">
+        <div class="title"><img src="images/title.png"></div>
+        <div class="content">
+            <div class="tree"><img src="images/tree.png"></div>
+            <div class="apples">
+                <div class="apple_box">
+                    <div class="apple apple1"><img src="images/apple1.png"></div>
+                    <div class="apple apple2"><img src="images/apple2.png"></div>
+                    <div class="apple apple3"><img src="images/apple3.png"></div>
+                    <div class="apple apple4"><img src="images/apple4.png"></div>
+                    <div class="apple apple5"><img src="images/apple5.png"></div>
+                </div>
+            </div>
+        </div>
+        <div id="demo1" class="scratchpad"></div>
+    </div>
+    <div class="layer layer1">
+        <h3>活动规则：</h3>
+        <ul>
+            <li>1.切开苹果，回答正确题目即可获得一张刮刮卡；</li>
+            <li>2.刮开后有机会获得电影票（2张）；</li>
+            <li>3.中奖后需填写真实姓名及电话；</li>
+            <li>4.刮刮卡有效时间为：12月24日~12月25日24时</li>
+            <li>5.奖品兑换时间截至为：12月31日12：00</li>
+        </ul>
+        <div class="btn_group"><button class="btn open">我知道了</button></div>
+    </div>
+    <div class="layer layer2">
+        <div class="answer">
+            <h3>圣诞老人的坐骑是什么动物？</h3>
+            <ul class="select">
+                <li>A.斑马</li>
+                <li>B.雪橇犬</li>
+                <li>C.驯鹿</li>
+                <li>D.麋鹿</li>
+            </ul>
+            <div class="btn_group"><button class="btn surebtn">确定</button></div>
+        </div>
+    </div>
+    <div class="layer layer3">
+        <h3 class="result">恭喜你回答正确</h3>
+        <form>
+            <div class="form-group form-group1">
+                <input tyle="text" Placeholder="姓名" id="name">
+            </div>
+            <div class="form-group form-group2">
+                <input tyle="tel" Placeholder="电话" id="phone">
+            </div>
+            <br class="clear"/>
+        </form>
+
+        <div class="scratch">
+            <div class="ScratchPad">
+                <!-- 檫除层开始 -->
+                <div id="wScratchPad">
+                    <p id="result">奖品马上赶来……</p>
+                </div>
+                <!-- 檫除层结束 -->
+            </div>
+            <div class="Scratch_cover"></div>
+        </div>
+        <div class="sharebtns">
+            <button class="btn sharebtn">分享</button>
+        </div>
+
+    </div>
+    <div class="cover">
+        <div class="coverbg"></div>
+        <div class="img">
+            <div class="top_img"><img src="images/guide.png"></div>
+            <div class="bottom_img">
+                <div class="share_text">把你的好运分享给大家吧！</div>
+            </div>
+        </div>
+    </div>
+
+<!-- 刮开的js开始-->
+<script type="text/javascript" src="js/wScratchPad.js"></script>
+<script type="text/javascript"  >
+$(function(){
+var screen_width = $(window).width();
+var screen_height = $(window).height();
+$("#main").height(screen_height);
+$(".coverbg").height(screen_height);
+$(".cover .img").height(screen_height);
+var tree_height = $(".tree").height();
+$(".apple_box").height(tree_height);
+
+
+$(".layer1 .open").click(function(){
+    $(this).parents(".layer").remove();
+});
+
+$(".apple").click(function(){
+    $(".layer2").show();
+});
+
+$(".layer2 .select li").click(function(){
+    var clicknum = $(".layer2 .select li").index(this);
+    $(this).siblings().removeClass("selected");
+    $(this).addClass("selected");
+    $(this).siblings().attr("data_select","");
+    $(this).attr("data_select",clicknum+1);
+});
+
+var score =0;
+$(".layer2 .surebtn").click(function(){
+    score = $(".layer2 .selected").attr("data_select");
+    console.log(score);
+    $(this).parents(".layer").remove();
+    if(score==4){
+        $(".layer2").hide();
+        $(".layer3").show();
+    }else{
+        alert("你回答错了！");
+    }
+});
+
+$('#wScratchPad').wScratchPad({
+  bg: '#b50201',
+  fg: 'images/fcar.jpg',
+  size:20,
+  realtim: true,
+  scratchMove: function (e, percent){
+    $('#wScratchPad').find('img').remove();
+    if( percent >=60 ) {
+        $("canvas").remove();
+    }
+  }
+});
+
+$(".Scratch_cover").click(function(){
+    alert("请先填写姓名和电话！");
+});
+
+
+
+function inputchange(){
+    var name = $.trim($("#name").val());
+    var phone = $.trim($("#phone").val());
+    console.log(name,phone);
+    if(name && phone){
+        if(!/^1[0-9]{10}$/.test(phone)){
+            alert("请填写正确的手机号");
+            return false;
+        }
+        $(".Scratch_cover").remove();
+        $(".sharebtn").show();
+        $.ajax({
+            url:'http://cms.wisheli.com/index.php/api/act/dodraw/1',
+            data:'openid='+PUBLIC__WECHAT_OPENID+'&name='+name+'&phone='+phone,
+            dataType:'jsonp',
+            jsonp:'callback',
+            success:function(json){
+                console.log(json);
+                $("#text_mag").text(json.msg+json.error);
+                if(json.status==1){
+                    //中奖 json.msg
+                    $(".share_text").text("把你的好运分享给大家吧！");
+                }else if(json.status==0){
+                    //未中奖
+                    $("#result").text("很遗憾，没有中奖喔……");
+                    $(".share_text").text("分享给朋友看看他们的运气如何！");
+                }else{
+                    //发生错误 json.error
+                    $("#result").text(json.error);
+                }
+            }
+        });
+    }
+}
+
+$("#name,#phone").change(function(){
+    inputchange();
+});
+
+$(".sharebtn").click(function(){
+    $(".cover").show();
+})
+
+$(".cover").click(function(){
+    $(".cover").hide();
+})
+
+function coverhide(){
+    $(".part1,.part2").hide();
+    $(".cover").hide();
+    $(".part4").show();
+}
+
+
+});
+</script>
+<!-- 微信分享 -->
+<script type="text/javascript">
+var onBridgeReady = function() {
+        var wxTitle1 = '惊喜苹安夜 欢影圣诞节',
+            wxDesc1  = '刮中小编又送电影票啦，快来试试你的运气吧~',
+            _imgurl1 = 'http://121.199.26.107:8086/signup/source/weixinshareimg/share7.jpg',
+            linkUrl1 = document.location.href;
+        // 分享到朋友圈;
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": _imgurl1,
+                "img_width": "120",
+                "img_height": "120",
+                "link": linkUrl1,
+                "desc": wxDesc1,
+                "title": wxTitle1
+            }, function() {});
+        })
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke('sendAppMessage', {
+                "img_url": _imgurl1,
+                "link": linkUrl1,
+                "desc": wxDesc1,
+                "title": wxTitle1
+            }, function() {})
+        })
+        WeixinJSBridge.on('menu:share:weibo', function(argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": wxDesc1,
+                "url": linkUrl1,
+            }, function(res) {});
+        })
+    }
+    $(function(){
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    })  
+</script>
+<!--检测js引用 -->
+<script>var sta_collection_time = new Date().getTime();</script>
+<script src="http://y0.ifengimg.com/20140429/sta_collection.3.3.15.min.js" id="sta_collection_new"></script>
+<div style="display:none"><script src="http://s6.cnzz.com/stat.php?id=4348544&web_id=4348544" language="JavaScript"></script></div>
+</body>
+</html>

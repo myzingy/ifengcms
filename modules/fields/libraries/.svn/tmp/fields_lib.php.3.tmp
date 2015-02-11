@@ -1,0 +1,508 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class fields_lib
+{
+	function fields_lib(){
+		// Get CI Instance
+		$this->CI = &get_instance();
+		$this->CI->load->helper('form');
+		$this->CI->load->library('validation');
+		$this->CI->bep_assets->load_asset_group('FORMS');
+		$this->CI->load->model('fields_model');
+	}
+	var $statusCode=array(
+		-1=>'登录超时，请重新登录。'
+		,0=>'正常'
+		,10000=>'一般性错误'
+		,10001=>'接口未定义'
+		,10002=>'非法Token'
+	);
+	public function status(&$arr,$code,$str=''){
+		$error=$this->statusCode[$code];
+		if($error){
+			$arr['status']=$code;
+			$arr['error']=$str?$str:$error;
+		}else{
+			$arr['status']=$code;
+			$arr['error']=$str?$str:$this->statusCode[10000];
+		}
+		return $arr;
+	}
+	//检查是否合法请求
+	public function check(){
+		return true;
+	}
+	//
+	function getFieldsData($id=0){
+		if($id>0){
+			$res=$this->CI->fields_model->fetch('F','*',null,array('id'=>$id));
+			if($res->num_rows()>0){
+				$data=$res->row();
+				$data->stimeint=$data->stime;
+				$data->etimeint=$data->etime;
+				$data->stime=date('Y-m-d H:i:00',$data->stime);
+				$data->etime=date('Y-m-d H:i:00',$data->etime);
+				return array('status'=>0,'data'=>$data);
+			}
+			return array('status'=>10000,'error'=>'empty data');
+		}
+	}
+	//
+	function saveStep1(){
+		if(!check('diyfields','update',false)){
+			return array('status'=>10000,'error'=>'你没有权限操作');
+		}
+		$fields['name'] = "表单名称";
+		$fields['stime'] = "开始时间";
+		$fields['etime'] = "结束时间";
+		
+		$rules['name'] = 'trim|required|min_length[2]|max_length[32]';
+		$rules['stime'] = 'trim|required';
+		$rules['etime'] = 'trim|required';
+		
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		if ( $this->CI->validation->run() === FALSE )
+		{
+			return array('status'=>10000,'error'=>$this->CI->validation->_error_array[0]);
+		}else{
+			// Submit form
+			$id=$this->CI->input->post('id');
+			$data['name']=$this->CI->input->post('name');
+			$data['stime']=$this->CI->input->post('stime');
+			$data['etime']=$this->CI->input->post('etime');
+			$data['stime']=strtotime($data['stime']);
+			$data['etime']=strtotime($data['etime']);
+			if($data['stime']<TIEM-86400*30){
+				return array('status'=>10000,'error'=>'开始时间设置错误');
+			}
+			if($data['etime']<TIEM){
+				return array('status'=>10000,'error'=>'结束时间设置错误');
+			}
+			if($id>0){
+				$this->CI->fields_model->update('F',$data,array('id'=>$id));
+			}else{
+				$data['tab_name']=md5($data['name'].rand());
+				$this->CI->fields_model->insert('F',$data);
+				$id=$this->CI->fields_model->db->insert_id();
+			}
+		}
+		return array('status'=>0,'id'=>$id,'name'=>$data['name']);
+	}
+	function dostyle($fields_style){
+		$tmp_style=strtr($fields_style,array(
+			'&lt;'=>'<',
+			'&gt;'=>'>',
+		));
+		$tmp_style=explode('[removed]',$tmp_style);
+		$style='';
+		foreach ($tmp_style as $i => $value) {
+			$style.=$value;
+			if(count($tmp_style)-1==$i) break;
+			$style.=(($i%2==0)?'<script>':'</script>');
+		}
+		return $style;
+	}
+	/*
+	 * 比较2个对象键值是否相同
+	 */
+	function checkObjKey($obj1,$obj2){
+		$obj1=is_string($obj1)?json_decode($obj1):$obj1;
+		$obj2=is_string($obj2)?json_decode($obj2):$obj2;
+		foreach ($obj1 as $key => $value) {
+			$arr1[]=$key;
+		}
+		foreach ($obj2 as $key => $value) {
+			$arr2[]=$key;
+		}
+		sort($arr1);
+		sort($arr2);
+		if($arr1==$arr2){
+			return true;
+		}
+		return false;
+	}
+	function saveStep2(){
+		if(!check('diyfields','update',false)){
+			return array('status'=>10000,'error'=>'你没有权限操作');
+		}
+		$id=$this->CI->input->post('id');
+		$fields_json_str=$this->CI->input->post('fields_json');
+		$fields_html=$this->CI->input->post('fields_html');
+		$fields_htmls=$this->CI->input->post('fields_htmls');
+		
+		$fields_style=$this->CI->input->post('fields_style');
+		$fields_style_mobile=$this->CI->input->post('fields_style_mobile');
+		$data['fields_style']=$this->dostyle($fields_style);
+		$data['fields_style_mobile']=$this->dostyle($fields_style_mobile);
+		
+		$fields_json=json_decode($fields_json_str,true);
+		if(!$fields_json){
+			return array('status'=>10000,'error'=>'请设置字段');
+		}
+		$row=$this->getFieldsData($id);
+		if($row['status']==0){
+			$flag=$this->CI->fields_model->create_table($row['data']->tab_name,$fields_json);
+			if($flag){
+				$data['fields_json']=$fields_json_str;
+				$data['fields_html']=$fields_html;
+				$data['fields_htmls']=$fields_htmls;
+				$arr=array('status'=>0,'error'=>'设置成功');
+			}else{
+				$fields_json_status=$this->checkObjKey($fields_json_str,$row['data']->fields_json);
+				
+				if($fields_json_status){//只是改变了表单名称之外的其它属性
+					$data['fields_json']=$fields_json_str;
+					$data['fields_html']=$fields_html;
+					$data['fields_htmls']=$fields_htmls;
+					$arr=array('status'=>0,'error'=>'设置成功，更新了表单内容');
+				}else{
+					$arr=array('status'=>10001,'error'=>'已经存在表单数据，只修改了样式属性');
+				}
+			}
+			$this->CI->fields_model->update('F',$data,array('id'=>$id));
+			return $arr;
+		}
+		return array('status'=>10000,'error'=>'设置失败，请关闭此页面，重新设置');
+	}
+	function form($fid){
+		if(!$fid){
+			return array('status'=>10000,'error'=>'提交失败，请重新打开报名页面');
+		}
+		$row=$this->getFieldsData($fid);
+		if($row['status']!=0){
+			return array('status'=>10000,'error'=>'表单数据不存在，请重新打开报名页面');
+		}
+		$fdata=$row['data'];
+		if($fdata->stimeint>TIME){
+			return array('status'=>10000,'error'=>$fdata->name.'还没有开始，开始时间为：'.$fdata->stime);
+		}
+		if($fdata->etimeint<TIME){
+			return array('status'=>10000,'error'=>'来晚一步，'.$fdata->name.'已经结束了');
+		}
+		$fields_json=json_decode($fdata->fields_json,true);
+		if(!$fields_json){
+			return array('status'=>10000,'error'=>'表单错误，需要管理员重新设置');
+		}
+		foreach ($fields_json as $key => $value) {
+			if(!trim($key)) continue;
+			$fields[$key] = $value['label'];
+			if($value['multiple']){
+				$rules[$key] = 'required';
+			}elseif($value['rules']){
+				$table=$this->CI->fields_model->fileds_table_prefix.$fdata->tab_name;
+				$rules[$key] = str_replace('{table}', $table.','.$key, $value['rules']).'|required';
+			}elseif($value['filetype']){
+				//文件
+				$rules[$key]='';
+			}else{
+				$rules[$key] = 'trim|required';
+			}
+			if($value['isnull']){
+				$rules[$key] = str_replace('|required','',$rules[$key]);
+			}
+		}
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		
+		if ( $this->CI->validation->run() === FALSE )
+		{
+			//$this->CI->validation->output_errors();	
+			return array('status'=>10002,'error'=>$this->CI->validation->_error_array[0]);
+		}else{
+			// Submit form
+			$data['addtime']=TIME;
+			$data['ip']=$this->CI->input->ip_address();
+			foreach ($fields_json as $key => $value) {
+				if(!trim($key)) continue;
+				if($value['filetype']){
+					//上传文件
+					$day=date('Ymd',TIME);
+					$path='uploads/'.$day;
+					$dir=FCPATH.$path;
+					$filename=$day.rand(10000,99999);
+					@mkdir($dir,0777);
+					$config['upload_path'] = $dir;
+					$config['allowed_types'] = $value['filetype'];
+					$config['max_size'] = 1024*($value['filesize']+0);
+					$config['encrypt_name'] = true;
+					$this->CI->load->library('upload', $config);
+					if (!$this->CI->upload->do_upload($key)){
+						if(!$value['isnull']){
+							return array('status'=>10001,'error'=>$this->CI->upload->display_errors());
+						}
+					}else{
+						$upload = $this->CI->upload->data();
+					}
+					if(is_array($upload)){
+						$data[$key]=base_url().$path.'/'.$upload['file_name'];
+					}else{
+						if(!$value['isnull']){
+							return array('status'=>10000,'error'=>$this->CI->upload->display_errors());
+						}
+					}
+				}else{
+					$data[$key]=$this->CI->input->post($key);
+				}
+				if(is_array($data[$key])){
+					$data[$key]=implode(',', $data[$key]);
+				}
+			}
+			//fromadd
+			$data['fromaddr']=$this->CI->input->post('fromaddr');
+			$res=$this->CI->fields_model->insert_fields_tabdata($fdata->tab_name,$data);
+			return $res;
+		}
+	}
+	function checkManCode(){
+		//$fieldid,$mancodefield,$mancode
+		$fieldid=$this->CI->input->post('fieldid')+0;
+		if($fieldid<1){
+			return array('status'=>10003,'error'=>'表单错误，联系管理员解决此问题');
+		}
+		$mancodefield=$this->CI->input->post('codename');
+		$mancode=$this->CI->input->post($mancodefield);
+		$fields=array($mancodefield=>'身份证');
+		$rules=array($mancodefield=>'trim|required|valid_mancode');
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		
+		if ( $this->CI->validation->run() === FALSE ){	
+			return array('status'=>10002,'error'=>$this->CI->validation->_error_array[0]);
+		}else{
+			$res=$this->CI->fields_model->fetch('F','*',null,array('id'=>$fieldid));
+			if($res->num_rows()>0){
+				$field=$res->row();
+				$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
+				$dbkey=json_decode($field->fields_json,true);
+				if(!$dbkey[$mancodefield]){
+					return array('status'=>10000,'error'=>'表单错误，联系管理员解决此问题');
+				}
+				$limit=array('offset'=>0,'limit'=>1);
+				$where=array($mancodefield=>$mancode);
+				$res=$this->CI->fields_model->getFieldsDataList($table,$where,$limit,false);
+				if($res->num_rows()>0){
+					return array('status'=>0,'isexist'=>true,'data'=>$res->row());
+				}else{
+					return array('status'=>0,'isexist'=>false);
+				}
+				
+			}
+			return array('status'=>10001,'error'=>'表单错误，联系管理员解决此问题');
+		}
+		
+	}
+	function formChuangYe($fid){
+		$updateID=$this->CI->input->post('id');
+		$updateStep=$this->CI->input->post('step');
+		$updateCodeName=$this->CI->input->post('codename');
+		if(!$fid){
+			return array('status'=>10000,'error'=>'提交失败，请重新打开报名页面');
+		}
+		$row=$this->getFieldsData($fid);
+		
+		if($row['status']!=0){
+			return array('status'=>10000,'error'=>'表单数据不存在，请重新打开报名页面');
+		}
+		$fdata=$row['data'];
+		if($fdata->stimeint>TIME){
+			return array('status'=>10000,'error'=>$fdata->name.'还没有开始，开始时间为：'.$fdata->stime);
+		}
+		if($fdata->etimeint<TIME){
+			return array('status'=>10000,'error'=>'来晚一步，'.$fdata->name.'已经结束了');
+		}
+		$fields_json=json_decode($fdata->fields_json,true);
+		if(!$fields_json){
+			return array('status'=>10000,'error'=>'表单错误，需要管理员重新设置');
+		}
+		foreach ($fields_json as $key => $value) {
+			if(!trim($key)) continue;
+			$fields[$key] = $value['label'];
+			if($value['multiple']){
+				$rules[$key] = 'required';
+			}elseif($value['rules']){
+				$table=$this->CI->fields_model->fileds_table_prefix.$fdata->tab_name;
+				$rules[$key] = str_replace('{table}', $table.','.$key, $value['rules']).'|required';
+			}elseif($value['filetype']){
+				//文件
+				$rules[$key]='';
+			}else{
+				$rules[$key] = 'trim|required';
+			}
+			if($value['isnull']){
+				$rules[$key] = str_replace('|required','',$rules[$key]);
+			}
+			if($updateID>0){
+				$rules[$key] = strtr($rules[$key],array(
+					"field_phone[{$table},{$key}]"=>valid_phone,
+					"field_mancode[{$table},{$key}]"=>valid_mancode
+				));
+			}
+		}
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		
+		if ( $this->CI->validation->run() === FALSE)
+		{
+			//$this->CI->validation->output_errors();	
+			return array('status'=>10002,'error'=>$this->CI->validation->_error_array[0]);
+		}else{
+			// Submit form
+			$data['addtime']=TIME;
+			$data['ip']=$this->CI->input->ip_address();
+			foreach ($fields_json as $key => $value) {
+				if(!trim($key)) continue;
+				if($value['filetype']){
+					//上传文件
+					$day=date('Ymd',TIME);
+					$path='uploads/'.$day;
+					$dir=FCPATH.$path;
+					$filename=$day.rand(10000,99999);
+					@mkdir($dir,0777);
+					$config['upload_path'] = $dir;
+					$config['allowed_types'] = $value['filetype'];
+					$config['max_size'] = 1024*($value['filesize']+0);
+					$config['encrypt_name'] = true;
+					$this->CI->load->library('upload', $config);
+					if (!$this->CI->upload->do_upload($key)){
+						if(!$value['isnull']){
+							return array('status'=>10001,'error'=>$this->CI->upload->display_errors());
+						}
+					}else{
+						$upload = $this->CI->upload->data();
+					}
+					if(is_array($upload)){
+						$data[$key]=base_url().$path.'/'.$upload['file_name'];
+					}else{
+						if(!$value['isnull']){
+							return array('status'=>10000,'error'=>$this->CI->upload->display_errors());
+						}
+					}
+				}else{
+					$data[$key]=$this->CI->input->post($key);
+				}
+				if(is_array($data[$key])){
+					$data[$key]=implode(',', $data[$key]);
+				}
+			}
+			if($updateID>0){
+				$res=$this->CI->fields_model->update_fields_tabdata($fdata->tab_name,$data,array(
+					'id'=>$updateID,
+					$updateCodeName=>$data[$updateCodeName]
+				));
+			}else{
+				//fromadd
+				$data['fromaddr']=$this->CI->input->post('fromaddr');
+				$res=$this->CI->fields_model->insert_fields_tabdata($fdata->tab_name,$data);
+			}
+			return $res;
+		}
+	}
+	function formChuangYePart2($fid){
+		$updateCodeName=$this->CI->input->post('codename');
+		$updateFileName=$this->CI->input->post('filename');
+		if(!$fid){
+			return array('status'=>10000,'error'=>'提交失败，请重新打开报名页面');
+		}
+		$row=$this->getFieldsData($fid);
+		
+		if($row['status']!=0){
+			return array('status'=>10000,'error'=>'表单数据不存在，请重新打开报名页面');
+		}
+		$fdata=$row['data'];
+		if($fdata->stimeint>TIME){
+			return array('status'=>10000,'error'=>$fdata->name.'还没有开始，开始时间为：'.$fdata->stime);
+		}
+		if($fdata->etimeint<TIME){
+			return array('status'=>10000,'error'=>'来晚一步，'.$fdata->name.'已经结束了');
+		}
+		$fields_json=json_decode($fdata->fields_json,true);
+		if(!$fields_json){
+			return array('status'=>10000,'error'=>'表单错误，需要管理员重新设置');
+		}
+		
+		$fields=array($updateCodeName=>'身份证');
+		$rules=array($updateCodeName=>'trim|required|valid_mancode');
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		
+		
+		if ( $this->CI->validation->run() === FALSE)
+		{
+			//$this->CI->validation->output_errors();	
+			return array('status'=>10002,'error'=>$this->CI->validation->_error_array[0]);
+		}else{
+			$data[$updateCodeName]=$this->CI->input->post($updateCodeName);
+			//上传文件
+			$value=$fields_json[$updateFileName];
+			$day=date('Ymd',TIME);
+			$path='uploads/'.$day;
+			$dir=FCPATH.$path;
+			$filename=$day.rand(10000,99999);
+			@mkdir($dir,0777);
+			$config['upload_path'] = $dir;
+			$config['allowed_types'] = $value['filetype'];
+			$config['max_size'] = 1024*($value['filesize']+0);
+			$config['encrypt_name'] = true;
+			$this->CI->load->library('upload', $config);
+			if (!$this->CI->upload->do_upload($updateFileName)){
+				return array('status'=>10001,'error'=>$this->CI->upload->display_errors());
+			}else{
+				$upload = $this->CI->upload->data();
+			}
+			if(is_array($upload)){
+				$data[$updateFileName]=base_url().$path.'/'.$upload['file_name'];
+			}else{
+				return array('status'=>10000,'error'=>$this->CI->upload->display_errors());
+			}
+			
+			$res=$this->CI->fields_model->update_fields_tabdata($fdata->tab_name,$data,array(
+				$updateCodeName=>$data[$updateCodeName]
+			));
+			return $res;
+		}
+	}
+	function sendMsg(){
+		$fid=$this->CI->input->post('fid');
+		$dbkey=$this->CI->input->post('dbkey');
+		$phones=trim($this->CI->input->post('phones'));
+		$content=trim($this->CI->input->post('content'));
+		if(!$content){
+			return array('status'=>10000,'error'=>'发送内容不能为空');
+		}
+		if(!$dbkey){
+			if(!$phones){
+				return array('status'=>10000,'error'=>'发送号码不能为空');
+			}
+			$phones=preg_replace("/[ \t]+/", "", $phones);
+			$phones=preg_split("/[\n\r,]+/", $phones);
+		}else{
+			$row=$this->getFieldsData($fid);
+			if($row['status']!=0){
+				return array('status'=>10000,'error'=>'表单数据不存在，请重新打开报名页面');
+			}
+			$fdata=$row['data'];
+			$table=$this->CI->fields_model->fileds_table_prefix.$fdata->tab_name;
+			$sql="SELECT GROUP_CONCAT({$dbkey}) as phones from `ifengcms`.`{$table}`";
+			$res=$this->CI->fields_model->db->query($sql);
+			$phones=$res->row()->phones;
+			$phones=explode(",", $phones);
+		}
+		if(!$phones){
+			return array('status'=>10000,'error'=>'发送号码地址不能为空');
+		}
+		$this->CI->load->library('sms');
+		$phones_arr=array_chunk($phones, 300);
+		//var_dump(count($phones),count($phones_arr)) ;
+		foreach ($phones_arr as $phone) {
+			$ct=count($phone);
+			$phone_str='';
+			foreach ($phone as $i=>$p) {
+				if(!preg_match("/^1[0-9]{10}$/", $p)) continue;
+				$phone_str.=$p.($ct==$i+1?'':',');
+			}
+			//var_dump($phone_str);
+			$this->CI->sms->send($phone_str,$content);
+		}
+		return array('status'=>0,'error'=>'发送完成，共计发送短信'.count($phones).'条');
+	}
+}

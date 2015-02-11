@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>打赏小编</title>
+    <!-- 为了确保适当的绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 可以禁用其缩放（zooming）功能 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 对手机设备的一些设置 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- jq-ui样式表的引用 -->
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <!-- 样式表的引用 -->
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jq引用 -->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <!-- jq-uijs -->
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <!--去掉微信底部返回栏-->
+    <script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+    });
+    </script>
+    <script>
+    $(function() {
+        $( "#slider" ).slider({
+            value:100,
+            min: 0,
+            max: 500,
+            step: 50,
+            slide: function( event, ui ) {
+                $("#amount" ).val( ui.value );
+            }
+        });
+        $( "#amount").val( $( "#slider" ).slider( "value" ));
+    });
+    </script>
+</head>
+    <body>
+        <header class="header1">
+            <div class="headbox">
+                <div class="backbtn" onclick="location.href='javascript:history.go(-1);'"><i class="iconfont">&#xe617;</i></div>
+                <div class="title"><h1>打赏小编</h1></div>
+            </div>
+        </header>
+        <div id="rewards">
+            <section class="editor">
+                <div class="editormag">
+                    <div class="userimg"><img src="data/userimg.jpg"></div>
+                    <div class="name">
+                        <p class="fl">piexl</p>
+                        <p class="gold fr">累计打赏<b>200</b><i class="iconfont">&#xe60d;</i></p>
+                        <br class="clear"/>
+                    </div>
+                    <div class="mag">
+                        <p>习近平会见印度总理莫迪 谈及边习近平表示，今年3月，我们在荷兰海牙进行了来。</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+            <section class="form">
+                <form >
+                    <div class="textarea">
+                        <textarea class="form-control" name="leavemag"  rows="5" placeholder="小编加油哦 ！"></textarea>
+                    </div>
+                    <div class="amount">
+                        <div class="range">
+                            <div id="slider" class="ui-slider">
+                                <span class="rangebtn"></span>
+                            </div>
+                            <div class="rangeed"></div>
+                            <div class="amount-gold">
+                                <label for="amount"></label>
+                                <div class="amountbox"><input type="text" id="amount" name="amount"><i class="iconfont">&#xe60d;</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submitbtn">
+                        <button type="submit" class="btn" value="立即打赏">立即打赏</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </body>
+    <!-- 自己写的一些 -->
+    <script type="text/javascript" src="js/public.js"></script>
+</html>
