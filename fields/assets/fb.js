@@ -599,4 +599,14 @@ $(document).ready(function(){
 		}
 	});
 	$('input[name="source_type"]:checked').trigger('click');
+	//编辑源码
+	$('#review_code_but').click(function(){
+		var code=genSource();
+		$('#textarea_code').val(code);
+		$('#myModal').modal('show');
+	});
+	$('#save_textcode').click(function(){
+		$("#build").html($('#textarea_code').val());
+		$('#myModal').modal('hide');
+	});
 });

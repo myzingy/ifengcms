@@ -45,6 +45,10 @@
       #source_mobile{
         min-height: 500px;
       }
+      #myModal {
+		width: 80%;
+		margin-left:-40%;
+	  }
     </style>
     <link href="http://cdn.bootcss.com/twitter-bootstrap/2.0.4/css/bootstrap-responsive.min.css" rel="stylesheet">
 
@@ -158,6 +162,8 @@
 								<button class="btn btn-success" id="setp2save_but" type="button">
 									请及时保存数据
 								</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="javascript:void(0);" id="review_code_but">编辑源码</a>
 							</div>
 						</div>
 
@@ -541,7 +547,24 @@ $(function(){
         </div> <!-- /container -->
         
         
-			
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">编辑源码</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="textarea_code" style="width:98%;height:300px;"></textarea>
+      </div>
+      <div class="modal-footer">
+      	<a href="javascript;" data-dismiss="modal">关闭</a>&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" id="save_textcode">保存</button>
+      </div>
+    </div>
+  </div>
+</div>			
     <script src="./assets/jquery.min.js"></script>
     <script src="./assets/jquery.md5.js"></script>
     <script src="./assets/jquery.form.min.js"></script>
