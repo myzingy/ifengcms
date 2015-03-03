@@ -57,6 +57,18 @@ class fields_model extends Base_model
 				 	'constraint' => 150,
                     'comment' =>'来源'
 				 ),
+				 'openid'=>array(
+				 	'type' => 'VARCHAR',
+				 	'constraint' => 150,
+                    'comment' =>'OPENID'
+				 ),
+				 'source'=>array(
+				 	'type' => 'INT',
+				 	'constraint' => 10,
+				 	'default'=>0,
+                    'comment' =>'答题得分'
+				 ),
+				 
             );
 			foreach ($fields_arr as $dbkey => $value) {
 				if(!trim($dbkey)) continue;

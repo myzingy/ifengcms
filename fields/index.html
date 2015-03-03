@@ -122,7 +122,17 @@
 								</p>
 							</div>
 						</div>
+						<div class="control-group">
 
+							<!-- Text input-->
+							<label class="control-label" for="input01">表单类型</label>
+							<div class="controls">
+								<select name="type">
+									<option value="0">普通表单</option>
+									<option value="1">OpenID（不能被iframe嵌套）</option>
+								</select>
+							</div>
+						</div>
 						<div class="control-group">
 							<label class="control-label"></label>
 
@@ -325,6 +335,7 @@
                           &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
                           &lt;label class=&#39;control-label&#39;&gt;Options: &lt;/label&gt;
                           &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;radios&#39;&gt;&lt;/textarea&gt;
+                          &lt;label class=&#39;control-answer&#39;&gt;答案&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;answer&#39; id=&#39;answer&#39;&gt;
                           &lt;hr/&gt;
                           &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
                         &lt;/div&gt;
@@ -376,6 +387,7 @@
                         &lt;div class=&#39;controls&#39;&gt;
                           &lt;label class=&#39;control-label&#39;&gt;Label Text&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;label&#39; id=&#39;label&#39;&gt;
                           &lt;textarea style=&#39;min-height: 200px&#39; id=&#39;inline-radios&#39;&gt;&lt;/textarea&gt;
+                          &lt;label class=&#39;control-answer&#39;&gt;答案&lt;/label&gt; &lt;input class=&#39;input-large&#39; type=&#39;text&#39; name=&#39;answer&#39; id=&#39;answer&#39;&gt;
                           &lt;hr/&gt;
                           &lt;button class=&#39;btn btn-info&#39;&gt;Save&lt;/button&gt;&lt;button class=&#39;btn btn-danger&#39;&gt;Cancel&lt;/button&gt;
                         &lt;/div&gt;
@@ -568,6 +580,6 @@ $(function(){
     <script src="./assets/jquery.md5.js"></script>
     <script src="./assets/jquery.form.min.js"></script>
     <script src="./assets/bootstrap.min.js"></script>
-    <script src="./assets/fb.js"></script>      
+    <script src="./assets/fb.js"></script>
 	<div id="style_script"></div>
 </body></html>

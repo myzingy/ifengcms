@@ -151,6 +151,7 @@ class draw_lib
 		$gailv=array();
 		$prize_data=array();
 		$prize_sli=array();
+		
 		foreach ($info['prize'] as $prize) {
 			//商品没有库存就不参与抽奖了
 			if($prize->stock<1) continue;
@@ -190,8 +191,8 @@ class draw_lib
 		}else{
 			//更新活动
 			$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
+			$info['status']=0;
 		}
-		$info['status']=0;
 		return $info;	
 	}
 	function updateUserInfo($id){

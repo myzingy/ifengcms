@@ -38,5 +38,6 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 date_default_timezone_set('Asia/Shanghai');
 define('TIME',time());
+define('__APP__POS',empty($_SERVER['__APP__POS'])?'BAE':$_SERVER['__APP__POS']);
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

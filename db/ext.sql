@@ -7,3 +7,6 @@ alter table `ifengcms`.`cms_vote_source` add column `source_pic_ext` varchar (25
 
 create table `ifengcms`.`cms_vote_members_ext` (  `id` int (10) NOT NULL AUTO_INCREMENT , `mid` int , `type` varchar (20) , `data` varchar (250) , PRIMARY KEY (`id`));
 
+
+#2015-03-02
+alter table `ifengcms`.`cms_fields` add column `type` tinyint (1) DEFAULT '0' NULL  COMMENT '默认0普通表单，1为答题'  after `fields_style_mobile`

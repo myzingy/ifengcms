@@ -93,12 +93,23 @@ ENDHTML;
 					//insert fromadd
 					$fields_htmls=str_replace('<fieldset>', '<fieldset><input type="hidden" name="fromaddr" value="'.$get['fromaddr'].'">', $fields_htmls);
 				}
+				
+				if($get['openid']){
+					//insert fromadd
+					$fields_htmls=str_replace('<fieldset>', '<fieldset><input type="hidden" name="openid" value="'.$get['openid'].'">', $fields_htmls);
+				}else{
+					if($data->type==1){//使用openid，不能使用iframe嵌套
+						$setOpenidCode='<script type="text/javascript">var PUBLIC__WECHAT_OPENID = Math.random();</script>
+						<script src="http://cms.wisheli.com/assets/js/getWechatAuth.js"></script>';
+					}
+				}
 				$fields_style=$data->fields_style;
 				if($this->agent->is_mobile()){
 					$fields_style=$data->fields_style_mobile;
 				}
 				$base_url=base_url();
 				$autoHeight=($noAct=='height')?'':'crossFrame.init();';
+				
 echo<<<ENDHTML
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -108,6 +119,7 @@ echo<<<ENDHTML
         <link href="http://cdn.bootcss.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     	<link href="http://cdn.bootcss.com/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="{$base_url}assets/css/fields.upload.css" rel="stylesheet">
+		{$setOpenidCode}
 		<script type="text/javascript">
 			var base_url="{$base_url}";
 			if(typeof window.console=='undefined'){window.console={log:function(){}};}
@@ -286,5 +298,86 @@ ENDHTML;
 	function formChuangYePart2($fid=0){
 		$info=$this->fields_lib->formChuangYePart2($fid);
 		die(json_encode($info));
+	}
+	/*
+	 * 题库相关操作
+	 */
+	//获得当天的问题
+	function getDayQuestions($id=0,$openid=''){
+		
+		$res=$this->fields_model->fetch('F','*',null,array('id'=>$id));
+		if($res->num_rows()>0){
+			$field=$res->row();
+			$table=$this->fields_model->fileds_table_prefix.$field->tab_name;
+			$dbkey=json_decode($field->fields_json,true);
+			//$table_fields=$this->fields_model->db->list_fields($table);
+			
+			$limit=array('offset'=>$page,'limit'=>1);
+			$where=array('openid'=>$openid);
+			$res=$this->fields_model->getFieldsDataList($table,$where,$limit,false);
+			if($res->num_rows()>0){
+				//用户答过题
+				$data['isActive']=true;
+				$userdata = $res->row();
+			}else{
+				$data['isActive']=false;
+				
+			}
+			$queAll=array();
+			foreach ($dbkey as $key => $value) {
+				if($value['label']=='name' || $value['label']=='phone'){
+					$data['user'][$value['label']]=$key;
+				}else{
+					$option=preg_split('/\n/',$value['inline-radios']);
+					$queAll[$key]=array(
+						'label'=>$value['label'],
+						'name'=>$key,
+						'option'=>$option
+					);
+				}
+			}
+			$data['questions']=$this->_dayQuestions($openid);
+			if(!$data['questions']){
+				$newq_key=array_rand ($queAll,5);
+				$newq=array();
+				foreach ($newq_key as $key) {
+					$newq[$key]=$queAll[$key];
+				}
+				$data['questions']=$this->_dayQuestions($openid,$newq);
+			}
+			//设置问题是否已经回答正确
+			foreach ($data['questions'] as $key => $value) {
+				$data['questions'][$key]['answer']=false;
+				if($userdata->$key==$dbkey[$key]['answer']){
+					$data['questions'][$key]['answer']=true;
+				}
+			}
+			$this->print_jsonp($data);
+		}
+		
+	}
+	//创建今天的试卷
+	function _dayQuestions($openid='',$data=array()){
+		$dir=BASEPATH.'cache/2015315/';
+		$day=date('Ymd',TIME);
+		@mkdir($dir);
+		$questions=array();
+		if(file_exists($dir.$openid)){
+			$questions=include($dir.$openid);
+		}
+		if($data){
+			//写入题库
+			$questions[$day]=$data;
+			file_put_contents($dir.$openid, '<?php return '.var_export($questions,true).';');
+		}
+		return $questions[$day];
+	}
+	function print_jsonp($data){
+		parse_str($_SERVER['QUERY_STRING'],$_GET);
+		$json=json_encode($data);
+		if($_GET['jscallback']){
+			die("{$_GET['jscallback']}({$json});");
+		}
+		die($json);
 	}
 }

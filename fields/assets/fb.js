@@ -23,6 +23,7 @@ $(document).ready(function(){
 					$('input[name="name"]','#setp1save_form').val(data.name);
 					$('input[name="stime"]','#setp1save_form').val(data.stime);
 					$('input[name="etime"]','#setp1save_form').val(data.etime);
+					$('select[name="type"]','#setp1save_form').val(data.type);
 					if(data.fields_html){
 						$("#build").html(data.fields_html.replace(/(&lt;)|(&gt;)/g,function($1,$2){
 							switch($1){
@@ -248,6 +249,9 @@ $(document).ready(function(){
       			if(formdata[dbkey].filesize){
       				$('.popover form #filesize').val(formdata[dbkey].filesize);
       			}
+      			if(formdata[dbkey].answer){
+      				$('.popover form #answer').val(formdata[dbkey].answer);
+      			}
       		}
       	}
     }
@@ -338,6 +342,9 @@ $(document).ready(function(){
 	      } else if(vartype==="isnull"){
 	      	console.log("isnull==>",$(e).is(':checked'));
 	        data['isnull']=$(e).is(':checked');
+	      } else if(vartype==="answer"){
+	      	console.log("answer==>",$(e).val());
+	        data['answer']=$(e).val();
 	      } else if(vartype==="filetype"){
 	      	console.log("filetype==>",$(e).val());
 	        data['filetype']=$(e).val();

@@ -72,6 +72,7 @@ class fields_lib
 			$data['etime']=$this->CI->input->post('etime');
 			$data['stime']=strtotime($data['stime']);
 			$data['etime']=strtotime($data['etime']);
+			$data['type']=$this->CI->input->post('type');
 			if($data['stime']<TIEM-86400*30){
 				return array('status'=>10000,'error'=>'开始时间设置错误');
 			}
@@ -249,6 +250,7 @@ class fields_lib
 			}
 			//fromadd
 			$data['fromaddr']=$this->CI->input->post('fromaddr');
+			$data['openid']=$this->CI->input->post('openid');
 			$res=$this->CI->fields_model->insert_fields_tabdata($fdata->tab_name,$data);
 			return $res;
 		}
