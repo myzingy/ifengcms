@@ -4,7 +4,7 @@
 (function($){
 	$('<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>').appendTo('head');
 	$.ajax({
-		url:'http://cms.wisheli.com/api/act/getWechatJS',
+		url:'http://cms.wisheli.com/index.php/api/act/getWechatJS',
 		dataType:'jsonp',
 		async:false,
 		success:function(json){
