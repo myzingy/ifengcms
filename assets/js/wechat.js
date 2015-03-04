@@ -20,7 +20,7 @@
 		}
 	});
 	$.fn.wechat=function(shareConfig){
-		shareConfig = $.extend({
+		shareConfig = $.extend(shareConfig,{
 			title: '迷你嘟嘟', // 分享标题
 			desc: '迷你嘟嘟 社区电商', // 分享描述
 		    link: location.href, // 分享链接
@@ -33,7 +33,7 @@
 		        // 用户取消分享后执行的回调函数
 		        console.log(res);
 		    }
-		}, shareConfig);
+		});
 		wx.onMenuShareTimeline(shareConfig);
 		wx.onMenuShareAppMessage(shareConfig);
 		wx.onMenuShareQQ(shareConfig);
