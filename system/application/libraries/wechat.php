@@ -12,7 +12,7 @@ class CI_Wechat extends Wechat{
 		parent::__construct($wechat_conf);
 		
 		$this->filedata=array();
-		if(__APP__POS=='BAE'){
+		if(__APP__POS=='BAEXX'){
 			console('\$wechat_conf',$wechat_conf);
 			$this->CI->load->library('mongo');
 		}else{
@@ -27,7 +27,7 @@ class CI_Wechat extends Wechat{
 	 * 用于释放mongo
 	 */ 
 	public function __destruct(){
-		if(__APP__POS=='BAE'){
+		if(__APP__POS=='BAEXX'){
 			/*
 			$connections = $this->CI->mongo->mo->getConnections();
 			foreach ( $connections as $con )
@@ -42,7 +42,7 @@ class CI_Wechat extends Wechat{
 	}
 	
 	public function localData($cachename,$value='',$expired=''){
-		if(__APP__POS=='BAE'){
+		if(__APP__POS=='BAEXX'){
 			$this->filedata=$this->CI->mongo->coll->findOne(array('cachename' => $cachename));
 			if($value){
 				$this->filedata=array(
@@ -106,7 +106,7 @@ class CI_Wechat extends Wechat{
 	 */
 	protected function removeCache($cachename){
 		//TODO: remove cache implementation
-		if(__APP__POS=='BAE'){
+		if(__APP__POS=='BAEXX'){
 			$this->CI->mongo->coll->remove(array('cachename' => $cachename));
 		}else{
 			$this->localData($cachename,'remove',0);

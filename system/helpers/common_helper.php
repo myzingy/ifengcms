@@ -1,5 +1,4 @@
 <?php
-//require_once(BASEPATH.'application/libraries/baelog/BaeLog.class.php');
 if ( ! function_exists('console'))
 {
 	function console()
@@ -14,7 +13,7 @@ if ( ! function_exists('console'))
 			$logdata.=$param."\n";
 		}
 		
-		if(__APP__POS=='BAE'){
+		if(__APP__POS=='BAEXX'){
 			
 			$secret = array("user"=>"nkgKs3jiSUpl1chz0P0RR4QS","passwd"=>"qhlIfwXZYfwCroPcfOUOkCkf0wr6MW74" );
 			$log = BaeLog::getInstance($secret);
