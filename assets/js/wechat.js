@@ -33,10 +33,15 @@
 					    signature: wechat_conf.jsapi_sign.signature,
 					    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 					});
-					document.querySelector('#onMenuShareTimeline').onclick = function () {
+					wx.ready(function () {
 						wx.onMenuShareTimeline(shareConfig);
+					});
+					/*
+					document.querySelector('#onMenuShareTimeline').onclick = function () {
+						
 						alert('已注册获取“分享到朋友圈”状态事件');
 					};
+					*/
 					//wx.onMenuShareAppMessage(shareConfig);
 					//wx.onMenuShareQQ(shareConfig);
 					//wx.onMenuShareWeibo(shareConfig);
