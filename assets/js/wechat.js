@@ -35,16 +35,10 @@
 					});
 					wx.ready(function () {
 						wx.onMenuShareTimeline(shareConfig);
+						wx.onMenuShareAppMessage(shareConfig);
+						wx.onMenuShareQQ(shareConfig);
+						wx.onMenuShareWeibo(shareConfig);
 					});
-					/*
-					document.querySelector('#onMenuShareTimeline').onclick = function () {
-						
-						alert('已注册获取“分享到朋友圈”状态事件');
-					};
-					*/
-					//wx.onMenuShareAppMessage(shareConfig);
-					//wx.onMenuShareQQ(shareConfig);
-					//wx.onMenuShareWeibo(shareConfig);
 				}
 			});
 		}

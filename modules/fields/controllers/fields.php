@@ -134,7 +134,11 @@ echo<<<ENDHTML
 		<script src="{$base_url}assets/js/wechat.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$.wechat();
+				$.wechat({
+					title: $('title').text(), // 分享标题
+					desc: $('title').text(), // 分享描述
+				    link: location.href, // 分享链接
+				});
 				function Message() {
 					this.send = function(a, b) {
 						window.postMessage ? a.postMessage(b, "*") : a.name = b
