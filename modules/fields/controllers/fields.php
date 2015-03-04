@@ -134,6 +134,7 @@ echo<<<ENDHTML
 		<script src="{$base_url}assets/js/wechat.js"></script>
 		<script type="text/javascript">
 			$(function(){
+				$.wechat();
 				function Message() {
 					this.send = function(a, b) {
 						window.postMessage ? a.postMessage(b, "*") : a.name = b
