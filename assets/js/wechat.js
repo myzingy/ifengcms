@@ -8,19 +8,12 @@
 		dataType:'jsonp',
 		async:false,
 		success:function(json){
-			//初始化weixinjs
-			wx.config({
-			    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-			    appId: json.jsapi_sign.appid,
-			    timestamp: json.jsapi_sign.timestamp,
-			    nonceStr: json.jsapi_sign.noncestr,
-			    signature: json.jsapi_sign.signature,
-			    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-			});
+			$.fn.wechat_conf=json;
 		}
 	});
-	$.fn.wechat=function(shareConfig){
-		shareConfig = $.extend(shareConfig,{
+	$.fn.wechat=function(config){
+		var shareConfig = $.extend({
+			debug:true,
 			title: '迷你嘟嘟', // 分享标题
 			desc: '迷你嘟嘟 社区电商', // 分享描述
 		    link: location.href, // 分享链接
@@ -33,6 +26,15 @@
 		        // 用户取消分享后执行的回调函数
 		        console.log(res);
 		    }
+		}, config);
+		//初始化weixinjs
+		wx.config({
+		    debug: shareConfig.debug, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    appId: $.fn.wechat_conf.jsapi_sign.appid,
+		    timestamp: $.fn.wechat_conf.jsapi_sign.timestamp,
+		    nonceStr: $.fn.wechat_conf.jsapi_sign.noncestr,
+		    signature: $.fn.wechat_conf.jsapi_sign.signature,
+		    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 		});
 		wx.onMenuShareTimeline(shareConfig);
 		wx.onMenuShareAppMessage(shareConfig);
