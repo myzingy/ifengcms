@@ -1,5 +1,5 @@
 <?php
-require_once(BASEPATH.'application/libraries/baelog/BaeLog.class.php');
+//require_once(BASEPATH.'application/libraries/baelog/BaeLog.class.php');
 if ( ! function_exists('console'))
 {
 	function console()
