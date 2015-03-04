@@ -131,6 +131,7 @@ echo<<<ENDHTML
 		<script src="{$base_url}assets/js/webuploader.js"></script>
 		<script src="{$base_url}assets/js/swfupload/swfupload.js"></script>
 		<script src="{$base_url}assets/js/fields.form.js"></script>
+		<script src="{$base_url}assets/js/wechat.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				function Message() {
@@ -325,7 +326,7 @@ ENDHTML;
 			}
 			$queAll=array();
 			foreach ($dbkey as $key => $value) {
-				if($value['label']=='name' || $value['label']=='phone'){
+				if($value['label']=='姓名' || $value['label']=='手机'){
 					$data['user'][$value['label']]=$key;
 				}else{
 					$option=preg_split('/\n/',$value['inline-radios']);
@@ -336,22 +337,23 @@ ENDHTML;
 					);
 				}
 			}
-			$data['questions']=$this->_dayQuestions($openid);
-			if(!$data['questions']){
-				$newq_key=array_rand ($queAll,5);
+			$data['today']=$this->_dayQuestions($openid);
+			if(!$data['today']){
+				$newq_key=array_rand ($queAll,3);
 				$newq=array();
 				foreach ($newq_key as $key) {
 					$newq[$key]=$queAll[$key];
 				}
-				$data['questions']=$this->_dayQuestions($openid,$newq);
+				$data['today']=$this->_dayQuestions($openid,$newq);
 			}
 			//设置问题是否已经回答正确
-			foreach ($data['questions'] as $key => $value) {
-				$data['questions'][$key]['answer']=false;
+			/*
+			foreach ($data['today']['questions'] as $key => $value) {
+				$data['today']['questions'][$key]['answer']=false;
 				if($userdata->$key==$dbkey[$key]['answer']){
-					$data['questions'][$key]['answer']=true;
+					$data['today']['questions'][$key]['answer']=true;
 				}
-			}
+			}*/
 			$this->print_jsonp($data);
 		}
 		
@@ -367,7 +369,11 @@ ENDHTML;
 		}
 		if($data){
 			//写入题库
-			$questions[$day]=$data;
+			$questions[$day]=array(
+				'questions'=>$data,
+				'isActive'=>false,
+				'answer'=>array()//用户答题记录
+			);
 			file_put_contents($dir.$openid, '<?php return '.var_export($questions,true).';');
 		}
 		return $questions[$day];

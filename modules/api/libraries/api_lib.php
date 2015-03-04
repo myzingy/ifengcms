@@ -440,4 +440,13 @@ class api_lib
 		redirect($url);
 		exit;
 	}
+	
+	function getWechatJS(){
+		//jsapi_ticket
+		$this->CI->load->library('wechat');
+		$info['jsapi_ticket']=$this->CI->wechat->getJsTicket();
+		//getJsSign
+		$info['jsapi_sign']=$this->CI->wechat->getJsSign($_SERVER['HTTP_REFERER']);
+		return $info;
+	}
 }

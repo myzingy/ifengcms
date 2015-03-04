@@ -29,7 +29,7 @@ class api extends Public_Controller
 		#抽奖
 		,'dodraw','updateDrawUser'
 		#获取用户授权及授权跳转
-		,'getWechatAuth','setWechatAuth'
+		,'getWechatAuth','setWechatAuth','getWechatJS'
 		);
 		if(!in_array($action, $noCheckLoginAct)){
 			if(!$this->api_lib->check()){
