@@ -28,6 +28,8 @@ class api extends Public_Controller
 		,'totalcode','totalcodeActivity'
 		#抽奖
 		,'dodraw','updateDrawUser'
+		#答题
+		,'quesUser','doques','getDayQuestions'
 		#获取用户授权及授权跳转
 		,'getWechatAuth','setWechatAuth','getWechatJS'
 		);
@@ -37,7 +39,6 @@ class api extends Public_Controller
 				die(json_encode($info));
 			}
 		}
-		
 		if(method_exists($this->api_lib,$action)){
 			$info=call_user_func_array(array(&$this->api_lib, $action), $prarm);
 			$info['error']=$info['error']?$info['error']:'';

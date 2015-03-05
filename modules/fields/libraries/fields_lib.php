@@ -541,4 +541,182 @@ class fields_lib
 		
 		return array('status'=>0,'data'=>$info,'error'=>'发送完成!','phone_str'=>$phone_str);
 	}
+	/*
+	 * 题库相关操作
+	 */
+	//获得当天的问题
+	function getDayQuestions($id=0,$openid=''){
+		$this->CI->load->module_library('oauth','oauth_lib');
+		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		$openid=$cookie['openid']?$cookie['openid']:$openid;
+		
+		$row=$this->getFieldsData($id);
+		if($row['status']==0){
+			$field=$row['data'];
+			if($field->stimeint>TIME){
+				return array('status'=>10000,'error'=>$field->name.'还没有开始，开始时间为：'.$field->stime);
+			}
+			if($field->etimeint<TIME){
+				return array('status'=>10000,'error'=>'来晚一步，'.$field->name.'已经结束了');
+			}
+			$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
+			$dbkey=json_decode($field->fields_json,true);
+			//$table_fields=$this->CI->fields_model->db->list_fields($table);
+			
+			$limit=array('offset'=>$page,'limit'=>1);
+			$where=array('openid'=>$openid);
+			$res=$this->CI->fields_model->getFieldsDataList($table,$where,$limit,false);
+			if($res->num_rows()>0){
+				//用户答过题
+				$data['isActive']=true;
+				$userdata = $res->row();
+			}else{
+				$data['isActive']=false;
+				
+			}
+			$queAll=array();
+			foreach ($dbkey as $key => $value) {
+				if($value['label']=='姓名' || $value['label']=='手机'){
+					$user[$value['label']]=$key;
+				}else{
+					$option=preg_split('/\n/',$value['inline-radios']);
+					$queAll[$key]=array(
+						'label'=>$value['label'],
+						'name'=>$key,
+						'option'=>$option
+					);
+				}
+			}
+			$data['today']=$this->_dayQuestions($openid);
+			if(!$data['today']){
+				$newq_key=array_rand ($queAll,3);
+				$newq=array();
+				foreach ($newq_key as $key) {
+					$newq[$key]=$queAll[$key];
+				}
+				$data['today']=$this->_dayQuestions($openid,array(
+					'questions'=>$newq,
+					'user'=>$user,
+					'isActive'=>false,
+					'answer'=>array()
+				));
+			}
+			//设置问题是否已经回答正确
+			/*
+			foreach ($data['today']['questions'] as $key => $value) {
+				$data['today']['questions'][$key]['answer']=false;
+				if($userdata->$key==$dbkey[$key]['answer']){
+					$data['today']['questions'][$key]['answer']=true;
+				}
+			}*/
+			return $data;
+		}
+		
+	}
+	//创建今天的试卷
+	function _dayQuestions($openid='',$data=array()){
+		$dir=BASEPATH.'cache/2015315/';
+		$day=date('Ymd',TIME);
+		@mkdir($dir);
+		$questions=array();
+		if(file_exists($dir.$openid)){
+			$questions=include($dir.$openid);
+		}
+		if($data){
+			//写入题库
+			$questions[$day]=$data;
+			file_put_contents($dir.$openid, '<?php return '.var_export($questions,true).';');
+		}
+		return $questions[$day];
+	}
+	//设置答题用户
+	function quesUser($id=0,$openid=''){
+		$this->CI->load->module_library('oauth','oauth_lib');
+		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		$openid=$cookie['openid']?$cookie['openid']:$openid;
+		$row=$this->getFieldsData($id);
+		if($row['status']==0){
+			$field=$row['data'];
+			if($field->stimeint>TIME){
+				return array('status'=>10000,'error'=>$field->name.'还没有开始，开始时间为：'.$field->stime);
+			}
+			if($field->etimeint<TIME){
+				return array('status'=>10000,'error'=>'来晚一步，'.$field->name.'已经结束了');
+			}
+			$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
+			$today=$this->_dayQuestions($openid);
+			if($today['user']){
+				foreach ($today['user'] as $value => $key) {
+					$$value=trim($this->CI->input->get($key));
+					if(!$$value){
+						return array('status'=>10000,'error'=>$value.'必须填写');
+					}
+					if($value=='手机'){
+						if(!preg_match("/^1[0-9]{10}$/", $$value)){
+							return array('status'=>10000,'error'=>$value.'填写错误');
+						}
+					}
+					$user[$key]=$$value;
+				}
+				$res=$this->CI->fields_model->getFieldsDataList($table,array('openid'=>$openid),null,false);
+				if($res->num_rows()<1){
+					$user['openid']=$openid;
+					$this->CI->fields_model->insert_fields_tabdata($field->tab_name,$user);
+				}
+				return array('status'=>0);
+			}
+			return array('status'=>10000,'error'=>'出错了，请重新打开试卷');
+		}
+		return array('status'=>10000,'error'=>'出错了，题库不存在');
+		
+	}
+	//答题
+	function doques($id=0,$openid=''){
+		$this->CI->load->module_library('oauth','oauth_lib');
+		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		$openid=$cookie['openid']?$cookie['openid']:$openid;
+		$today=$this->_dayQuestions($openid);
+		if($today['isActive']){
+			return array('status'=>10000,'error'=>'你今天已经参与，快快分享给好友吧');
+		}
+		$row=$this->getFieldsData($id);
+		if($row['status']==0){
+			$field=$row['data'];
+			if($field->stimeint>TIME){
+				return array('status'=>10000,'error'=>$field->name.'还没有开始，开始时间为：'.$field->stime);
+			}
+			if($field->etimeint<TIME){
+				return array('status'=>10000,'error'=>'来晚一步，'.$field->name.'已经结束了');
+			}
+			$dbkey=json_decode($field->fields_json,true);
+			$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
+			$source=0;
+			if($today['questions']){
+				foreach ($today['questions'] as $key => $value) {
+					$answer[$key]=$this->CI->input->get($key);
+					if(!$answer[$key]){
+						return array('status'=>10000,'error'=>'请完成 '.$value['label']);
+					}
+					if($answer[$key]==$dbkey[$key]['answer']){
+						$source++;
+					}
+					$today['answer'][$key]=$answer[$key];
+				}
+				$answer['source']='source + '.$source;
+				//更新今日答题记录
+				$today['isActive']=true;
+				$this->_dayQuestions($openid,$today);
+				//更新自己的得分
+				$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$openid));
+				//更新分享者得分
+				$fkid=$this->CI->input->get('fkid');
+				if($fkid && $fkid!=$openid){
+					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$fkid));
+				}
+				return array('status'=>0);
+			}
+			return array('status'=>10000,'error'=>'出错了，请重新打开试卷');
+		}
+		return array('status'=>10000,'error'=>'出错了，题库不存在');
+	}
 }

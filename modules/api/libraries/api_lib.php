@@ -411,6 +411,24 @@ class api_lib
 		return $this->CI->draw_lib->updateUserInfo($id);
 	}
 	#################################################
+	# 答题
+	#################################################
+	#api/act/getDayQuestions/20/oWQRqs1w-Rabo73VPQ3jCFf3R_gk?callback=jquery12312312&1
+	#api/act/quesUser/20/oWQRqs1w-Rabo73VPQ3jCFf3R_gk?callback=jquery12312312&v60d0458ac6eb=vking&v9f9d36327d96=12312312312
+	#api/act/doques/20/oWQRqs1w-Rabo73VPQ3jCFf3R_gk?callback=jquery12312312&v4439727b7394=D%204444&v96c3c11f1460=A%2011111111&v54d1449a308e=123
+	function getDayQuestions($id='',$openid=''){
+		$this->CI->load->module_library('fields','fields_lib');
+		return $this->CI->fields_lib->getDayQuestions($id,$openid);
+	}
+	function quesUser($id,$openid=''){
+		$this->CI->load->module_library('fields','fields_lib');
+		return $this->CI->fields_lib->quesUser($id,$openid);
+	}
+	function doques($id,$openid=''){
+		$this->CI->load->module_library('fields','fields_lib');
+		return $this->CI->fields_lib->doques($id,$openid);
+	}
+	#################################################
 	# 获取用户授权及授权跳转
 	#################################################
 	function getWechatAuth(){
@@ -442,6 +460,9 @@ class api_lib
 	}
 	
 	function getWechatJS(){
+		$this->CI->load->module_library('oauth','oauth_lib');
+		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		$info['openid']=$cookie['openid'];
 		//jsapi_ticket
 		$this->CI->load->library('wechat');
 		$info['jsapi_ticket']=$this->CI->wechat->getJsTicket();

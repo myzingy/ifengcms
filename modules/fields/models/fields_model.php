@@ -107,7 +107,11 @@ class fields_model extends Base_model
 		if(!$tflag){
 			return array('status'=>10000,'error'=>'表单错误，需要管理员重新设置');
 		}
-		$this->db->update($tabname,$data,$where);
+		$this->db->where($where);
+		foreach ($data as $key => $value) {
+			$this->db->set($key,$value,!($key=='source'));
+		}
+		$this->db->update($tabname);
 		return array('status'=>0,'rows'=>$this->db->affected_rows(),'data'=>array('id'=>$where['id']));
 	}
 	function getFieldsList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false){
