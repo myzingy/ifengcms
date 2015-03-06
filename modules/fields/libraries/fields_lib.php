@@ -544,6 +544,9 @@ class fields_lib
 	/*
 	 * 题库相关操作
 	 */
+	const ques_username='姓名';
+	const ques_phone='手机';
+	const ques_fen=10;//一题10分
 	//获得当天的问题
 	function getDayQuestions($id=0,$openid=''){
 		$this->CI->load->module_library('oauth','oauth_lib');
@@ -556,9 +559,7 @@ class fields_lib
 			if($field->stimeint>TIME){
 				return array('status'=>10000,'error'=>$field->name.'还没有开始，开始时间为：'.$field->stime);
 			}
-			if($field->etimeint<TIME){
-				return array('status'=>10000,'error'=>'来晚一步，'.$field->name.'已经结束了');
-			}
+			
 			$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
 			$dbkey=json_decode($field->fields_json,true);
 			//$table_fields=$this->CI->fields_model->db->list_fields($table);
@@ -570,13 +571,14 @@ class fields_lib
 				//用户答过题
 				$data['isActive']=true;
 				$userdata = $res->row();
+				$data['source']=$userdata->source*self::ques_fen;
 			}else{
 				$data['isActive']=false;
-				
+				$data['source']=0;
 			}
 			$queAll=array();
 			foreach ($dbkey as $key => $value) {
-				if($value['label']=='姓名' || $value['label']=='手机'){
+				if($value['label']==self::ques_username || $value['label']==self::ques_phone){
 					$user[$value['label']]=$key;
 				}else{
 					$option=preg_split('/\n/',$value['inline-radios']);
@@ -609,6 +611,15 @@ class fields_lib
 					$data['today']['questions'][$key]['answer']=true;
 				}
 			}*/
+			$data['userinfo']=array(
+				'name'=>$userdata->$user[self::ques_username],
+				'phone'=>$userdata->$user[self::ques_phone],
+			);
+			$data['status']=0;
+			if($field->etimeint<TIME){
+				$data['status']=10000;
+				$data['error']=$field->name.'已经结束了';
+			}
 			return $data;
 		}
 		
@@ -651,7 +662,7 @@ class fields_lib
 					if(!$$value){
 						return array('status'=>10000,'error'=>$value.'必须填写');
 					}
-					if($value=='手机'){
+					if($value==self::ques_phone){
 						if(!preg_match("/^1[0-9]{10}$/", $$value)){
 							return array('status'=>10000,'error'=>$value.'填写错误');
 						}
@@ -702,7 +713,7 @@ class fields_lib
 					}
 					$today['answer'][$key]=$answer[$key];
 				}
-				$answer['source']='source + '.$source;
+				$answer['source']='source + '.($source*self::ques_fen);
 				//更新今日答题记录
 				$today['isActive']=true;
 				$this->_dayQuestions($openid,$today);
@@ -713,7 +724,7 @@ class fields_lib
 				if($fkid && $fkid!=$openid){
 					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$fkid));
 				}
-				return array('status'=>0);
+				return array('status'=>0,'right'=>$source);
 			}
 			return array('status'=>10000,'error'=>'出错了，请重新打开试卷');
 		}
