@@ -53,6 +53,7 @@ $(document).ready(function(){
 					}
 					if(data.fields_json){
 						formdata=JSON.parse(data.fields_json);
+						console.log(formdata);
 					}
 					$('#step2_name').html(data.name);
 				}else{

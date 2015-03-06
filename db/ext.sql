@@ -10,3 +10,6 @@ create table `ifengcms`.`cms_vote_members_ext` (  `id` int (10) NOT NULL AUTO_IN
 
 #2015-03-02
 alter table `ifengcms`.`cms_fields` add column `type` tinyint (1) DEFAULT '0' NULL  COMMENT '默认0普通表单，1为答题'  after `fields_style_mobile`
+
+#2015-03-06
+alter table `ifengcms`.`cms_fields` change `fields_html` `fields_html` longtext   NULL , change `fields_htmls` `fields_htmls` longtext   NULL  COMMENT '发布的html' 
