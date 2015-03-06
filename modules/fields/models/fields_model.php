@@ -74,7 +74,7 @@ class fields_model extends Base_model
 				if(!trim($dbkey)) continue;
 				$fields[$dbkey]=array(
                      'type' => 'VARCHAR',
-                     'constraint' => 500,
+                     'constraint' => 150,
                      'comment' =>$value['label']
                  );
 			}
