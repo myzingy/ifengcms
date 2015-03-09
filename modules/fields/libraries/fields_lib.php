@@ -708,7 +708,7 @@ class fields_lib
 					if(!$answer[$key]){
 						return array('status'=>10000,'error'=>'请完成 '.$value['label']);
 					}
-					if($answer[$key]==$dbkey[$key]['answer']){
+					if(trim($answer[$key])==trim($dbkey[$key]['answer'])){
 						$source++;
 					}
 					$today['answer'][$key]=$answer[$key];
