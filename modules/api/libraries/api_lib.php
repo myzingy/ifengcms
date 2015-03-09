@@ -410,6 +410,10 @@ class api_lib
 		$this->CI->load->module_library('draw','draw_lib');
 		return $this->CI->draw_lib->updateUserInfo($id);
 	}
+	function getLucker($id){
+		$this->CI->load->module_library('draw','draw_lib');
+		return $this->CI->draw_lib->getLucker($id);
+	}
 	#################################################
 	# 答题
 	#################################################
@@ -440,8 +444,9 @@ class api_lib
 				$data=array();
 				foreach ($res->result() as $r) {
 					array_push($data,array(
-						name=>$r->v60d0458ac6eb,
-						source=>$r->source
+						'name'=>$r->v60d0458ac6eb,
+						'phone'=>$r->v9f9d36327d96,
+						'source'=>$r->source
 					));
 				}
 				$info=array(

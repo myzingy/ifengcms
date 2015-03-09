@@ -221,4 +221,28 @@ class draw_lib
 		$info['status']=0;
 		return $info;
 	}
+	function getLucker($id){
+		$info=array('status'=>10000,'error'=>'没有数据！');
+		$where=array(
+			'did'=>$id,
+			'pid > '=>0,
+		);
+		$limit=array('limit' => 50, 'offset' => '');
+		$res=$this->CI->draw_model->getHistoryList($where, $limit ,false);
+		if($res->num_rows()>0){
+			$data=array();
+			foreach ($res->result() as $r) {
+				array_push($data,array(
+					'name'=>$r->name,
+					'phone'=>$r->phone,
+					'pname'=>$r->pname
+				));
+			}
+			$info=array(
+				'status'=>0,
+				'data'=>$data
+			);
+		}
+		return $info;
+	}
 }

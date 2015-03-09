@@ -27,7 +27,7 @@ class api extends Public_Controller
 		#统计代码
 		,'totalcode','totalcodeActivity'
 		#抽奖
-		,'dodraw','updateDrawUser'
+		,'dodraw','updateDrawUser','getLucker'
 		#答题
 		,'quesUser','doques','getDayQuestions','getSourceList'
 		#获取用户授权及授权跳转
