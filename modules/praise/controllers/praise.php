@@ -12,7 +12,7 @@ class praise extends Public_Controller
 	function index($pkid='',$action='look'){
 		if(!$pkid) return false;
 		parse_str($_SERVER['QUERY_STRING'],$_GET);
-		if($action=='up' || $action=='down'){
+		if($action=='up' || $action=='down' || (is_numeric($action))){
 			$data['pkid']=$pkid;
 			$data['ip']=$this->input->ip_address();
 			$res=$this->praise_model->fetch('P','*',null,$data);
@@ -20,7 +20,11 @@ class praise extends Public_Controller
 				$info=array('status'=>10000,'error'=>'你已经投过票了');
 			}else{
 				$data['addtime']=TIME;
-				$data['type']=($action=='down')?1:0;
+				if(is_numeric($action)){
+					$data['type']=$action;
+				}else{
+					$data['type']=($action=='down')?1:0;
+				}
 				$this->praise_model->insert('P',$data);
 			}
 		}
@@ -29,10 +33,15 @@ class praise extends Public_Controller
 			$res=$this->praise_model->count($pkid);
 			if($res->num_rows()>0){
 				$row=$res->result();
+				foreach ($row as $r) {
+					$base[$r->type]=$r->count;
+				}
 				$info=array(
 					'status'=>0,
 					'up'=>$row[0]->count+0,
-					'down'=>$row[1]->count+0
+					'down'=>$row[1]->count+0,
+					'base'=>$base
+					
 				);
 			}
 		}

@@ -43,6 +43,22 @@ $.ajax({
 	}
 });
 &lt;/script>
+
+&lt;!--//获取获奖者信息使用以下代码-->
+&lt;script>
+$.ajax({
+	url:'<?php print base_url()?>index.php/api/act/getLucker/{$id}',
+	dataType:'jsonp',
+	jsonp:'callback',
+	success:function(json){
+		if(json.status==0){
+			//有数据
+		}else{
+			//没有数据
+		}
+	}
+});
+&lt;/script>
 </textarea>
 <?php if(check('draw','update',false)):?>
 <div class="buttons">                

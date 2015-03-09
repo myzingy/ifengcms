@@ -89,4 +89,7 @@ Examples can be seen below for menu_bep_system
         </ul>
     </li>
     <?php endif;?>
+    <li id="menu_bep_system_praise">
+    	<?php print anchor('praise/admin/praise/index','点赞接口',array('class'=>'icon_application'))?>
+    </li>
 </ul>
