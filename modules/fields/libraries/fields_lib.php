@@ -724,7 +724,7 @@ class fields_lib
 				if($fkid && $fkid!=$openid){
 					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$fkid));
 				}
-				return array('status'=>0,'source'=>$source);
+				return array('status'=>0,'source'=>$source*self::ques_fen);
 			}
 			return array('status'=>10000,'error'=>'出错了，请重新打开试卷');
 		}
