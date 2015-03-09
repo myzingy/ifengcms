@@ -29,7 +29,7 @@ class api extends Public_Controller
 		#抽奖
 		,'dodraw','updateDrawUser'
 		#答题
-		,'quesUser','doques','getDayQuestions'
+		,'quesUser','doques','getDayQuestions','getSourceList'
 		#获取用户授权及授权跳转
 		,'getWechatAuth','setWechatAuth','getWechatJS'
 		);
