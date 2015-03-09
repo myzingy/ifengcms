@@ -571,7 +571,7 @@ class fields_lib
 				//用户答过题
 				$data['isActive']=true;
 				$userdata = $res->row();
-				$data['source']=$userdata->source*self::ques_fen;
+				$data['source']=$userdata->source;
 			}else{
 				$data['isActive']=false;
 				$data['source']=0;
