@@ -685,6 +685,9 @@ class fields_lib
 	function doques($id=0,$openid=''){
 		$this->CI->load->module_library('oauth','oauth_lib');
 		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		if(!$cookie['openid']){
+			return array('status'=>10000,'error'=>'请从微信参与活动');
+		}
 		$openid=$cookie['openid']?$cookie['openid']:$openid;
 		$today=$this->_dayQuestions($openid);
 		if($today['isActive']){
@@ -731,3 +734,4 @@ class fields_lib
 		return array('status'=>10000,'error'=>'出错了，题库不存在');
 	}
 }
+
