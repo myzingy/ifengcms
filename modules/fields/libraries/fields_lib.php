@@ -546,7 +546,7 @@ class fields_lib
 	 */
 	const ques_username='姓名';
 	const ques_phone='手机';
-	const ques_fen=10;//一题10分
+	const ques_fen=1;//一题10分
 	//获得当天的问题
 	function getDayQuestions($id=0,$openid=''){
 		$this->CI->load->module_library('oauth','oauth_lib');
