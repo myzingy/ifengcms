@@ -107,7 +107,7 @@ class draw_lib
 		flashMsg('success','操作成功');
 		redirect('draw/admin/draw/activity/','location');
 	}
-	function dodraw($id){活动
+	function dodraw($id){
 		//315活动特殊处理$id
 		$id=$this->create_id_315($id);
 		
