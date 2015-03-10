@@ -98,6 +98,9 @@ class fields_model extends Base_model
 		if($datarows>50){
 			return array('status'=>10000,'error'=>'提交失败，你的IP提交人数太多了');
 		}
+		if(!$data['addtime']){
+			$data['addtime']=TIME;
+		}
 		$this->db->insert($tabname,$data);
 		return array('status'=>0,'data'=>array('id'=>$this->db->insert_id()));
 	}
