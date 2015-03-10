@@ -107,7 +107,10 @@ class draw_lib
 		flashMsg('success','操作成功');
 		redirect('draw/admin/draw/activity/','location');
 	}
-	function dodraw($id){
+	function dodraw($id){活动
+		//315活动特殊处理$id
+		$id=$this->create_id_315($id);
+		
 		$name=trim($this->CI->input->get('name'));
 		$phone=trim($this->CI->input->get('phone'));
 		$openid=trim($this->CI->input->get('openid'));
@@ -222,6 +225,9 @@ class draw_lib
 		return $info;
 	}
 	function getLucker($id){
+		//315活动特殊处理$id
+		$id=$this->create_id_315($id);
+		
 		$info=array('status'=>10000,'error'=>'没有数据！');
 		$where=array(
 			'did'=>$id,
@@ -244,5 +250,12 @@ class draw_lib
 			);
 		}
 		return $info;
+	}
+	function create_id_315($id){
+		if($id=='3'){
+			$dd=date('d',TIME);
+			return $dd-7;
+		}
+		return $id;
 	}
 }
