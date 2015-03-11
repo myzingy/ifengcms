@@ -180,6 +180,9 @@ class draw_lib
 		}
 		shuffle($gailv);
 		$info['error']='运气真不好，什么都没中!';
+		//更新活动
+		$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
+			
 		if($gailv[0] && $prize_data[$gailv[0]]){
 			//中奖了
 			$info['status']=1;
@@ -193,8 +196,6 @@ class draw_lib
 			//更新获奖人数
 			$this->CI->draw_model->updateActivityPrizeNum($id,'win_num');
 		}else{
-			//更新活动
-			$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
 			$info['status']=0;
 		}
 		return $info;	
