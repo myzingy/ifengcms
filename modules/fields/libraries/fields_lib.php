@@ -674,7 +674,8 @@ class fields_lib
 					$user['openid']=$openid;
 					$user['ip']=$this->CI->input->ip_address();
 					$user['addtime']=TIME;
-					$status=$this->CI->fields_model->insert_fields_tabdata($field->tab_name,$user);
+					$res_sta=$this->CI->fields_model->insert_fields_tabdata($field->tab_name,$user);
+					return $res_sta;
 				}
 				return array('status'=>0);
 			}
