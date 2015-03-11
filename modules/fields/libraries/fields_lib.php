@@ -717,6 +717,7 @@ class fields_lib
 					$today['answer'][$key]=$answer[$key];
 				}
 				$answer['source']='source + '.($source*self::ques_fen);
+				$fkid=$this->CI->input->get('fkid');
 				//更新今日答题记录
 				$today['isActive']=true;
 				$today['fkid']=$fkid;
@@ -724,7 +725,6 @@ class fields_lib
 				//更新自己的得分
 				$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$openid));
 				//更新分享者得分
-				$fkid=$this->CI->input->get('fkid');
 				if($fkid && $fkid!=$openid){
 					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$fkid));
 				}
