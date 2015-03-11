@@ -7,7 +7,7 @@
 			var data=JSON.parse(decodeURIComponent(match[1]));
 			return data.openid;
 		}else{
-			match=location.href.match(/openid=([^&]+)/);
+			match=location.href.match(/openid=([^&#]+)/);
 			if(match){
 				return match[1];
 			}else{

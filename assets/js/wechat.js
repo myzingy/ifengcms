@@ -37,13 +37,13 @@
 					wx.ready(function () {
 						//过滤openid，添加fkid
 						if(!wechat_conf.openid){
-							match=location.href.match(/openid=([^&]+)/);
+							match=location.href.match(/openid=([^&#]+)/);
 							if(match){
 								wechat_conf.openid=match[1];
 							}
 						}
-						shareConfig.link=shareConfig.link.replace(/openid=([^&]+)/g,'');
-						shareConfig.link=shareConfig.link.replace(/fkid=([^&]+)/g,'');
+						shareConfig.link=shareConfig.link.replace(/openid=([^&#]+)/g,'');
+						shareConfig.link=shareConfig.link.replace(/fkid=([^&#]+)/g,'');
 						if(wechat_conf.openid){
 							shareConfig.link+=(shareConfig.link.indexOf('?')>-1?'&':'?')+'fkid='+wechat_conf.openid;
 						}
