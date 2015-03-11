@@ -725,11 +725,15 @@ class fields_lib
 				$today['isActive']=true;
 				$today['fkid']=$fkid;
 				$this->_dayQuestions($openid,$today);
+				$answer['fromaddr']=$fkid;
 				//更新自己的得分
 				$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$openid));
 				//更新分享者得分
 				if($fkid && $fkid!=$openid){
-					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$fkid));
+					$source=array(
+						'source'=>'source + '.($source*self::ques_fen)
+					);
+					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$source,array('openid'=>$fkid));
 				}
 				return array('status'=>0,'source'=>$source*self::ques_fen);
 			}
