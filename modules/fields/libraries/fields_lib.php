@@ -672,7 +672,7 @@ class fields_lib
 				$res=$this->CI->fields_model->getFieldsDataList($table,array('openid'=>$openid),null,false);
 				if($res->num_rows()<1){
 					$user['openid']=$openid;
-					$this->CI->fields_model->insert_fields_tabdata($field->tab_name,$user);
+					$status=$this->CI->fields_model->insert_fields_tabdata($field->tab_name,$user);
 				}
 				return array('status'=>0);
 			}
