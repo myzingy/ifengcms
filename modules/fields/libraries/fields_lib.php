@@ -719,6 +719,7 @@ class fields_lib
 				$answer['source']='source + '.($source*self::ques_fen);
 				//更新今日答题记录
 				$today['isActive']=true;
+				$today['fkid']=$fkid;
 				$this->_dayQuestions($openid,$today);
 				//更新自己的得分
 				$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$openid));
