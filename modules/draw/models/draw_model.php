@@ -123,8 +123,10 @@ class draw_model extends Base_model
 			$pagination=$this->autopage($datarows,$limit['limit']);
 		}
 		
-		$this->db->select('D.*');
+		$this->db->select('D.*,GROUP_CONCAT(P.name) as prizesname');
 		$this->db->from($this->_TABLES['D'] ." D");
+		$this->db->join($this->_TABLES['D2P'] ." D2P",'D2P.did=D.id','left');
+		$this->db->join($this->_TABLES['P'] ." P",'P.id=D2P.pid','left');
 		if( ! is_null($where))
 		{
 			if(is_string($where)){
@@ -140,6 +142,7 @@ class draw_model extends Base_model
 			$this->autowhere($where_fileds);	
 		}
 		$this->db->order_by('D.id','desc');
+		$this->db->group_by('D.id');
 		if( ! is_null($limit['limit']))
 		{
 			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));

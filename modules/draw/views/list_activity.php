@@ -72,7 +72,8 @@ $.ajax({
     <thead>
         <tr>
             <th width=5%><?php print $this->lang->line('general_id')?></th>
-            <th width=30%>活动名称</th>
+            <th width=15%>活动名称</th>
+            <th>奖品</th>
             <th>开始时间</th>
             <th>结束时间</th>
             <th>展示数</th>
@@ -98,6 +99,7 @@ $.ajax({
         <tr>
             <td><?php print $row['id']?></td>
             <td><?php print $row['title']?></td>
+            <td><?php print $row['prizesname']?></td>
             <td><?php print date("Y-m-d H:i:s",$row['stime'])?></td>
             <td><?php print date("Y-m-d H:i:s",$row['etime'])?></td>
             <td><?php print $row['view_num']?></td>

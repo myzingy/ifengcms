@@ -97,6 +97,7 @@ class draw_lib
 			$this->CI->draw_model->delete('D2P',array('did'=>$data['id']));
 		}else{
 			$this->CI->draw_model->insert('D',$data);
+			$data['id']=$this->CI->draw_model->db->insert_id();
 		}
 		if($d2p){
 			$d2p=explode(',', $d2p);
