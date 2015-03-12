@@ -5,6 +5,26 @@
 var PUBLIC__WECHAT_OPENID = Math.random();
 &lt;/script>
 &lt;script src="http://cms.wisheli.com/assets/js/getWechatAuth.js"></script>
+&lt;!--//检查用户是否中奖-->
+&lt;script>
+$.ajax({
+	url:'<?php print base_url()?>index.php/api/act/checkDrawUser/{$id}',
+	data:'openid='+PUBLIC__WECHAT_OPENID,
+	dataType:'jsonp',
+	jsonp:'callback',
+	success:function(json){
+		if(json.status==1){
+			//中奖 json.msg
+			
+		}else if(json.status==0){
+			//未中奖
+			
+		}else{
+			//未参加抽奖
+		}
+	}
+});
+&lt;/script>
 
 &lt;!--//参与抽奖请使用以下代码-->
 &lt;script>
