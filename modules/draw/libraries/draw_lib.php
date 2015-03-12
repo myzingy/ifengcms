@@ -187,6 +187,7 @@ class draw_lib
 			//中奖了
 			$info['status']=1;
 			$info['msg']='中奖了,恭喜你获得'.$prize_data[$gailv[0]]->name;
+			$info['prizeName']=$prize_data[$gailv[0]]->name;
 			$this->CI->draw_model->update('DH'
 				,array('pid'=>$gailv[0],'pname'=>$prize_data[$gailv[0]]->name)
 				,array('id'=>$history_id)
