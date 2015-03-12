@@ -414,6 +414,10 @@ class api_lib
 		$this->CI->load->module_library('draw','draw_lib');
 		return $this->CI->draw_lib->getLucker($id);
 	}
+	function checkDrawUser($id){
+		$this->CI->load->module_library('draw','draw_lib');
+		return $this->CI->draw_lib->check($id);
+	}
 	#################################################
 	# 答题
 	#################################################

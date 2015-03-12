@@ -255,6 +255,33 @@ class draw_lib
 		}
 		return $info;
 	}
+	function check($id){
+		//315活动特殊处理$id
+		$id=$this->create_id_315($id);
+		$openid=trim($this->CI->input->get('openid'));
+		$info=array('status'=>10000,'error'=>'没有数据！');
+		$where=array(
+			'did'=>$id,
+			'openid'=>$openid,
+		);
+		$limit=array('limit' => 1, 'offset' => '');
+		$res=$this->CI->draw_model->getHistoryList($where, $limit ,false);
+		if($res->num_rows()>0){
+			$row=$res->row();
+			$info=array(
+				'status'=>0,
+				'error'=>'没有中奖'
+			);
+			if($row->pid){
+				$info=array(
+					'status'=>1,
+					'prizeName'=>$row->pname,
+					'prizeTime'=>date('Y-m-d H:i:s',$row->addtime)
+				);
+			}
+		}
+		return $info;
+	}
 	function create_id_315($id){
 		if($id=='3'){
 			$dd=date('d',TIME);
