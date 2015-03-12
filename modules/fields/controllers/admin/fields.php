@@ -98,6 +98,7 @@ class fields extends Admin_Controller
 			$fields_json=json_decode($field->fields_json,true);
 			$fields_json['fromaddr']['label']='来源';
 			$fields_json['addtime']['label']='添加日期';
+			$fields_json['source']['label']='得分';
 			if($tflag){
 				$limit=array('offset'=>$page,'limit'=>5000);
 				$where=' 1=1 ';
