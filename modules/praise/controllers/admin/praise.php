@@ -10,7 +10,7 @@ class praise extends Admin_Controller
 		$this->load->library('praise_lib');
 	}
 	function index(){
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$info=$this->praise_model->getList($where,$limit,true);
 		$data['members'] = $info['data'];
 		$data['pagination']=$info['pagination'];

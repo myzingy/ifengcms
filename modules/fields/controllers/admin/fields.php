@@ -34,7 +34,7 @@ class fields extends Admin_Controller
 		die(json_encode($info));
 	}
 	function index(){
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$where=array();
 		$info=$this->fields_model->getFieldsList($where,$limit,true);
 		
@@ -56,7 +56,7 @@ class fields extends Admin_Controller
 			$data['fields']=$this->fields_model->db->list_fields($table);
 			$data['tab_index']=$fid;
 		}
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$where=array();
 		$info=$this->fields_model->getFieldsDataList($table,$where,$limit,true);
 		

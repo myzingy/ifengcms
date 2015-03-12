@@ -13,7 +13,7 @@ class draw extends Admin_Controller
 		
 	}
 	function activity(){
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$info=$this->draw_model->getActivityList($where,$limit,true);
 		$data['members'] = $info['data'];
 		$data['pagination']=$info['pagination'];
@@ -25,7 +25,7 @@ class draw extends Admin_Controller
 	}
 	function history($id){
 		$where=array('did'=>$id);
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$info=$this->draw_model->getHistoryList($where,$limit,true);
 		$data['members'] = $info['data'];
 		$data['pagination']=$info['pagination'];
@@ -38,7 +38,7 @@ class draw extends Admin_Controller
 		$this->load->view($this->_container,$data);
 	}
 	function prize(){
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$data['params']=$this->uri->getParamsArr();
 		//$where=array('A.type'=>1);
 		$info=$this->draw_model->getPrizeList($where,$limit,true);
