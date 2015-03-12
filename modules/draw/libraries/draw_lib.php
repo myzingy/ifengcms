@@ -164,6 +164,7 @@ class draw_lib
 			$prize_sli[$prize->id]=$prize->gailv;
 			//$gailv=array_fill(count($gailv), $prize->gailv,$prize->id);
 		}
+		$gl*=count($prize_sli);
 		//概率从高到低排序
 		arsort ($prize_sli);
 		foreach ($prize_sli as $pid=>$gailvnum) {
