@@ -1,7 +1,12 @@
 <h2><a href="<?php print site_url('draw/admin/draw/activity/');?>">
     	活动管理
     </a>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<?php print $header?></h2>
-<div class="buttons">                
+<div class="buttons">
+	<a>
+    	<input size="11" id="phone" />
+    	<button href="javascript:void(0);" id="searchPhone" style="float: right;">电话查找</button>
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;                
 	<a href="<?php print site_url('draw/admin/draw/history/'.$id.'/agt-DH.pid/0');?>">
     <?php print  $this->bep_assets->icon('add');?>
     	只看中奖者
@@ -71,6 +76,14 @@
 		});
 		$('#serSelectedClassify').change(function(){
 			$('#serButton').trigger('click');
+		});
+		$('#searchPhone').click(function(){
+			var phone=$('#phone').val();
+			var url='<?php print site_url('draw/admin/draw/history/3')?>';
+			if(phone){
+				url+='/al-DH.phone/'+phone;
+			}
+			location.href=url;
 		});
 	};
 	function deleteField(id){

@@ -62,7 +62,7 @@ class draw_model extends Base_model
 		$this->db->update($this->_TABLES['D']);
 	}
 	function getHistoryList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false){
-		$where_fileds=array('DH.pid');
+		$where_fileds=array('DH.pid','DH.phone');
 		if($count){
 			if( ! is_null($where))
 			{
