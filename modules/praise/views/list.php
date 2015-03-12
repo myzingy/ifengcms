@@ -5,7 +5,7 @@
 $.ajax({
 	url:'<?php print base_url()?>index.php/praise/index/{$pkid}',
 	dataType:'jsonp',
-	jsonp:'callback',
+	jsonp:'jscallback',
 	success:function(json){
 		if(json.status==0){
 			//json.up,json.down
@@ -23,7 +23,7 @@ $.ajax({
 $.ajax({
 	url:'<?php print base_url()?>index.php/praise/index/{$pkid}/{$act}',
 	dataType:'jsonp',
-	jsonp:'callback',
+	jsonp:'jscallback',
 	success:function(json){
 		if(json.status==0){
 			//成功  json.up,json.down
