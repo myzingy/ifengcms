@@ -146,9 +146,10 @@ class draw_lib
 		}
 		
 		//检查用户并入库
-		$history_id=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone);
+		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone);
+		$history_id=$history['id'];
 		if($history_id<1){
-			return array('status'=>10000,'error'=>'你已经抽过奖了！');
+			return array('status'=>10000,'error'=>'你已经抽过奖了！','prize'=>$history['prize']);
 		}
 		//概率基数
 		$gl=10000;
@@ -179,7 +180,7 @@ class draw_lib
 			$gailv=array_merge($gailv,$gailv_new);
 		}
 		shuffle($gailv);
-		$info['error']='运气真不好，什么都没中!';
+		$info=array('error'=>'运气真不好，什么都没中!');
 		//更新活动
 		$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
 			

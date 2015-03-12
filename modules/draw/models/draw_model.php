@@ -36,12 +36,20 @@ class draw_model extends Base_model
 		$this->db->from($this->_TABLES['DH']." DH");
 		$this->db->where(" did='$id' and (phone='{$phone}' or openid='{$openid}') ",null,false);
 		$res=$this->db->get();
+		$data=array('id'=>0);
 		if($res->num_rows()>0){
 			$this->update('DH',array('phone'=>$phone,'name'=>$name),array('did'=>$id,'openid'=>$openid));
+			$row=$res->row();
+			$data['prize']=array(
+				'status'=>$row->pid?1:0,
+				'name'=>$row->pname,
+				'time'=>date('Y-m-d H:i:s',$row->addtime)
+			);
 		}else{
 			$this->insert('DH',array('did'=>$id,'phone'=>$phone,'name'=>$name,'addtime'=>TIME,'openid'=>$openid));
+			$data['id']=$this->db->insert_id();
 		}
-		return $this->db->insert_id();
+		return $data;
 	}
 	function updatePrizeStockNum($id){
 		$this->db->where('id',$id);
