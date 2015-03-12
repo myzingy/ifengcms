@@ -689,7 +689,7 @@ class fields_lib
 		$this->CI->load->module_library('oauth','oauth_lib');
 		$cookie=$this->CI->oauth_lib->getWechatCookie();
 		if(!$cookie['openid']){
-			return array('status'=>10000,'error'=>'请从微信参与活动');
+			//return array('status'=>10000,'error'=>'请从微信参与活动');
 		}
 		$openid=$cookie['openid']?$cookie['openid']:$openid;
 		$today=$this->_dayQuestions($openid);
@@ -730,12 +730,12 @@ class fields_lib
 				$this->CI->fields_model->update_fields_tabdata($field->tab_name,$answer,array('openid'=>$openid));
 				//更新分享者得分
 				if($fkid && $fkid!=$openid){
-					$source=array(
+					$source_arr=array(
 						'source'=>'source + '.($source*self::ques_fen)
 					);
-					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$source,array('openid'=>$fkid));
+					$this->CI->fields_model->update_fields_tabdata($field->tab_name,$source_arr,array('openid'=>$fkid));
 				}
-				return array('status'=>0,'source'=>$source*self::ques_fen);
+				return array('status'=>0,'source'=>($source*self::ques_fen));
 			}
 			return array('status'=>10000,'error'=>'出错了，请重新打开试卷');
 		}
