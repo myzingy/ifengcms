@@ -294,18 +294,16 @@ class reply_lib
 	}
 	function getDrawLucker($phone){
 		$this->CI->load->module_library('draw','draw_lib');
-		$where=array(
-			'did'=>$id,
-			'openid'=>$openid,
-		);
 		$limit=array('limit' => 5, 'offset' => '');
 		$where=array('phone'=>$phone);
-		$res=$this->CI->draw_model->getHistoryList($where, $limit ,false);
+		$res=$this->CI->draw_model->getLuckerForPhone($where, $limit);
 		$info=array('type'=>'text','data'=>'没有任何中奖信息！');
 		if($res->num_rows()>0){
 			$text[]="中奖信息如下：";
-			foreach ($res->result() as $row) {
-				$text[]=$row->pname;
+			foreach ($res->result() as $i=>$row) {
+				$text[]=($i+1).')'.$row->pname
+					."\r奖品状态：".$row->status
+					."\r领奖信息：".$row->info;
 			}
 			$info['data']=implode("\n", $text);
 		}

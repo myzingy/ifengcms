@@ -215,4 +215,24 @@ class draw_model extends Base_model
 		}
 		return $this->db->get();
 	}
+	function getLuckerForPhone($where, $limit ){
+		$this->db->select('DH.*,P.*');
+		$this->db->from($this->_TABLES['DH'] ." DH");
+		$this->db->join($this->_TABLES['P'] ." P",'P.id=DH.pid','left');
+		if( ! is_null($where))
+		{
+			if(is_string($where)){
+				$this->db->where($where,null,false);
+			}else{
+				$this->db->where($where);
+			}
+			
+		}
+		$this->db->order_by('DH.id','desc');
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));
+		}
+		return $this->db->get();
+	}
 }
