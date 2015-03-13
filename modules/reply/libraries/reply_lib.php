@@ -297,7 +297,7 @@ class reply_lib
 		$limit=array('limit' => 5, 'offset' => '');
 		$where=array('phone'=>$phone,'pid > '=>0);
 		$res=$this->CI->draw_model->getLuckerForPhone($where, $limit);
-		$info=array('type'=>'text','data'=>'没有任何中奖信息！');
+		$info=array('type'=>'text','data'=>'这破手机还是扔了吧，什么都没中！~~~~~手机号测吉凶~~~~~~~~手机号开光~~~~~~~~~~开光！！！');
 		if($res->num_rows()>0){
 			$text[]="中奖信息如下：";
 			foreach ($res->result() as $i=>$row) {
