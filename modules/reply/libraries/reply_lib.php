@@ -301,7 +301,7 @@ class reply_lib
 		if($res->num_rows()>0){
 			$text[]="中奖信息如下：";
 			foreach ($res->result() as $i=>$row) {
-				$text[]=($i+1).')'.$row->pname
+				$text[]=($i+1).')'.($row->name?$row->name:$row->pname)
 					."\n\t奖品状态：".($row->status==0?'待领取':'已领取')
 					."\n\t领奖方式：".($row->info?$row->info:'暂未公布');
 			}
