@@ -15,6 +15,7 @@ class draw_lib
 		$fields['total'] = "奖品发行数";
 		$fields['stock'] = "奖品库存";
 		$fields['gailv'] = "获奖概率";
+		$fields['info'] = "领奖信息";
 		
 		$rules['name'] = 'trim|required|max_length[100]';
 		$rules['total'] = 'trim|required|numeric|min_number[1]';

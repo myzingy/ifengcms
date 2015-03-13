@@ -123,7 +123,12 @@ class reply_lib
 				return $data;
 			}
 		}
-		
+		//手机号,查询中奖信息
+		$isPhone=preg_match("/^1[0-9]{10}$/", $key,$match);
+		if($isPhone){
+			$data=$this->getDrawLucker($key);
+			return $data;
+		}
 		//公共平台关键字
 		$data=$this->getKeyForWechat($key);
 		if($data) return $data;
@@ -286,5 +291,24 @@ class reply_lib
 			return array('type'=>'list','data'=>$info);
 		}
 		return false;
+	}
+	function getDrawLucker($phone){
+		$this->CI->load->module_library('draw','draw_lib');
+		$where=array(
+			'did'=>$id,
+			'openid'=>$openid,
+		);
+		$limit=array('limit' => 5, 'offset' => '');
+		$where=array('phone'=>$phone);
+		$res=$this->CI->draw_model->getHistoryList($where, $limit ,false);
+		$info=array('type'=>'text','data'=>'没有任何中奖信息！');
+		if($res->num_rows()>0){
+			$text[]="中奖信息如下：";
+			foreach ($res->result() as $row) {
+				$text[]=$row->pname;
+			}
+			$info['data']=implode("\n", $text);
+		}
+		return $info;
 	}
 }

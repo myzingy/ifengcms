@@ -23,6 +23,10 @@
                 <label for="source">中奖概率<font color="red">*</font></label>
                 <input type="text" name="gailv" id="gailv" class="text" value="<?php print $editinfo['gailv'];?>"/>/万
             </li>
+            <li>
+                <label for="source">领奖信息</label>
+                <textarea type="text" name="info" style="width:500px; height: 120px;"><?php print $editinfo['info'];?></textarea>
+            </li>
             <li class="submit">
             	<div class="buttons">
             		<button type="submit" class="positive" name="submit" value="submit">
