@@ -302,8 +302,8 @@ class reply_lib
 			$text[]="中奖信息如下：";
 			foreach ($res->result() as $i=>$row) {
 				$text[]=($i+1).')'.$row->pname
-					."\r奖品状态：".$row->status
-					."\r领奖信息：".$row->info;
+					."\n\t奖品状态：".($row->status==0?'待领取':'已领取')
+					."\n\t领奖方式：".($row->info?$row->info:'暂未公布');
 			}
 			$info['data']=implode("\n", $text);
 		}
