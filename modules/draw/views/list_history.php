@@ -2,11 +2,7 @@
     	活动管理
     </a>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<?php print $header?></h2>
 <div class="buttons">
-	<a>
-    	<input size="11" id="phone" />
-    	<button href="javascript:void(0);" id="searchPhone" style="float: right;">电话查找</button>
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;                
+                 
 	<a href="<?php print site_url('draw/admin/draw/history/'.$id.'/agt-DH.pid/0');?>">
     <?php print  $this->bep_assets->icon('add');?>
     	只看中奖者
@@ -16,6 +12,9 @@
     <?php print  $this->bep_assets->icon('add');?>
     	查看全部
     </a>
+    
+    <a href="javascript:void(0);" id="searchPhone"><input size="11" id="phone" /><?php print  $this->bep_assets->icon('arrow_refresh');?>电话查找</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;   
 </div><br/><br/>
 <table class="data_grid" cellspacing="0">
     <thead>
@@ -76,6 +75,11 @@
 		});
 		$('#serSelectedClassify').change(function(){
 			$('#serButton').trigger('click');
+		});
+		$('#phone').click(function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			return false;
 		});
 		$('#searchPhone').click(function(){
 			var phone=$('#phone').val();
