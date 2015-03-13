@@ -301,9 +301,11 @@ class reply_lib
 		if($res->num_rows()>0){
 			$text[]="中奖信息如下：";
 			foreach ($res->result() as $i=>$row) {
+				$info=$row->info?$row->info:'暂未公布';
+				$info=preg_replace("/[\n]/","\n\t",$info);
 				$text[]=($i+1).')'.($row->name?$row->name:$row->pname)
 					."\n\t奖品状态：".($row->status==0?'待领取':'已领取')
-					."\n\t领奖方式：".($row->info?$row->info:'暂未公布');
+					."\n\t领奖方式：".$info;
 			}
 			$info['data']=implode("\n", $text);
 		}
