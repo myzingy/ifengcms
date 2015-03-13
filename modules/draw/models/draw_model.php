@@ -30,15 +30,16 @@ class draw_model extends Base_model
 		$this->db->update($this->_TABLES['D']);
 		return $info;
 	}
-	function setDrawHistory($id,$openid,$name,$phone){
+	function setDrawHistory($id,$openid,$name,$phone,$ceshiFlag){
 		//$res=$this->fetch('DH','*',null,array('did'=>$id,'phone'=>$phone));
 		$this->db->select('*');
 		$this->db->from($this->_TABLES['DH']." DH");
 		$this->db->where(" did='$id' and (phone='{$phone}' or openid='{$openid}') ",null,false);
 		$res=$this->db->get();
 		$data=array('id'=>0);
+		$type=$ceshiFlag?1:0;
 		if($res->num_rows()>0){
-			$this->update('DH',array('phone'=>$phone,'name'=>$name),array('did'=>$id,'openid'=>$openid));
+			$this->update('DH',array('phone'=>$phone,'name'=>$name,'type'=>$type),array('did'=>$id,'openid'=>$openid));
 			$row=$res->row();
 			$data['prize']=array(
 				'status'=>$row->pid?1:0,
@@ -46,7 +47,7 @@ class draw_model extends Base_model
 				'time'=>date('Y-m-d H:i:s',$row->addtime)
 			);
 		}else{
-			$this->insert('DH',array('did'=>$id,'phone'=>$phone,'name'=>$name,'addtime'=>TIME,'openid'=>$openid));
+			$this->insert('DH',array('did'=>$id,'phone'=>$phone,'name'=>$name,'addtime'=>TIME,'openid'=>$openid,'type'=>$type));
 			$data['id']=$this->db->insert_id();
 		}
 		return $data;

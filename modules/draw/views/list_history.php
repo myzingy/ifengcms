@@ -83,7 +83,7 @@
 		});
 		$('#searchPhone').click(function(){
 			var phone=$('#phone').val();
-			var url='<?php print site_url('draw/admin/draw/history/3')?>';
+			var url='<?php print site_url('draw/admin/draw/history/'.$id)?>';
 			if(phone){
 				url+='/al-DH.phone/'+phone;
 			}

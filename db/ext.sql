@@ -13,3 +13,6 @@ alter table `ifengcms`.`cms_fields` add column `type` tinyint (1) DEFAULT '0' NU
 
 #2015-03-06
 alter table `ifengcms`.`cms_fields` change `fields_html` `fields_html` longtext   NULL , change `fields_htmls` `fields_htmls` longtext   NULL  COMMENT '发布的html' 
+
+#2015-03-13
+alter table `ifengcms`.`cms_draw_history` add column `type` tinyint (1) DEFAULT '0' NULL  COMMENT '1测试，0正式'  after `addtime`;

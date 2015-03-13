@@ -109,6 +109,7 @@ class draw_lib
 		redirect('draw/admin/draw/activity/','location');
 	}
 	function dodraw($id){
+		$ceshiFlag=true;
 		//315活动特殊处理$id
 		$id=$this->create_id_315($id);
 		
@@ -130,7 +131,13 @@ class draw_lib
 		}
 		$this->CI->load->module_library('oauth','oauth_lib');
 		$cookie=$this->CI->oauth_lib->getWechatCookie();
-		$openid=$cookie['openid']?$cookie['openid']:$openid;
+		if($cookie['openid']){
+			$openid=$cookie['openid'];
+			$ceshiFlag=false;
+		}else{
+			$ceshiFlag=true;
+			$name="[测]".$name;
+		}
 		if(!$openid){
 			if(!$name){
 				return array('status'=>10000,'error'=>'请填写姓名！');
@@ -146,7 +153,7 @@ class draw_lib
 		}
 		
 		//检查用户并入库
-		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone);
+		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
 		$history_id=$history['id'];
 		if($history_id<1){
 			return array('status'=>10000,'error'=>'你已经抽过奖了！','prize'=>$history['prize']);
@@ -182,8 +189,9 @@ class draw_lib
 		}
 		shuffle($gailv);
 		$info=array('error'=>'运气真不好，什么都没中!');
+		
 		//更新活动
-		$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
+		if(!$ceshiFlag) $this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
 			
 		if($gailv[0] && $prize_data[$gailv[0]]){
 			//中奖了
@@ -195,9 +203,9 @@ class draw_lib
 				,array('id'=>$history_id)
 			);
 			//减库存
-			$this->CI->draw_model->updatePrizeStockNum($gailv[0]);
+			if(!$ceshiFlag) $this->CI->draw_model->updatePrizeStockNum($gailv[0]);
 			//更新获奖人数
-			$this->CI->draw_model->updateActivityPrizeNum($id,'win_num');
+			if(!$ceshiFlag) $this->CI->draw_model->updateActivityPrizeNum($id,'win_num');
 		}else{
 			$info['status']=0;
 		}
