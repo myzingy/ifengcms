@@ -14,7 +14,7 @@ $.ajax({
 	jsonp:'callback',
 	success:function(json){
 		if(json.status==1){
-			//中奖 json.msg
+			//中奖 json.prizeName,json.prizeTime
 			
 		}else if(json.status==0){
 			//未中奖
