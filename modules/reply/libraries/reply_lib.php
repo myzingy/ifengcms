@@ -295,7 +295,7 @@ class reply_lib
 	function getDrawLucker($phone){
 		$this->CI->load->module_library('draw','draw_lib');
 		$limit=array('limit' => 5, 'offset' => '');
-		$where=array('phone'=>$phone);
+		$where=array('phone'=>$phone,'pid > '=>0);
 		$res=$this->CI->draw_model->getLuckerForPhone($where, $limit);
 		$info=array('type'=>'text','data'=>'没有任何中奖信息！');
 		if($res->num_rows()>0){
