@@ -133,10 +133,6 @@ class draw_lib
 		$cookie=$this->CI->oauth_lib->getWechatCookie();
 		if($cookie['openid']){
 			$openid=$cookie['openid'];
-			$ceshiFlag=false;
-		}else{
-			$ceshiFlag=true;
-			$name="[测]".$name;
 		}
 		if(!$openid){
 			if(!$name){
@@ -151,7 +147,12 @@ class draw_lib
 				return array('status'=>10000,'error'=>'手机号填写错误！');
 			}
 		}
-		
+		if($cookie['openid']){
+			$ceshiFlag=false;
+		}else{
+			$ceshiFlag=true;
+			$name="[测]".$name;
+		}
 		//检查用户并入库
 		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
 		$history_id=$history['id'];
@@ -233,7 +234,13 @@ class draw_lib
 		if(!$phone || !preg_match("/^1[0-9]{10}$/", $phone)){
 			return array('status'=>10000,'error'=>'手机号填写错误！');
 		}
-		$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone);
+		if($cookie['openid']){
+			$ceshiFlag=false;
+		}else{
+			$ceshiFlag=true;
+			$name="[测]".$name;
+		}
+		$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
 		$info['status']=0;
 		return $info;
 	}
