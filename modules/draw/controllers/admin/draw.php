@@ -68,4 +68,7 @@ class draw extends Admin_Controller
 		}
 		redirect($_SERVER['HTTP_REFERER'],'location');
 	}
+	function switchStatus($id,$status){
+		$this->draw_model->update('DH',array('status'=>$status),array('id'=>$id));	
+	}
 }

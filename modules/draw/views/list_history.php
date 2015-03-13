@@ -25,7 +25,7 @@
             <th>奖品</th>
             <th>openid</th>   
             <th>时间</th>
-               
+            <th>状态</th>  
         </tr>
     </thead>
     <tfoot>
@@ -49,6 +49,18 @@
             <td><?php print $row['pid']?"[{$row['pid']}] {$row['pname']}":"";?></td>
             <td><?php print $row['openid']?></td>
             <td><?php print date("Y-m-d H:i:s",$row['addtime'])?></td>
+            <td>
+            	<?php if($row['pid']):?>
+            		<?php if($row['status']==0):?>
+            			<a href="#" onclick="switchStatus('<?php print $row['id']?>','<?php print $row['status']?>')"><?php print $this->bep_assets->icon($active);?><?php print $row['status']==1?'已领取':''?></a>
+            		<?php else:?>
+            			<a href="#" ><?php print $this->bep_assets->icon($active);?><?php print $row['status']==1?'已领取':''?></a>
+            		<?php endif;?>
+            	
+            	<?php else:?>
+            		&nbsp;
+            	<?php endif;?>
+            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -100,5 +112,10 @@
 				//location.reload();
 			});
 		}
+	}
+	function switchStatus(id,status){
+		$.get('<?php print site_url('draw/admin/draw/switchStatus');?>/'+id+'/'+Math.abs(status-1),function(){
+			location.reload();
+		});
 	}
 </script>
