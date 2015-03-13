@@ -38,10 +38,11 @@ $.ajax({
 			//中奖 json.msg
 			
 		}else if(json.status==0){
-			//未中奖
+			//未中奖  json.error
 			
 		}else{
 			//发生错误 json.error
+			//抽过奖的 json.prize[status(1中奖|0未中),name,time]
 		}
 	}
 });
@@ -72,7 +73,7 @@ $.ajax({
 	jsonp:'callback',
 	success:function(json){
 		if(json.status==0){
-			//有数据
+			//有数据 json.data
 		}else{
 			//没有数据
 		}
