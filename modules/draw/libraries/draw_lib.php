@@ -301,8 +301,11 @@ class draw_lib
 	}
 	function create_id_315($id){
 		if($id=='3'){
-			$dd=date('d',TIME);
-			return $dd-7;
+			list($mm,$dd)=explode('-',date('m-d',TIME));
+			if($mm==3){
+				$dd=$dd<10?10:($dd>15?15:$dd);
+				return $dd-7;
+			}
 		}
 		return $id;
 	}
