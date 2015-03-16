@@ -436,14 +436,14 @@ class api_lib
 		$this->CI->load->module_library('fields','fields_lib');
 		return $this->CI->fields_lib->doques($id,$openid);
 	}
-	function getSourceList($id,$openid=''){
+	function getSourceList($id,$limit_row=10){
 		$this->CI->load->module_library('fields','fields_lib');
 		$row=$this->CI->fields_lib->getFieldsData($id);
 		$info=array('status'=>10000);
 		if($row['status']==0){
 			$field=$row['data'];
 			$table=$this->CI->fields_model->fileds_table_prefix.$field->tab_name;
-			$res=$this->CI->fields_model->getFieldsDataList($table,NULL, array('limit' => 10, 'offset' => 0),false,$order='source desc');
+			$res=$this->CI->fields_model->getFieldsDataList($table,NULL, array('limit' => $limit_row, 'offset' => 0),false,$order='source desc');
 			if($res->num_rows()>0){
 				$data=array();
 				foreach ($res->result() as $r) {
