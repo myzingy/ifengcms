@@ -24,6 +24,7 @@ class yidong_model extends Base_model
 			'DR'=> $cms_prefix.'fields_form_85c109b6ae9ba50c38a67611158f0040',//预约表
         );
 		$this->reser_table_key=array(
+			'phone'=>'v8098e2b4e82c',
 			'did'=>'vde798837c018',
 			'cid'=>'v301e4029e7d9',
 			'info'=>'v32610fd7b2d9',
@@ -58,7 +59,9 @@ class yidong_model extends Base_model
 	function getDeviceColor($did){
 		$this->db->select('DC.*,count(DR.id) as reserNum');
 		$this->db->from($this->_TABLES['DC'] ." DC");
-		$this->db->join($this->_TABLES['DR'] ." DR",'DR.'.($this->reser_table_key['cid']).'=DC.id and DR.addtime>'.(TIME-self::timeout),'left');
+		$this->db->join($this->_TABLES['DR'] ." DR"
+			,'DR.'.($this->reser_table_key['cid']).'=DC.id and (DR.addtime>'.(TIME-self::timeout).' or DR.status=0)'
+			,'left');
 		$this->db->group_by('DC.id');
 		$this->db->where('did',$did);
 		return $this->db->get();
@@ -126,5 +129,55 @@ class yidong_model extends Base_model
 		$this->db->where('did',$did);
 		$this->db->where_not_in('id',$cids);
 		$this->db->delete($this->_TABLES['DC']);
+	}
+	
+	//预约数据
+	function getReserData($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false){
+		$where_fileds=array('DR.'.$this->reser_table_key['phone']);
+		if($count){
+			if( ! is_null($where))
+			{
+				if(is_string($where)){
+					$this->db->where($where,null,false);
+				}else{
+					$this->db->where($where);
+				}
+				
+			}
+			$autowhere=$this->autowhere($where_fileds);	
+			$this->db->select('count(*)',false);
+			$this->db->from($this->_TABLES['DR']." DR");
+			$datarows=$this->db->count_all_results();
+			$pagination=$this->autopage($datarows,$limit['limit']);
+		}
+		
+		//$this->db->select('D.*,count(DR.id) as reser_num');
+		$this->db->from($this->_TABLES['DR'] ." DR");
+		if( ! is_null($where))
+		{
+			if(is_string($where)){
+				$this->db->where($where,null,false);
+			}else{
+				$this->db->where($where);
+			}
+			
+		}
+		//$this->db->join($this->_TABLES['DR'] ." DR",'DR.did=D.id','left');
+		if($autowhere){eval($autowhere);}
+
+		$this->db->order_by('DR.addtime','desc');
+		
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));
+		}
+		if($count){
+			return array(
+				'datarows'=>$datarows,
+				'pagination'=>$pagination,
+				'data'=>$this->db->get()
+			);
+		}
+		return $this->db->get();
 	}
 }
