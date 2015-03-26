@@ -98,7 +98,7 @@ class api_lib
 			if($color['id']==$cid){
 				$isInColor=$color;
 				if($color['last_stock']<1){
-					$info['error']='机型已经被预定完，但还没有领取，请稍后再预定。';
+					$info['error']='机型已经被预定完，但还没有领取完，请稍后再预定。';
 					return $info;
 				}
 			}
