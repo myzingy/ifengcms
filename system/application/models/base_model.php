@@ -156,7 +156,7 @@ class Base_model extends Model
 	*/
 	function autowhere($fields){
 		$url_param=$this->uri->uri_string();
-		preg_match_all("/([a|o][eoligt]{1,2}-[a-z\.]+)\/([^\/]+)/i",$url_param,$url_xxx);
+		preg_match_all("/([a|o][eoligt]{1,2}-[a-z0-9\.]+)\/([^\/]+)/i",$url_param,$url_xxx);
 		if(!$url_xxx) return;
 		$url_param=$url_xxx[1];
 		$url_value=$url_xxx[2];
