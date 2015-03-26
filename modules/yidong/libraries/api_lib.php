@@ -138,12 +138,12 @@ class api_lib
 		return false;
 	}
 	function dev2text($devinfo,$_pack,$isInColor){
-		$text="[机型：{$devinfo['name']}]\n";
+		$text="[机型：{$devinfo['name']}]\t\t";
 		$text.="[机型颜色：{$isInColor['color']}]\n";
 		$text.="套餐数据：\n";
 		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong','yuebujiaofei');
-		foreach ($package_fields as $key) {
-			$text.="[".eval("return yidong_model::{$key};")."：{$_pack->$key}]\n";	
+		foreach ($package_fields as $i=>$key) {
+			$text.="[".eval("return yidong_model::{$key};")."：{$_pack->$key}]".(($i%2==0 && $i>0)?"\n":"\t\t");	
 		}
 		return $text;
 	}
