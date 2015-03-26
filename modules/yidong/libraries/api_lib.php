@@ -142,7 +142,6 @@ class api_lib
 		$text.="[机型颜色：{$isInColor['color']}]\n";
 		$text.="套餐数据：\n";
 		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong','yuebujiaofei');
-		$_pack=$devinfo['package'][$classify];
 		foreach ($package_fields as $key) {
 			$text.="[".eval("return yidong_model::{$key};")."：{$_pack->$key}]\n";	
 		}
