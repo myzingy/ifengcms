@@ -57,7 +57,7 @@ class yidong_model extends Base_model
 			if($res->num_rows>0){
 				foreach ($res->result() as $row) {
 					//$data['classify'][]=$row->cid;
-					$data['classify'][]=$row->type;
+					$data['classify'][]=$row->id;
 					$data['package'][$row->type]=$row;
 				}
 			}
@@ -92,7 +92,8 @@ class yidong_model extends Base_model
 			$this->db->select('count(*)',false);
 			$this->db->from($this->_TABLES['D']." D");
 			if($classify>0){
-				$this->db->where("D.id in (select did from {$this->_TABLES['D2C']} where cid=$classify)");
+				$this->db->where("D.id in (select did from {$this->_TABLES['D2C']} where cid 
+					in (select id from {$this->_TABLES['P']} where type=$classify))");
 			}
 			$datarows=$this->db->count_all_results();
 			$pagination=$this->autopage($datarows,$limit['limit']);
@@ -112,7 +113,9 @@ class yidong_model extends Base_model
 		//$this->db->join($this->_TABLES['DR'] ." DR",'DR.did=D.id','left');
 		if($autowhere){eval($autowhere);}
 		if($classify>0){
-			$this->db->where("D.id in (select did from {$this->_TABLES['D2C']} where cid=$classify)");
+			//$this->db->where("D.id in (select did from {$this->_TABLES['D2C']} where cid=$classify)");
+			$this->db->where("D.id in (select did from {$this->_TABLES['D2C']} where cid 
+					in (select id from {$this->_TABLES['P']} where type=$classify))");
 		}
 		$this->db->order_by('D.order','desc');
 		$this->db->order_by('D.id','desc');

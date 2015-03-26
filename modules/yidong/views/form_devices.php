@@ -12,7 +12,7 @@
             	<span id="classify_dispaly">
                 <?php
                 $selectedArr=$editinfo['classify']?$editinfo['classify']:array();//文章选中的分类
-				foreach($classify as $pos=>$v):
+                foreach($classify as $pos=>$v):
 				$checked=(in_array($pos, $selectedArr))?'checked="checked"':'';	
                 ?>
                 <label><input type="checkbox" name="classify[]" <?php print $checked;?> value="<?php echo $pos;?>"/><?php echo $v;?></label>

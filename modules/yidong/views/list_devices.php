@@ -14,6 +14,7 @@
         <tr>
             <th width=5%><?php print $this->lang->line('general_id')?></th>
             <th >机型名称</th>
+            <th >用户缴款</th>
             <th width=10%>排序</th>
             <th width=10%>状态</th>
             <th width=10%>操作</th>
@@ -38,6 +39,7 @@
         <tr>
             <td><?php print $row['id']?></td>
             <td><?php print $row['name'];?></td>
+            <td><?php print $row['yonghujiaokuan'];?></td>
             <td><input rowid="<?php print $row['id']?>" class="order" size="4" value="<?php print $row['order']?>" />
             </td>
             <td><a href="#" onclick="switchStatus('<?php print $row['id']?>','<?php print $row['status']?>')"><?php print $this->bep_assets->icon($active);?></a>

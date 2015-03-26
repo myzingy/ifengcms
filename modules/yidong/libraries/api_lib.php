@@ -47,7 +47,7 @@ class api_lib
 			foreach ($package_fields as $key) {
 				$package[]=array(
 					'label'=>eval("return yidong_model::{$key};"),
-					'value'=>$_pack->$key,
+					'value'=>($key=='yonghujiaokuan')?$r->$key:$_pack->$key,
 				);
 			}
 			//$device
