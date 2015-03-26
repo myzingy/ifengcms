@@ -47,7 +47,7 @@ class api_lib
 			foreach ($package_fields as $key) {
 				$package[]=array(
 					'label'=>eval("return yidong_model::{$key};"),
-					'value'=>($key=='yonghujiaokuan')?$r->$key:$_pack->$key,
+					'value'=>$_pack->$key,
 				);
 			}
 			//$device
@@ -83,7 +83,8 @@ class api_lib
 		
 		//判断设备
 		$devinfo=$this->CI->yidong_model->getDevicesInfo($did);
-		if(!$devinfo['package'][$classify]){
+		$_pack=$devinfo['package'][$classify];
+		if(!$_pack){
 			$info['error']='预定机型错误，请重试';
 			return $info;
 		}
@@ -114,7 +115,7 @@ class api_lib
 			$reser_table_key['phone']=>$phone,
 			$reser_table_key['did']=>$did,
 			$reser_table_key['cid']=>$cid,
-			$reser_table_key['info']=>$this->dev2text($devinfo,$isInColor),
+			$reser_table_key['info']=>$this->dev2text($devinfo,$_pack,$isInColor),
 		);
 		$this->CI->yidong_model->insert('DR',$data);
 		$info['status']=0;
@@ -136,13 +137,14 @@ class api_lib
 		}
 		return false;
 	}
-	function dev2text($devinfo,$isInColor){
+	function dev2text($devinfo,$_pack,$isInColor){
 		$text="[机型：{$devinfo['name']}]\n";
 		$text.="[机型颜色：{$isInColor['color']}]\n";
 		$text.="套餐数据：\n";
-		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong');
+		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong','yuebujiaofei');
+		$_pack=$devinfo['package'][$classify];
 		foreach ($package_fields as $key) {
-			$text.="[".eval("return yidong_model::{$key};")."：{$devinfo[$key]}]\n";	
+			$text.="[".eval("return yidong_model::{$key};")."：{$_pack->$key}]\n";	
 		}
 		return $text;
 	}

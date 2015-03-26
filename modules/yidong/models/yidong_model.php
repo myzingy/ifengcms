@@ -58,6 +58,7 @@ class yidong_model extends Base_model
 				foreach ($res->result() as $row) {
 					//$data['classify'][]=$row->cid;
 					$data['classify'][]=$row->id;
+					$row->yonghujiaokuan=$data['yonghujiaokuan'];
 					$data['package'][$row->type]=$row;
 				}
 			}
