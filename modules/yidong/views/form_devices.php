@@ -9,7 +9,7 @@
             </li>
             <li>
             	<label for="farmtype">适用政策<font color="red">*</font></label>
-            	<span id="classify_dispaly">
+            	<label id="classify_dispaly">
                 <?php
                 $selectedArr=$editinfo['classify']?$editinfo['classify']:array();//文章选中的分类
                 foreach($classify as $pos=>$v):
@@ -20,7 +20,7 @@
                 endforeach;
                 ?>
                 <label for="classify[]" generated="true" class="error"></label>
-                </span>
+                </label>
                 
             </li>
             <li>
