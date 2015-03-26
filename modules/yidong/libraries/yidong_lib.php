@@ -13,8 +13,9 @@ class yidong_lib
 		$fields['id'] = 'ID';
 		$fields['name'] = '机型';
 		$fields['classify[]']='适用政策';
-		/*
+		
 		$fields['yonghujiaokuan'] = yidong_model::yonghujiaokuan;
+		/*
 		$fields['yuefanhuafei'] = yidong_model::yuefanhuafei;
 		$fields['zuidixiaofei'] = yidong_model::zuidixiaofei;
 		$fields['heyueqi'] = yidong_model::heyueqi;
@@ -24,8 +25,8 @@ class yidong_lib
 		// Set Rules
 		$rules['name'] = 'trim|required|max_length[32]';
 		$rules['classify[]']='required';
-		/*
 		$rules['yonghujiaokuan'] = 'trim|required|integer';
+		/*
 		$rules['yuefanhuafei'] = 'trim|required|integer';
 		$rules['zuidixiaofei'] = 'trim|required|integer';
 		$rules['heyueqi'] = 'trim|required|integer';
@@ -165,7 +166,7 @@ class yidong_lib
 		$fields['type'] = 'TYPE';
 		$fields['chanpin'] = yidong_model::chanpin;
 		$fields['chanpinneirong'] = yidong_model::chanpinneirong;
-		$fields['yonghujiaokuan'] = yidong_model::yonghujiaokuan;
+		//$fields['yonghujiaokuan'] = yidong_model::yonghujiaokuan;
 		$fields['yuefanhuafei'] = yidong_model::yuefanhuafei;
 		$fields['zuidixiaofei'] = yidong_model::zuidixiaofei;
 		$fields['heyueqi'] = yidong_model::heyueqi;
@@ -175,7 +176,7 @@ class yidong_lib
 		// Set Rules
 		$rules['chanpin'] = 'trim|required|max_length[200]';
 		$rules['chanpinneirong'] = 'trim|required|max_length[200]';
-		$rules['yonghujiaokuan'] = 'trim|required|integer';
+		//$rules['yonghujiaokuan'] = 'trim|required|integer';
 		$rules['yuefanhuafei'] = 'trim|required|integer';
 		$rules['zuidixiaofei'] = 'trim|required|integer';
 		$rules['heyueqi'] = 'trim|required|integer';

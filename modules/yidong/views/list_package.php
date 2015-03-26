@@ -13,7 +13,6 @@
     <thead>
         <tr>
             <th>产品</th>
-            <th>用户缴款</th>
             <th>月返还话费</th>
             <th>最低消费</th>
             <th>合约期</th>
@@ -39,7 +38,6 @@
         ?>
         <tr>
             <td>[<?php print $classify[$row['type']];?>]<?php print $row['chanpin'];?></td>
-            <td><?php print $row['yonghujiaokuan'];?></td>
             <td><?php print $row['yuefanhuafei'];?></td>
             <td><?php print $row['zuidixiaofei'];?></td>
             <td><?php print $row['heyueqi'];?></td>
