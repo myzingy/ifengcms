@@ -25,8 +25,27 @@ class yidong extends Admin_Controller
 		//$data['classify'] =$this->yidong_model->classifyData();
 		$this->load->view($this->_container,$data);
 	}
+	function package(){
+		$limit=array('offset'=>$page,'limit'=>30);
+		$data['params']=$this->uri->getParamsArr();
+		//$where=array('A.type'=>1);
+		$info=$this->yidong_model->getPackageList($where,$limit,true);
+		//echo $this->yidong_model->db->last_query();
+		$data['members'] = $info['data'];
+		$data['pagination']=$info['pagination'];
+		// Display Page
+		$data['header'] = '套餐政策管理';
+		$data['page'] = $this->config->item('backendpro_template_dir') . "list_package";
+		$data['module'] = 'yidong';
+		//$data['TYPE']=$this->yidong_model->_TYPE;
+		$data['classify'] =$this->yidong_model->ZHENGCE;
+		$this->load->view($this->_container,$data);
+	}
 	function devices_form($aid=0){
 		$this->yidong_lib->devices_form($this->_container,$aid);
+	}
+	function package_form($aid=0){
+		$this->yidong_lib->package_form($this->_container,$aid);
 	}
 	function reservation(){
 		$limit=array('offset'=>$page,'limit'=>30);

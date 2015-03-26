@@ -23,6 +23,7 @@
                 </span>
                 
             </li>
+            <!--
             <li>
                 <label for="yonghujiaokuan">用户缴款<font color="red">*</font></label>
                 <input type="text" name="yonghujiaokuan" id="yonghujiaokuan" class="text" value="<?php print $editinfo['yonghujiaokuan'];?>"/>
@@ -47,6 +48,7 @@
                 <label for="chanpinneirong">产品内容<font color="red">*</font></label>
                 <input type="text" name="chanpinneirong" id="chanpinneirong" class="text" value="<?php print $editinfo['chanpinneirong'];?>"/>
             </li>
+            -->
             <hr>
             <li>
                 <label for="chanpinneirong">颜色<font color="red">*</font>

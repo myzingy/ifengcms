@@ -7,6 +7,7 @@ class yidong_model extends Base_model
 	const heyueqi='合约期';
 	const chanpin='产品';
 	const chanpinneirong='产品内容';
+	const yuebujiaofei='每月补缴费用';
 	public $ZHENGCE=array(
 		'1'=>'一年免费打',
 		'2'=>'7折租机',
@@ -20,6 +21,7 @@ class yidong_model extends Base_model
 			'D' => $yidong_prefix . 'devices',
 			'DC'=> $yidong_prefix . 'devices_color',
 			'D2C'=> $yidong_prefix . 'devices_classify',
+			'P'=>$yidong_prefix . 'package',
 			'UP'=>$yidong_prefix . 'userphone',
 			'DR'=> $cms_prefix.'fields_form_85c109b6ae9ba50c38a67611158f0040',//预约表
         );
@@ -36,7 +38,6 @@ class yidong_model extends Base_model
 		if($res->num_rows>0){
 			$data=$res->row_array();
 			$data['color']=array();
-			
 			$res=$this->getDeviceColor($did);
 			if($res->num_rows>0){
 				foreach ($res->result_array() as $i=>$row) {
@@ -46,13 +47,22 @@ class yidong_model extends Base_model
 				}
 			}
 			
-			$res=$this->fetch('D2C','*',null,array('did'=>$did));
 			$data['classify']=array();
+			$data['package']=array();
+			
+			$this->db->from($this->_TABLES['P']." P");
+			$this->db->where("P.id in (select cid from {$this->_TABLES['D2C']} where did=$did)");
+			$res=$this->db->get();
+			//$res=$this->fetch('D2C','*',null,array('did'=>$did));
 			if($res->num_rows>0){
 				foreach ($res->result() as $row) {
-					$data['classify'][]=$row->cid;
+					//$data['classify'][]=$row->cid;
+					$data['classify'][]=$row->type;
+					$data['package'][$row->type]=$row;
 				}
 			}
+			
+			
 		}
 		return $data;
 	}
@@ -179,5 +189,72 @@ class yidong_model extends Base_model
 			);
 		}
 		return $this->db->get();
+	}
+	//预约数据
+	function getPackageList($where = NULL, $limit = array('limit' => NULL, 'offset' => ''),$count=false){
+		$where_fileds=array();
+		if($count){
+			if( ! is_null($where))
+			{
+				if(is_string($where)){
+					$this->db->where($where,null,false);
+				}else{
+					$this->db->where($where);
+				}
+				
+			}
+			$autowhere=$this->autowhere($where_fileds);	
+			$this->db->select('count(*)',false);
+			$this->db->from($this->_TABLES['P']." P");
+			$datarows=$this->db->count_all_results();
+			$pagination=$this->autopage($datarows,$limit['limit']);
+		}
+		
+		//$this->db->select('D.*,count(DR.id) as reser_num');
+		$this->db->from($this->_TABLES['P'] ." P");
+		if( ! is_null($where))
+		{
+			if(is_string($where)){
+				$this->db->where($where,null,false);
+			}else{
+				$this->db->where($where);
+			}
+			
+		}
+		//$this->db->join($this->_TABLES['DR'] ." DR",'DR.did=D.id','left');
+		if($autowhere){eval($autowhere);}
+
+		$this->db->order_by('P.type','asc');
+		
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));
+		}
+		if($count){
+			return array(
+				'datarows'=>$datarows,
+				'pagination'=>$pagination,
+				'data'=>$this->db->get()
+			);
+		}
+		return $this->db->get();
+	}
+	function getPackageInfo($pid=0){
+		$data=array();
+		$res=$this->fetch('P','*',null,array('id'=>$pid));
+		if($res->num_rows>0){
+			$data=$res->row_array();
+		}
+		return $data;
+	}
+	function getPackageArr(){
+		$data=array();
+		$res=$this->fetch('P','id,type,chanpin',null,null);
+		if($res->num_rows>0){
+			foreach ($res->result() as $r) {
+				$data[$r->id]="[{$this->ZHENGCE[$r->type]}]".$r->chanpin;
+			}$res->row_array();
+		}
+		return $data;
 	}
 }

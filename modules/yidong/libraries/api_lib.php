@@ -35,19 +35,21 @@ class api_lib
 		$where=array('status'=>0);
 		$res=$this->CI->yidong_model->getDevicesList($where,$limit,false,$classify);
 		$info=array('status'=>0,'data'=>array());
-		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong');
+		$package_fields=array('yonghujiaokuan','yuefanhuafei','zuidixiaofei','heyueqi','chanpin','chanpinneirong','yuebujiaofei');
 		foreach ($res->result() as $r) {
-			//$package	
-			$package=array();
-			foreach ($package_fields as $key) {
-				$package[]=array(
-					'label'=>eval("return yidong_model::{$key};"),
-					'value'=>$r->$key,
-				);
-			}
+			
 			//$color
 			$devinfo=$this->CI->yidong_model->getDevicesInfo($r->id);
 			$color=$devinfo['color'];
+			//$package	
+			$package=array();
+			$_pack=$devinfo['package'][$classify];
+			foreach ($package_fields as $key) {
+				$package[]=array(
+					'label'=>eval("return yidong_model::{$key};"),
+					'value'=>$_pack->$key,
+				);
+			}
 			//$device
 			$device=array(
 				'id'=>$r->id,
@@ -81,10 +83,15 @@ class api_lib
 		
 		//判断设备
 		$devinfo=$this->CI->yidong_model->getDevicesInfo($did);
-		if(!in_array($classify, $devinfo['classify'])){
+		if(!$devinfo['package'][$classify]){
 			$info['error']='预定机型错误，请重试';
 			return $info;
 		}
+		/*
+		if(!in_array($classify, $devinfo['classify'])){
+			$info['error']='预定机型错误，请重试';
+			return $info;
+		}*/
 		$isInColor=false;
 		foreach ($devinfo['color'] as $color) {
 			if($color['id']==$cid){

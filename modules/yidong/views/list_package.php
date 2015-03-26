@@ -1,9 +1,9 @@
 <h2><?php print $header?></h2>
 
 <div class="buttons">                
-	<a href="<?php print  site_url('yidong/admin/yidong/devices_form')?>">
+	<a href="<?php print  site_url('yidong/admin/yidong/package_form')?>">
     <?php print  $this->bep_assets->icon('add');?>
-    	添加机型
+    	添加套餐政策
     </a>
 </div><br/><br/>
 
@@ -12,11 +12,13 @@
 <table class="data_grid" cellspacing="0">
     <thead>
         <tr>
-            <th width=5%><?php print $this->lang->line('general_id')?></th>
-            <th >机型名称</th>
-            <th width=10%>排序</th>
-            <th width=10%>状态</th>
-            <th width=10%>操作</th>
+            <th>产品</th>
+            <th>用户缴款</th>
+            <th>月返还话费</th>
+            <th>最低消费</th>
+            <th>合约期</th>
+            <th>产品内容</th>
+            <th>每月补交费用</th>
             <th width=10%><?php print form_checkbox('all','select',FALSE)?>选择</th>        
         </tr>
     </thead>
@@ -36,15 +38,15 @@
 			$active =  ($row['status']==0?'tick':'cross');   
         ?>
         <tr>
-            <td><?php print $row['id']?></td>
-            <td><?php print $row['name'];?></td>
-            <td><input rowid="<?php print $row['id']?>" class="order" size="4" value="<?php print $row['order']?>" />
+            <td>[<?php print $classify[$row['type']];?>]<?php print $row['chanpin'];?></td>
+            <td><?php print $row['yonghujiaokuan'];?></td>
+            <td><?php print $row['yuefanhuafei'];?></td>
+            <td><?php print $row['zuidixiaofei'];?></td>
+            <td><?php print $row['heyueqi'];?></td>
+            <td><?php print $row['yuebujiaofei'];?></td>
+            <td><?php print $row['chanpinneirong'];?></td>
+            <td><?php print $delete?><a href="<?php print site_url('yidong/admin/yidong/package_form/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a>
             </td>
-            <td><a href="#" onclick="switchStatus('<?php print $row['id']?>','<?php print $row['status']?>')"><?php print $this->bep_assets->icon($active);?></a>
-            </td>
-            <td><a href="<?php print site_url('yidong/admin/yidong/devices_form/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a>
-            </td>
-            <td><?php print $delete?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

@@ -13,23 +13,25 @@ class yidong_lib
 		$fields['id'] = 'ID';
 		$fields['name'] = '机型';
 		$fields['classify[]']='适用政策';
+		/*
 		$fields['yonghujiaokuan'] = yidong_model::yonghujiaokuan;
 		$fields['yuefanhuafei'] = yidong_model::yuefanhuafei;
 		$fields['zuidixiaofei'] = yidong_model::zuidixiaofei;
 		$fields['heyueqi'] = yidong_model::heyueqi;
 		$fields['chanpin'] = yidong_model::chanpin;
 		$fields['chanpinneirong'] = yidong_model::chanpinneirong;
-		
+		*/
 		// Set Rules
 		$rules['name'] = 'trim|required|max_length[32]';
 		$rules['classify[]']='required';
+		/*
 		$rules['yonghujiaokuan'] = 'trim|required|integer';
 		$rules['yuefanhuafei'] = 'trim|required|integer';
 		$rules['zuidixiaofei'] = 'trim|required|integer';
 		$rules['heyueqi'] = 'trim|required|integer';
 		$rules['chanpin'] = 'trim|required|max_length[200]';
 		$rules['chanpinneirong'] = 'trim|required|max_length[200]';
-		
+		*/
 		if(!$this->CI->input->post('id') && !$aid){
 			if (empty($_FILES['src']['name'])){
 				$rules['src'] = $pageinfo['img'];// required || trim
@@ -47,7 +49,7 @@ class yidong_lib
 			$data['header'] = '编辑机型';
 			$data['page'] = $this->CI->config->item('backendpro_template_dir') . 'form_devices';
 			$data['module'] = 'yidong';
-			$data['classify'] =$this->CI->yidong_model->ZHENGCE;
+			$data['classify'] =$this->CI->yidong_model->getPackageArr();
 			if($aid>0){
 				$data['editinfo']=$this->CI->yidong_model->getDevicesInfo($aid);
 			}
@@ -157,5 +159,68 @@ class yidong_lib
 		    }
 		  }
 		  return $data;
+	}
+	function package_form($container,$aid=0){
+		$fields['id'] = 'ID';
+		$fields['type'] = 'TYPE';
+		$fields['chanpin'] = yidong_model::chanpin;
+		$fields['chanpinneirong'] = yidong_model::chanpinneirong;
+		$fields['yonghujiaokuan'] = yidong_model::yonghujiaokuan;
+		$fields['yuefanhuafei'] = yidong_model::yuefanhuafei;
+		$fields['zuidixiaofei'] = yidong_model::zuidixiaofei;
+		$fields['heyueqi'] = yidong_model::heyueqi;
+		$fields['yuebujiaofei'] = yidong_model::yuebujiaofei;
+		
+		
+		// Set Rules
+		$rules['chanpin'] = 'trim|required|max_length[200]';
+		$rules['chanpinneirong'] = 'trim|required|max_length[200]';
+		$rules['yonghujiaokuan'] = 'trim|required|integer';
+		$rules['yuefanhuafei'] = 'trim|required|integer';
+		$rules['zuidixiaofei'] = 'trim|required|integer';
+		$rules['heyueqi'] = 'trim|required|integer';
+		$rules['yuebujiaofei'] = 'trim|integer';
+		
+		$this->CI->validation->set_fields($fields);
+		$this->CI->validation->set_rules($rules);
+		$data['jsform']=rules_ci2js($rules,$fields);
+		if ( $this->CI->validation->run() === FALSE )
+		{
+			// Output any errors
+			$this->CI->validation->output_errors();
+			// Display page
+			$data['header'] = '编辑套餐政策';
+			$data['page'] = $this->CI->config->item('backendpro_template_dir') . 'form_package';
+			$data['module'] = 'yidong';
+			$data['classify'] =$this->CI->yidong_model->ZHENGCE;
+			if($aid>0){
+				$data['editinfo']=$this->CI->yidong_model->getPackageInfo($aid);
+			}
+			$this->CI->load->view($container,$data);
+		}else{
+			// Submit form
+			return $this->_package_form($container,$fields);
+		}
+	}
+	function _package_form($container,$fields){
+		
+		
+		$devices_data=array();
+		foreach ($fields as $key => $value) {
+			
+			$devices_data[$key]=$this->CI->input->post($key);
+			
+		}
+		
+		if($devices_data['id']>0){
+			$this->CI->yidong_model->update('P',$devices_data,array('id'=>$devices_data['id']));
+		}else{
+			$this->CI->yidong_model->insert('P',$devices_data);
+			$devices_data['id']=$this->CI->yidong_model->db->insert_id();
+		}
+		
+		flashMsg('success','操作成功');
+		redirect('yidong/admin/yidong/package','location');
+		
 	}
 }

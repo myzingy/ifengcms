@@ -95,6 +95,7 @@ Examples can be seen below for menu_bep_system
     <?php if(check('yidong',NULL,FALSE)):?>
     <li id="menu_bep_system_vote"><span class="icon_computer">移动政企</span>
         <ul>
+        	<li><?php print anchor('yidong/admin/yidong/package','政策套餐',array('class'=>'icon_application'))?></li>
         	<li><?php print anchor('yidong/admin/yidong/devices','机型管理',array('class'=>'icon_application'))?></li>
         	<li><?php print anchor('yidong/admin/yidong/reservation','预约管理',array('class'=>'icon_application'))?></li>
         </ul>
