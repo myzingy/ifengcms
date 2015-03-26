@@ -36,7 +36,7 @@
             <td><?php print $row['id']?></td>
             <td><?php print $row[$tab_fields['did']];?>-<?php print $row[$tab_fields['cid']];?></td>
             <td><?php print $row[$tab_fields['phone']];?></td>
-            <td><?php print strtr($row[$tab_fields['info']],array('\n'=>'<br>'));?></td>
+            <td><?php print preg_replace("/[\n]/", '<br>', $row[$tab_fields['info']]);?></td>
             <td><?php print date("Y-m-d H:i",$row['addtime']);?></td>
             <?php if($row['status']==1):?>
             	<td><a href="#" onclick="switchStatus('<?php print $row['id']?>','<?php print $row['status']?>')"><?php print $this->bep_assets->icon($active);?></a></td>
