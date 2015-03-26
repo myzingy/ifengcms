@@ -25,10 +25,6 @@
                 <input type="text" name="chanpinneirong" id="chanpinneirong" class="text" value="<?php print $editinfo['chanpinneirong'];?>"/>
             </li>
             <li>
-                <label for="yonghujiaokuan">用户缴款<font color="red">*</font></label>
-                <input type="text" name="yonghujiaokuan" id="yonghujiaokuan" class="text" value="<?php print $editinfo['yonghujiaokuan'];?>"/>
-            </li>
-            <li>
                 <label for="yuefanhuafei">月返还话费<font color="red">*</font></label>
                 <input type="text" name="yuefanhuafei" id="yuefanhuafei" class="text" value="<?php print $editinfo['yuefanhuafei'];?>"/>
             </li>
