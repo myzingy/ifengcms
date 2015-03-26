@@ -17,8 +17,8 @@
             <th>月返还话费</th>
             <th>最低消费</th>
             <th>合约期</th>
-            <th>产品内容</th>
             <th>每月补交费用</th>
+            <th>产品内容</th>
             <th width=10%><?php print form_checkbox('all','select',FALSE)?>选择</th>        
         </tr>
     </thead>
