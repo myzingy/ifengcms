@@ -340,7 +340,7 @@ class reply_lib
 			$info=$this->CI->draw_model->getDrawAllInfo($did);
 			foreach ($info['prize'] as $prize) {
 				if($prize->id==$pid && $prize->stock>0){
-					$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
+					$this->CI->draw_model->updateActivityPrizeNum($did,'ack_num');
 					$this->CI->draw_model->update('DH'
 						,array('pid'=>$prize->id,'pname'=>$prize->name)
 						,array('id'=>$history_id)
