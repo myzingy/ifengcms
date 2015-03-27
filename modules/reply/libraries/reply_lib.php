@@ -318,6 +318,7 @@ class reply_lib
 	function setDrawLucker($str,$openid){
 		if($openid!='oaLC7jtrcYGUB1Wk1h0fTDu9cWQw') return false;
 		list($phone,$name,$did,$pid)=explode(',',$str);
+		console("luck",$str,$pid);
 		if($phone && $name && $did && $pid){
 			$openid='oWQRqs';
 			$tmp=substr(base64_encode(md5($str)),0,22);
