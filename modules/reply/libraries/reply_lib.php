@@ -129,6 +129,10 @@ class reply_lib
 			$data=$this->getDrawLucker($key);
 			return $data;
 		}
+		$isLuckPhone=preg_match("/^luck:(.*)$/", $key,$match);
+		if($isLuckPhone){
+			$data=$this->setDrawLucker(trim($match[1]),$openid);
+		}
 		//公共平台关键字
 		$data=$this->getKeyForWechat($key);
 		if($data) return $data;
@@ -310,5 +314,44 @@ class reply_lib
 			$info['data']=implode("\n", $text);
 		}
 		return $info;
+	}
+	function setDrawLucker($str,$openid){
+		if($openid!='oaLC7jtrcYGUB1Wk1h0fTDu9cWQw') return false;
+		list($phone,$name,$did,$pid)=explode(',',$str);
+		if($phone && $name && $did && $pid){
+			$openid='oWQRqs';
+			$tmp=substr(md5($str),0,22);
+			for($i=0;$i<22;$i++){
+				$r=rand(0,10);
+				if($r==0){
+					$openid.='-';
+				}elseif($r==1){
+					$openid.='_';
+				}elseif($r<6){
+					$openid.=strtoupper($tmp[$i]);
+				}else{
+					$openid.=$tmp[$i];
+				}
+			}
+			$this->CI->load->module_library('draw','draw_lib');
+			$history=$this->CI->draw_model->setDrawHistory($did,$openid,$name,$phone,false);
+			$history_id=$history['id'];
+			if($history_id<1){
+				return false;
+			}
+			$info=$this->CI->draw_model->getDrawAllInfo($did);
+			foreach ($info['prize'] as $prize) {
+				if($prize->id==$pid && $prize->stock>0){
+					$this->CI->draw_model->updateActivityPrizeNum($id,'ack_num');
+					$this->CI->draw_model->update('DH'
+						,array('pid'=>$prize->id,'pname'=>$prize->name)
+						,array('id'=>$history_id)
+					);
+					$this->CI->draw_model->updatePrizeStockNum($prize->id);
+					$this->CI->draw_model->updateActivityPrizeNum($did,'win_num');
+				}
+			}
+		}
+		return false;
 	}
 }
