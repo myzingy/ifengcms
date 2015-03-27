@@ -320,14 +320,12 @@ class reply_lib
 		list($phone,$name,$did,$pid)=explode(',',$str);
 		if($phone && $name && $did && $pid){
 			$openid='oWQRqs';
-			$tmp=substr(md5($str),0,22);
+			$tmp=substr(base64_encode(md5($str)),0,22);
 			for($i=0;$i<22;$i++){
-				$r=rand(0,10);
-				if($r==0){
-					$openid.='-';
-				}elseif($r==1){
-					$openid.='_';
-				}elseif($r<6){
+				$r=rand(0,90);
+				if($r<2){
+					$openid.=($i%2==0?'-':'_');
+				}elseif($r<50){
 					$openid.=strtoupper($tmp[$i]);
 				}else{
 					$openid.=$tmp[$i];
