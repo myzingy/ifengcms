@@ -12,7 +12,7 @@ class yidong_model extends Base_model
 		'1'=>'一年免费打',
 		'2'=>'7折租机',
 	);
-	const timeout=86400;
+	const timeout=172800;	//86400;
 	function yidong_model(){
 		parent::Base_model();
 		$cms_prefix = $this->config->item('ifengcms_table_prefix');
