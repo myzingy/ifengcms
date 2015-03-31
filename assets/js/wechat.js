@@ -32,7 +32,11 @@
 					    timestamp: wechat_conf.jsapi_sign.timestamp,
 					    nonceStr: wechat_conf.jsapi_sign.noncestr,
 					    signature: wechat_conf.jsapi_sign.signature,
-					    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+					    jsApiList: [
+					    	'onMenuShareTimeline','onMenuShareAppMessage'
+					    	,'onMenuShareQQ','onMenuShareWeibo'
+					    	,'scanQRCode'
+					    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 					});
 					wx.ready(function () {
 						//过滤openid，添加fkid
