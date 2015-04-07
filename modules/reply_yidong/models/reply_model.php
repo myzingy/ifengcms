@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class reply_model extends Base_model
 {
-	public $wechat_name='reply_duduxy';	
-	public $wechat_name_cn='嘟嘟校园公众号';	
+	public $wechat_name='reply_yidong';	
+	public $wechat_name_cn='移动政企公众号';	
 	function reply_model(){
 		parent::Base_model();
 
