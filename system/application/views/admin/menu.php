@@ -64,6 +64,14 @@ Examples can be seen below for menu_bep_system
 		        	<li><?php print anchor('reply_duduxy/admin/reply_duduxy/msg/keyword','消息回复',array('class'=>'icon_pencil'))?></li>
 		        </ul>
     		</li>
+    		<li id="menu_bep_system_wechat_yidong"><span class="icon_computer">移动政企公众号</span>
+    			<ul>
+		        	<li><?php print anchor('reply_yidong/admin/reply_yidong/menu','自定义菜单',array('class'=>'icon_pencil'))?></li>
+		        	<li><?php print anchor('reply_yidong/admin/reply_yidong/keylist','关键字回复',array('class'=>'icon_pencil'))?></li>
+		        	<li><?php print anchor('reply_yidong/admin/reply_yidong/msg/subscribe','被关注回复',array('class'=>'icon_pencil'))?></li>
+		        	<li><?php print anchor('reply_yidong/admin/reply_yidong/msg/keyword','消息回复',array('class'=>'icon_pencil'))?></li>
+		        </ul>
+    		</li>
     	</ul>
     </li>
     <?php endif;?>
