@@ -112,10 +112,15 @@ class reply_lib
 				return $data;
 			}
 		}
-		
+		//手机号,绑定用户
+		$isPhone=preg_match("/^1[0-9]{10}$/", $key,$match);
+		if($isPhone){
+			$data=$this->bindPhoneOpenid($key,$openid);
+			return $data;
+		}
 		//公共平台关键字
-		$data=$this->getKeyForWechat($key);
-		if($data) return $data;
+		//$data=$this->getKeyForWechat($key);
+		//if($data) return $data;
 		//站内关键字
 		$data=$this->getKeyForSite($key,$openid);
 		return $data;
@@ -248,5 +253,24 @@ class reply_lib
 			return array('type'=>'list','data'=>$info);
 		}
 		return false;
+	}
+	
+	function bindPhoneOpenid($phone,$openid){
+		$this->CI->load->module_library('fields','fields_lib');
+		$table="bb2379602f9fb6e6485e14b9ae16434a";
+		$tabname=$this->fields_model->fileds_table_prefix.$table;
+		$data=array(
+			'openid'=>$openid,
+			'v8098e2b4e82c'=>$phone,
+		);
+		$res=$this->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
+		if($res->num_rows()>0){
+			$this->fields_model->update_fields_tabdata($table,$data,array('openid'=>$openid));
+			return array('type'=>'text','data'=>'已更新绑定手机号');
+		}else{
+			$data['addtime']=TIME;
+			$this->fields_model->insert_fields_tabdata($table,$data);
+		}
+		return array('type'=>'text','data'=>'成功绑定手机号');
 	}
 }
