@@ -258,18 +258,18 @@ class reply_lib
 	function bindPhoneOpenid($phone,$openid){
 		$this->CI->load->module_library('fields','fields_lib');
 		$table="bb2379602f9fb6e6485e14b9ae16434a";
-		$tabname=$this->fields_model->fileds_table_prefix.$table;
+		$tabname=$this->CI->fields_model->fileds_table_prefix.$table;
 		$data=array(
 			'openid'=>$openid,
 			'v8098e2b4e82c'=>$phone,
 		);
-		$res=$this->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
+		$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
 		if($res->num_rows()>0){
-			$this->fields_model->update_fields_tabdata($table,$data,array('openid'=>$openid));
+			$this->CI->fields_model->update_fields_tabdata($table,$data,array('openid'=>$openid));
 			return array('type'=>'text','data'=>'已更新绑定手机号');
 		}else{
 			$data['addtime']=TIME;
-			$this->fields_model->insert_fields_tabdata($table,$data);
+			$this->CI->fields_model->insert_fields_tabdata($table,$data);
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
 	}
