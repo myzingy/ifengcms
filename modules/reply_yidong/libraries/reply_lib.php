@@ -263,10 +263,9 @@ class reply_lib
 			'openid'=>$openid,
 			'v8098e2b4e82c'=>$phone,
 		);
-		$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
+		$res=$this->CI->fields_model->getFieldsDataList($tabname,array('v8098e2b4e82c'=>$phone),array('limit' => 1));
 		if($res->num_rows()>0){
-			$this->CI->fields_model->update_fields_tabdata($table,$data,array('openid'=>$openid));
-			return array('type'=>'text','data'=>'已更新绑定手机号');
+			return array('type'=>'text','data'=>'手机号已经绑定，不能重复绑定！！！');
 		}else{
 			$data['addtime']=TIME;
 			$this->CI->fields_model->insert_fields_tabdata($table,$data);

@@ -106,6 +106,7 @@ Examples can be seen below for menu_bep_system
         	<li><?php print anchor('yidong/admin/yidong/package','政策套餐',array('class'=>'icon_application'))?></li>
         	<li><?php print anchor('yidong/admin/yidong/devices','机型管理',array('class'=>'icon_application'))?></li>
         	<li><?php print anchor('yidong/admin/yidong/reservation','预约管理',array('class'=>'icon_application'))?></li>
+        	<li><?php print anchor('http://cms.wisheli.com/index.php/fields/fieldsDataPage/html/23','微信绑定',array('class'=>'icon_application','target'=>'_blank'))?></li>
         </ul>
     </li>
     <?php endif;?>
