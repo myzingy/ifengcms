@@ -267,8 +267,13 @@ class reply_lib
 		if($res->num_rows()>0){
 			return array('type'=>'text','data'=>'手机号已经绑定，不能重复绑定！！！');
 		}else{
-			$data['addtime']=TIME;
-			$this->CI->fields_model->insert_fields_tabdata($table,$data);
+			$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
+			if($res->num_rows()>0){
+				return array('type'=>'text','data'=>'此微信号已经绑定手机号，不能重复绑定！！！');
+			}else{
+				$data['addtime']=TIME;
+				$this->CI->fields_model->insert_fields_tabdata($table,$data);
+			}
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
 	}
