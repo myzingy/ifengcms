@@ -11,6 +11,7 @@ class yidong_model extends Base_model
 	public $ZHENGCE=array(
 		'1'=>'一年免费打',
 		'2'=>'7折租机',
+		'3'=>'裸机政策',
 	);
 	const timeout=172800;	//86400;
 	function yidong_model(){
@@ -30,6 +31,16 @@ class yidong_model extends Base_model
 			'did'=>'vde798837c018',
 			'cid'=>'v301e4029e7d9',
 			'info'=>'v32610fd7b2d9',
+		);
+		$this->luoji=array(
+			'pinpai'=>'品牌',      
+			'xinghao'=>'型号',      
+			'danshuangka'=>'单双卡',      
+			'pingmu'=>'屏幕',      
+			'neicun'=>'内存',      
+			'heshu'=>'核数 ',      
+			'zhijiangjia'=>'直降价',      
+			'bianma'=>'编码 ',
 		);
 	}
 	function getDevicesInfo($did){

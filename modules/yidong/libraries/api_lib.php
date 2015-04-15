@@ -27,10 +27,11 @@ class api_lib
 		$res=$this->CI->yidong_model->fetch('UP','*',null,array('phone'=>$phone));
 		$info=array('status'=>10000);
 		if($res->num_rows()<1){
-			$info['error']='打400电话吧';
-			return $info;
+			//使用裸机政策 3
+			$classify=3;
+		}else{
+			$classify=$res->row()->reg;
 		}
-		$classify=$res->row()->reg;
 		$limit=array('offset'=>$page,'limit'=>10);
 		$where=array('status'=>0);
 		$res=$this->CI->yidong_model->getDevicesList($where,$limit,false,$classify);
@@ -43,13 +44,27 @@ class api_lib
 			$color=$devinfo['color'];
 			//$package	
 			$package=array();
-			$_pack=$devinfo['package'][$classify];
-			foreach ($package_fields as $key) {
+			if($classify!=3){
+				$_pack=$devinfo['package'][$classify];
+				foreach ($package_fields as $key) {
+					$package[]=array(
+						'label'=>eval("return yidong_model::{$key};"),
+						'value'=>$_pack->$key,
+					);
+				}
+			}else{
 				$package[]=array(
-					'label'=>eval("return yidong_model::{$key};"),
-					'value'=>$_pack->$key,
+					'label'=>yidong_model::yonghujiaokuan,
+					'value'=>$devinfo['yonghujiaokuan'],
 				);
+				foreach ($this->CI->yidong_model->luoji as $key=>$val) {
+					$package[]=array(
+						'label'=>$val,
+						'value'=>$devinfo[$key],
+					);
+				}
 			}
+			
 			//$device
 			$device=array(
 				'id'=>$r->id,

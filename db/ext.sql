@@ -16,3 +16,8 @@ alter table `ifengcms`.`cms_fields` change `fields_html` `fields_html` longtext 
 
 #2015-03-13
 alter table `ifengcms`.`cms_draw_history` add column `type` tinyint (1) DEFAULT '0' NULL  COMMENT '1测试，0正式'  after `addtime`;
+
+
+#2015-04-15
+alter table `ifengcms`.`yidong_devices` add column `pinpai` varchar (20)  NULL  COMMENT '品牌'  after `status`, add column `xinghao` varchar (20)  NULL  COMMENT '型号'  after `pinpai`, add column `danshuangka` varchar (20)  NULL  COMMENT '单双卡'  after `xinghao`, add column `pingmu` varchar (20)  NULL  COMMENT '屏幕'  after `danshuangka`, add column `neicun` varchar (20)  NULL  COMMENT '内存'  after `pingmu`, add column `heshu` varchar (20)  NULL  COMMENT '核数'  after `neicun`, add column `zhijiangjia` varchar (20)  NULL  COMMENT '直降价'  after `heshu`, add column `bianma` varchar (20)  NULL  COMMENT '编码'  after `zhijiangjia`
+

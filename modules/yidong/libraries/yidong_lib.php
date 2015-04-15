@@ -54,6 +54,7 @@ class yidong_lib
 			if($aid>0){
 				$data['editinfo']=$this->CI->yidong_model->getDevicesInfo($aid);
 			}
+			$data['luoji']=$this->CI->yidong_model->luoji;
 			$this->CI->load->view($container,$data);
 		}else{
 			// Submit form
@@ -73,6 +74,10 @@ class yidong_lib
 			}
 			$devices_data[$key]=$this->CI->input->post($key);
 			
+		}
+		$luoji=$this->CI->yidong_model->luoji;
+		foreach ($luoji as $key => $value) {
+			$devices_data[$key]=$this->CI->input->post($key);
 		}
 		$isUpdate=false;
 		if($imgs[0]){

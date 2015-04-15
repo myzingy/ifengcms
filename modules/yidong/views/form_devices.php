@@ -27,28 +27,12 @@
                 <label for="yonghujiaokuan">用户缴款<font color="red">*</font></label>
                 <input type="text" name="yonghujiaokuan" id="yonghujiaokuan" class="text" value="<?php print $editinfo['yonghujiaokuan'];?>"/>
             </li>
-            <!--
-            <li>
-                <label for="yuefanhuafei">月返还话费<font color="red">*</font></label>
-                <input type="text" name="yuefanhuafei" id="yuefanhuafei" class="text" value="<?php print $editinfo['yuefanhuafei'];?>"/>
+            <?php foreach($luoji as $key=>$val):?>
+            <li class="luoji">
+                <label for="<?php print $key;?>"><?php print $val;?><font color="red">*</font></label>
+                <input type="text" name="<?php print $key;?>" id="<?php print $key;?>" class="text" value="<?php print $editinfo[$key];?>"/>
             </li>
-            <li>
-                <label for="zuidixiaofei">最低消费<font color="red">*</font></label>
-                <input type="text" name="zuidixiaofei" id="zuidixiaofei" class="text" value="<?php print $editinfo['zuidixiaofei'];?>"/>
-            </li>
-            <li>
-                <label for="heyueqi">合约期<font color="red">*</font></label>
-                <input type="text" name="heyueqi" id="heyueqi" class="text" value="<?php print $editinfo['heyueqi'];?>"/>
-            </li>
-            <li>
-                <label for="chanpin">产品<font color="red">*</font></label>
-                <input type="text" name="chanpin" id="chanpin" class="text" value="<?php print $editinfo['chanpin'];?>"/>
-            </li>
-            <li>
-                <label for="chanpinneirong">产品内容<font color="red">*</font></label>
-                <input type="text" name="chanpinneirong" id="chanpinneirong" class="text" value="<?php print $editinfo['chanpinneirong'];?>"/>
-            </li>
-            -->
+            <?php endforeach;?>
             <hr>
             <li>
                 <label for="chanpinneirong">颜色<font color="red">*</font>
@@ -128,6 +112,32 @@
 			var tpl=$('#color_tpl').html();
 			tpl=tpl.replace('{id}',parseInt(Math.random()*10000));
 			$(tpl).appendTo('#color_body');
+		});
+		$('input[type="checkbox"]').click(function(){
+			var text=$(this).parent().text();
+			if(text.indexOf('裸机政策')>-1){
+				var ischecked=$(this).is(':checked');
+				$lab=$(this).parent().siblings();
+				$lab_checkbox=$lab.find('input[type="checkbox"]');
+				if(ischecked){
+					$lab_checkbox.removeAttr('checked');
+					$lab.hide();
+					$('.luoji').show();
+				}else{
+					$lab.show();
+					$('.luoji').hide();
+				}
+			}
+		});
+		$('input[type="checkbox"]:checked').each(function(){
+			var text=$(this).parent().text();
+			if(text.indexOf('裸机政策')>-1){
+				$('.luoji').show();
+				$lab=$(this).parent().siblings();
+				$lab.hide();
+			}else{
+				$('.luoji').hide();
+			}
 		});
 	};
 	function del_color(that){
