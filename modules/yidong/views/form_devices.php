@@ -129,6 +129,7 @@
 				}
 			}
 		});
+		$('.luoji').hide();
 		$('input[type="checkbox"]:checked').each(function(){
 			var text=$(this).parent().text();
 			if(text.indexOf('裸机政策')>-1){
