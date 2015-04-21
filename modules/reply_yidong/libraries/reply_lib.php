@@ -56,15 +56,16 @@ class reply_lib
 						
 						$data=$this->weObj->getRevData();
 						if($data['Event']=='subscribe'){
-							$this->CI->reply_model->delUnUser($data['FromUserName']);
+							//$this->CI->reply_model->delUnUser($data['FromUserName']);
+							$this->upBindPhoneInfo($data['FromUserName'],true);
 							$msg=$this->CI->reply_model->msgData();
-							$msg['subscribe']=$msg['subscribe']?$msg['subscribe']:"欢迎您关注凤凰陕西！\n加入我们，请点击：\nhttp://sn.ifeng.com/shanxizhuanti/jobs/";
+							$msg['subscribe']=$msg['subscribe']?$msg['subscribe']:"欢迎您关注移动政企！";
 							$data=array('type'=>'text','data'=>$msg['subscribe']);
 							break;
 						}
 						if($data['Event']=='unsubscribe'){
 							//$this->CI->reply_model->addUnUser($data['FromUserName']);
-							$this->unBindPhoneOpenid($data['FromUserName']);
+							$this->upBindPhoneInfo($data['FromUserName'],false);
 							break;
 						}
 						$key=($type==Wechat::MSGTYPE_TEXT)?$data['Content']:$data['EventKey'];
@@ -278,7 +279,7 @@ class reply_lib
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
 	}
-	function unBindPhoneOpenid($openid){
+	function upBindPhoneInfo($openid,$subing=false){
 		$this->CI->load->module_library('fields','fields_lib');
 		$table="bb2379602f9fb6e6485e14b9ae16434a";
 		$tabname=$this->CI->fields_model->fileds_table_prefix.$table;
@@ -287,6 +288,11 @@ class reply_lib
 		$db->where(array(
 			'openid'=>$openid,
 		));
-		$db->delete($tabname);
+		if($subing){
+			$db->update($tabname,array('fromaddr'=>''));
+		}else{
+			$db->update($tabname,array('fromaddr'=>'<font color="red">已取消关注</font>'));
+		}
+		
 	}
 }
