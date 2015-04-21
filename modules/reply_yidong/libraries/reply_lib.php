@@ -63,7 +63,8 @@ class reply_lib
 							break;
 						}
 						if($data['Event']=='unsubscribe'){
-							$this->CI->reply_model->addUnUser($data['FromUserName']);
+							//$this->CI->reply_model->addUnUser($data['FromUserName']);
+							$this->unBindPhoneOpenid($data['FromUserName']);
 							break;
 						}
 						$key=($type==Wechat::MSGTYPE_TEXT)?$data['Content']:$data['EventKey'];
@@ -276,5 +277,16 @@ class reply_lib
 			}
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
+	}
+	function unBindPhoneOpenid($openid){
+		$this->CI->load->module_library('fields','fields_lib');
+		$table="bb2379602f9fb6e6485e14b9ae16434a";
+		$tabname=$this->CI->fields_model->fileds_table_prefix.$table;
+		
+		$db=$this->CI->fields_model->db;
+		$db->where(array(
+			'openid'=>$openid,
+		));
+		$db->delete($tabname);
 	}
 }
