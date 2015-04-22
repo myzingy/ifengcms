@@ -175,7 +175,11 @@ class vote_model extends Base_model
 						//修改老数据
 						$member=array();
 						if($source_name=$vote_source->source_name){
-							$member['name']=$r->$source_name;
+							$source_name_arr=explode(',',$source_name);
+							foreach ($source_name_arr as $key) {
+								$member['name'][]=$r->$key;
+							}
+							$member['name']=implode('/',$member['name']);
 						}
 						if($source_pic=$vote_source->source_pic){
 							$member['thumb']=$r->$source_pic;
@@ -196,7 +200,11 @@ class vote_model extends Base_model
 						}
 						
 						if($source_name=$vote_source->source_name){
-							$member['name']=$r->$source_name;
+							$source_name_arr=explode(',',$source_name);
+							foreach ($source_name_arr as $key) {
+								$member['name'][]=$r->$key;
+							}
+							$member['name']=implode('/',$member['name']);
 						}
 						if($source_pic=$vote_source->source_pic){
 							$member['thumb']=$r->$source_pic;

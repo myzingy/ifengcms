@@ -28,8 +28,11 @@ Tip：数据源中审核通过的数据才能实现导入！
 	<input type="hidden" id="source_id" name="source_id" />
 	<a style="width:300px; border-bottom: 0;">表单名称:<input name="source_fieldname" id="source_fieldname" style="width:190px;"/><button style="float:right;" id="source_fieldname_but" type="button">OK</button></a> 
 	<br style="clear:both;">               
-	<a style="width:300px;border-bottom: 0;border-top: 0;">名称:<select name="source_name" id="source_name" style="width:225px;"><option value="">请选择</option></select></a> 
-	<br style="clear:both;">               
+	<a style="width:300px;border-bottom: 0;border-top: 0;">名称:<select name="source_name[]" id="source_name" style="width:225px;"><option value="">请选择</option></select>
+		<button style="float:right;" id="add_name_but" type="button"><?php print  $this->bep_assets->icon('add');?></button>
+	</a> 
+	<br style="clear:both;">
+	<div id="name_ext"></div>               
 	<a style="width:300px;border-bottom: 0;border-top: 0;">图片:<select name="source_pic[]" id="source_pic" style="width:225px;"><option value="">请选择</option></select>
 		<button style="float:right;" id="add_thumb_but" type="button"><?php print  $this->bep_assets->icon('add');?></button>
 	</a>
@@ -152,6 +155,11 @@ Tip：数据源中审核通过的数据才能实现导入！
 			var html='<a style="width:272px;border-bottom: 0;border-top: 0;padding-left: 35px;"><select name="source_pic[]" style="width:225px;">{option}</select></a><br style="clear:both;">';
 			html=html.replace('{option}',$('#source_pic').html());
 			$(html).appendTo('#thumb_ext');
+		});
+		$('#add_name_but').click(function(){
+			var html='<a style="width:272px;border-bottom: 0;border-top: 0;padding-left: 35px;"><select name="source_name[]" style="width:225px;">{option}</select></a><br style="clear:both;">';
+			html=html.replace('{option}',$('#source_pic').html());
+			$(html).appendTo('#name_ext');
 		});
 	};
 </script>

@@ -208,8 +208,11 @@ class vote_lib
 		foreach ($data as $key => $value) {
 			$data[$key]=$this->CI->input->post($key);
 		}
+		if(count($data['source_name'])>1){
+			$data['source_name']=implode(',', $data['source_name']);
+		}
 		if(count($data['source_pic'])>1){
-			$data['source_pic_ext']=implode(',', $data['source_pic']);	
+			$data['source_pic_ext']=implode(',', $data['source_pic']);
 		}
 		$data['source_pic']=$data['source_pic'][0];
 		if($data['vid'] && $data['source_id'] && ($data['source_name'] || $data['source_pic'])){
