@@ -503,4 +503,11 @@ class api_lib
 		$info['jsapi_sign']=$this->CI->wechat->getJsSign($_SERVER['HTTP_REFERER']);
 		return $info;
 	}
+	##################################################
+	# 网页端投票系统
+	##################################################
+	function ifengvote2web(){
+		$this->CI->load->module_library('vote','vote_lib');
+		return $this->CI->vote_lib->ifengvote2web();
+	}
 }

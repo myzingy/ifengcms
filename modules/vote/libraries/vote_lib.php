@@ -337,4 +337,14 @@ class vote_lib
 			return array('status'=>10000,'error'=>'vmid is null');
 		}
 	}
+	##################################################
+	# 网页端投票系统
+	##################################################
+	function ifengvote2web(){
+		$ip=$this->CI->input->ip_address();
+		$_POST['openid']=$ip;
+		$_POST['ip']=$ip;
+		$_POST['postid']=100;
+		return $this->ifengvote();
+	}
 }
