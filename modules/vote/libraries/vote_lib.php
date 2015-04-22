@@ -340,11 +340,11 @@ class vote_lib
 	##################################################
 	# 网页端投票系统
 	##################################################
-	function ifengvote2web(){
+	function ifengvote2web($vmid=0){
 		$ip=$this->CI->input->ip_address();
 		$_POST['openid']=$ip;
 		$_POST['ip']=$ip;
-		$_POST['postid']=100;
+		$_POST['postid']=$vmid;
 		return $this->ifengvote();
 	}
 }

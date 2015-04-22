@@ -506,8 +506,8 @@ class api_lib
 	##################################################
 	# 网页端投票系统
 	##################################################
-	function ifengvote2web(){
+	function ifengvote2web($vmid=0){
 		$this->CI->load->module_library('vote','vote_lib');
-		return $this->CI->vote_lib->ifengvote2web();
+		return $this->CI->vote_lib->ifengvote2web($vmid);
 	}
 }
