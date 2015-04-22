@@ -344,7 +344,7 @@ class vote_lib
 		$ip=$this->CI->input->ip_address();
 		$_POST['openid']=$ip;
 		$_POST['ip']=$ip;
-		$_POST['postid']=$vmid;
+		$_POST['postid']=$vmid?$vmid:($_GET['vmid']+0);
 		return $this->ifengvote();
 	}
 }
