@@ -84,12 +84,12 @@ class reply_lib
 		    			break;
 		    		case Wechat::MSGTYPE_IMAGE:
 						$msg=$this->CI->reply_model->msgData();
-						$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，凤凰陕西感谢您的关注。';
+						$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，移动政企感谢您的关注。';
 		    			$data=array('type'=>'text','data'=>$msg['keyword']);
 		    			break;
 		    		default:
 						$msg=$this->CI->reply_model->msgData();
-						$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，凤凰陕西感谢您的关注。';
+						$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，移动政企感谢您的关注。';
 		    			$data=array('type'=>'text','data'=>$msg['keyword']);
 			    }
 				if($data['type']=='list'){
@@ -183,9 +183,9 @@ class reply_lib
 	function getKeyForSite($key='',$openid=''){
 		$menu=array('?','menu','help','？');
 		if(in_array($key, $menu)!==false){
-			return array('type'=>'text','data'=>"请直接提交你的问题,小编会尽快答复你\n".anchor("/",'【凤凰陕西】'));
+			return array('type'=>'text','data'=>"请直接提交你的问题,小编会尽快答复你\n".anchor("/",'【移动政企】'));
 		}elseif(($key+0)>=1 && ($key+0)<=9999){//站点栏目
-			return array('type'=>'text','data'=>"请直接提交你的问题,小编会尽快答复你\n".anchor("/",'【凤凰陕西】'));
+			return array('type'=>'text','data'=>"请直接提交你的问题,小编会尽快答复你\n".anchor("/",'【移动政企】'));
 		}
 		//查找站点关键字
 		$this->CI->load->module_library('article','articlelib');
@@ -203,7 +203,7 @@ class reply_lib
 			return array('type'=>'list','data'=>$info);
 		}
 		$msg=$this->CI->reply_model->msgData();
-		$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，凤凰陕西感谢您的关注。';
+		$msg['keyword']=$msg['keyword']?$msg['keyword']:'您的消息已经送达，小编会在工作时间内及时回复，移动政企感谢您的关注。';
 		return array('type'=>'text','data'=>$msg['keyword']);
 	}
 	//搜索公众平台关键字
