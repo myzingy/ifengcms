@@ -267,6 +267,8 @@ class reply_lib
 		);
 		$res=$this->CI->fields_model->getFieldsDataList($tabname,array('v8098e2b4e82c'=>$phone),array('limit' => 1));
 		if($res->num_rows()>0){
+			//no openid
+			$this->upOpenidForPhone($openid,$res->row());
 			return array('type'=>'text','data'=>'手机号已经绑定，不能重复绑定！！！');
 		}else{
 			$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
@@ -279,6 +281,18 @@ class reply_lib
 			}
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
+	}
+	function upOpenidForPhone($openid,$row){
+		if($row->status==2){
+			$this->CI->load->module_library('fields','fields_lib');
+			$table="bb2379602f9fb6e6485e14b9ae16434a";
+			$tabname=$this->CI->fields_model->fileds_table_prefix.$table;
+			$db=$this->CI->fields_model->db;
+			$db->where(array(
+				'v8098e2b4e82c'=>$row->v8098e2b4e82c,
+			));
+			$db->update($tabname,array('status'=>0,'openid'=>$openid));
+		}
 	}
 	function upBindPhoneInfo($openid,$subing=false){
 		$this->CI->load->module_library('fields','fields_lib');
