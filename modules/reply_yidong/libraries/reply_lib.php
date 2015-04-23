@@ -274,6 +274,7 @@ class reply_lib
 				return array('type'=>'text','data'=>'此微信号已经绑定手机号，不能重复绑定！！！');
 			}else{
 				$data['addtime']=TIME;
+				$data['ip']=$phone;
 				$this->CI->fields_model->insert_fields_tabdata($table,$data);
 			}
 		}
