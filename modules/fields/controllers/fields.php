@@ -158,20 +158,7 @@ echo<<<ENDHTML
 					});
 				};
 				{$autoHeight}
-				//totalcode
-				(function(){
-					var id={$id};
-					if(id>0){
-						$.ajax({
-							url:'{$base_url}index.php/api/act/totalcodeActivity/'+id+'/1',
-							dataType:'html',
-							beforeSend:function(){},
-							complete:function(XMLHttpRequest){
-								$(XMLHttpRequest.responseText).appendTo('body');
-							}
-						});
-					}
-				})();
+				
 			});
 		</script>
     </head>
