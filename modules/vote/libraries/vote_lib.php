@@ -254,9 +254,10 @@ class vote_lib
 				$vote=$this->CI->vote_model->getVoteForNum($data['vmid']);
 			}else{
 				$vote=false;
-				$db->select('*');
-				$db->from($table['V']);
-				$db->where_in("select vid from {$table['VM']} where id={$data['vmid']}");
+				$db->select('V.*');
+				$db->from($table['VM']. " VM");
+				$db->join($table['V']. " V","VM.vid=V.id",'left');
+				$db->where("VM.id",$data['vmid']);
 				$res=$db->get();
 				if($res->num_rows()>0){
 					$vote=$res->row();
@@ -331,7 +332,7 @@ class vote_lib
 			}else{
 				$msg.="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">查看{$vote_member_name}</a>";	
 			}
-			return array('status'=>0,'msg'=>$msg);
+			return array('status'=>0,'msg'=>$msg,'count'=>$vote_count);
 			
 		}else{
 			return array('status'=>10000,'error'=>'vmid is null');
