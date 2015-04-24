@@ -158,7 +158,6 @@ echo<<<ENDHTML
 					});
 				};
 				{$autoHeight}
-				
 			});
 		</script>
     </head>
