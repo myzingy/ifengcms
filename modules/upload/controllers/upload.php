@@ -34,6 +34,7 @@ class upload extends Public_Controller
 			$path='uploads/'.$day;
 			$dir=FCPATH.$path;
 			@mkdir($dir,0777);
+			/*
 			$config['upload_path'] = $dir;
 			$config['allowed_types'] = 'bmp|jpg|jpeg|png';
 			$config['max_size'] = 1024*8;
@@ -49,7 +50,32 @@ class upload extends Public_Controller
 			{
 				$upload = $this->upload->data();
 			}
-			
+			*/
+			console($_FILES["pic1"]);
+			if (is_uploaded_file($_FILES['pic1']['tmp_name'])) {
+				$file_name=substr(md5(TIME), 8,12);
+				$fg=preg_match("/\.[^\.]{3,4}$/",$_FILES["pic1"]['name'],$match);
+				if($fg){
+					$file_name.=$match[0];
+				}else{
+					$file_name.='.jpg';
+				}
+				console('file_name',$file_name);
+				if(strpos($_FILES["pic1"]['type'],'image')!==false){
+					if(move_uploaded_file($_FILES['pic1']['tmp_name'],$dir.'/'.$file_name)){
+						$upload=array(
+							'file_name'=>$file_name
+						);
+					}else{
+						$upload='请重新选择文件';
+					}
+				}else{
+					$upload='你的图片类型不被支持，请重新选择';
+				}
+				
+			}else{
+				$upload='请选择文件';
+			}
 			if(is_array($upload)){
 				$res=array(
 					'errno'=>'0',
