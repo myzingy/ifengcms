@@ -57,7 +57,7 @@ class upload extends Public_Controller
 			}else{
 				$res=array(
 					'errno'=>1,
-					'errmsg'=>'请更换其他设备重新上传'
+					'errmsg'=>'失败请更换其他设备或上传截图'
 				);
 			}
 			die(json_encode($res));
