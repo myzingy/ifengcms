@@ -37,10 +37,16 @@ class special extends Admin_Controller
 			$res=$this->special_model->fetch('S','*',null,array('id'=>$aid));
 			if($res->num_rows()>0){
 				$row=$res->row();
-				@unlink(FCPATH.$row->src);
-				delete_files(FCPATH.$row->url,true);
-				@rmdir(FCPATH.$row->url);
-				@unlink(FCPATH.$row->url.".zip");
+				if($row->src){
+					@unlink(FCPATH.$row->src);
+				}
+				if($row->url){
+					if(strpos($row->url,'uploads/special')!=false){
+						delete_files(FCPATH.$row->url,true);
+						@rmdir(FCPATH.$row->url);
+						@unlink(FCPATH.$row->url.".zip");
+					}
+				}
 				$this->special_model->delete('S',array('id'=>$aid));
 			}
 		}
