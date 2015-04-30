@@ -201,7 +201,7 @@ class draw_model extends Base_model
 		}else{
 			$this->autowhere($where_fileds);	
 		}
-		$this->db->order_by('P.stock','desc');
+		$this->db->order_by('P.id','desc');
 		if( ! is_null($limit['limit']))
 		{
 			$this->db->limit($limit['limit'],( ($this->page!=0)?$this->page:$limit['offset']));
