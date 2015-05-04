@@ -32,6 +32,7 @@ class api extends Public_Controller
 		,'quesUser','doques','getDayQuestions','getSourceList'
 		#获取用户授权及授权跳转
 		,'getWechatAuth','setWechatAuth','getWechatJS'
+		,'uploadImage'
 		);
 		if(!in_array($action, $noCheckLoginAct)){
 			if(!$this->api_lib->check()){
