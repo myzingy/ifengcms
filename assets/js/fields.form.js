@@ -290,11 +290,13 @@ $(function(){
 			            setTimeout(function(){
 			            	$previewImg.css({ 'margin-top': cs.it + 'px' }).attr('src', icon);
 			            },0);
+			            showSuccess(icon);
 			        }, false);
 			        img.addEventListener('error', function() {
 			        	setTimeout(function(){
 			            	$previewImg.attr('src', icon);
 			            },0);
+			            showSuccess(icon);
 			        }, false);  
 		    }else{//IE
 		        img.attachEvent('onload', function() {
@@ -306,14 +308,16 @@ $(function(){
 		            setTimeout(function(){
 		            	$previewImg.css({ 'margin-top': cs.it + 'px' }).attr('src', icon);
 		            },0);
+		            showSuccess(icon);
 		        }, false);
 		        img.attachEvent('onerror', function() {
 		        	setTimeout(function(){
 		            	$previewImg.attr('src', icon);
 		            },0);
+		            showSuccess(icon);
 		        }, false);       
 		    }
-	        showSuccess(icon);
+	        
 	    }
 	
 	    function showUpload() {
