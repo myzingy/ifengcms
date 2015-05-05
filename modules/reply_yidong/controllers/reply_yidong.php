@@ -15,4 +15,9 @@ class reply_yidong extends Public_Controller
 		$this->site=$this->reply_lib->init();
 		$this->reply_lib->apply();
 	}
+	function getNick($id=0){
+		if($id<1) die('over...');
+		$this->reply_lib->init();
+		$this->reply_lib->getNick($id);
+	}
 }
