@@ -231,7 +231,7 @@ ENDHTML;
 			$table=$this->fields_model->fileds_table_prefix.$row->tab_name;
 			$limit=array('offset'=>$page,'limit'=>30);
 			$where=array('status'=>0);
-			$info=$this->fields_model->getFieldsDataList($table,$where,$limit,true,'id asc');
+			$info=$this->fields_model->getFieldsDataList($table,$where,$limit,true,'id desc');
 			if($info['datarows']>0){
 				$total['status']=0;
 				$total['rows']=$info['datarows'];
