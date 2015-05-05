@@ -268,7 +268,7 @@ ENDHTML;
 			
 			$limit=array('offset'=>$page,'limit'=>100);
 			//$where=array('status'=>0);
-			$info=$this->fields_model->getFieldsDataList($table,$where,$limit,true,'id asc');
+			$info=$this->fields_model->getFieldsDataList($table,$where,$limit,true,'id desc');
 			$data['members'] = $info['data'];
 			$data['pagination']=$info['pagination'];
 			
