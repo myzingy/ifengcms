@@ -28,7 +28,7 @@ class vote extends Admin_Controller
 		$this->vote_lib->updatevotedata($this->_container,$vid,$vmid);
 	}
 	function votedata($id){
-		$limit=array('offset'=>$page,'limit'=>15);
+		$limit=array('offset'=>$page,'limit'=>30);
 		$where=array('VM.vid'=>$id);
 		$info=$this->vote_model->getVoteDataList($where,$limit,true);
 		$data['vid'] = $id;
