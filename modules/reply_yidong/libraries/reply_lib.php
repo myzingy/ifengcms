@@ -266,9 +266,10 @@ class reply_lib
 			'v8098e2b4e82c'=>$phone,
 		);
 		$res=$this->CI->fields_model->getFieldsDataList($tabname,array('v8098e2b4e82c'=>$phone),array('limit' => 1));
+		$info=$this->weObj->getUserInfo($openid);
 		if($res->num_rows()>0){
 			//no openid
-			$this->upOpenidForPhone($openid,$res->row());
+			$this->upOpenidForPhone($openid,$res->row(),$info['nickname']);
 			return array('type'=>'text','data'=>'手机号已经绑定，不能重复绑定！！！');
 		}else{
 			$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
@@ -277,12 +278,13 @@ class reply_lib
 			}else{
 				$data['addtime']=TIME;
 				$data['ip']=$phone;
+				$data['昵称']=$info['nickname'];
 				$this->CI->fields_model->insert_fields_tabdata($table,$data);
 			}
 		}
 		return array('type'=>'text','data'=>'成功绑定手机号');
 	}
-	function upOpenidForPhone($openid,$row){
+	function upOpenidForPhone($openid,$row,$nickname=''){
 		if($row->status==2){
 			$this->CI->load->module_library('fields','fields_lib');
 			$table="bb2379602f9fb6e6485e14b9ae16434a";
@@ -291,7 +293,11 @@ class reply_lib
 			$db->where(array(
 				'v8098e2b4e82c'=>$row->v8098e2b4e82c,
 			));
-			$db->update($tabname,array('status'=>0,'openid'=>$openid));
+			$data=array('status'=>0,'openid'=>$openid);
+			if($nickname){
+				$data['昵称']=$nickname;
+			}
+			$db->update($tabname,$data);
 		}
 	}
 	function upBindPhoneInfo($openid,$subing=false){
