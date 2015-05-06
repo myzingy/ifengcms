@@ -52,7 +52,7 @@
             <td><a target="_blank" href="<?php print site_url('vote/display/show/'.$row['vid'].'/'.$row['id']);?>"><?php print $row['name']?></a></td>
             <?php endif;?>
             <td><?php print $row['count']?></td>
-            <td><?php print $row['thumb']?></td>
+            <td><a target="_blank" href="<?php print $row['thumb']?>"><?php print substr($row['thumb'], -38);?></a></td>
             <td><a href="<?php print site_url('vote/admin/vote/updatevotedata/'.$vid.'/'.$row['id']);?>" title="编辑"><?php print  $this->bep_assets->icon('pencil');?></a>
             	<a href="#" onclick="deleteField('<?php print $row['id']?>');" title="删除"><?php print  $this->bep_assets->icon('cross');?></a></td>
         </tr>
