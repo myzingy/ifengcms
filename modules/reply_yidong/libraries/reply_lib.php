@@ -274,6 +274,7 @@ class reply_lib
 		}else{
 			$res=$this->CI->fields_model->getFieldsDataList($tabname,array('openid'=>$openid),array('limit' => 1));
 			if($res->num_rows()>0){
+				console($this->CI->fields_model->db->last_query());
 				return array('type'=>'text','data'=>'此微信号已经绑定手机号，不能重复绑定！！！');
 			}else{
 				$data['addtime']=TIME;
