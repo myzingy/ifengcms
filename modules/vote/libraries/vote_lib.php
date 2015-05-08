@@ -283,6 +283,7 @@ class vote_lib
 				return array('status'=>10000,'error'=>'投票活动不存在，请核对投票信息');
 			}
 			$istester=($vote->testip==$data['ip']);
+			console($vote->testip,$data['ip'],$istester);
 			//补齐投票前面的0
 			$data['vmid']=str_pad($data['vmid'], strlen($vote->enum), "0", STR_PAD_LEFT);
 			//获得被投票者信息
