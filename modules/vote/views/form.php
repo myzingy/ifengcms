@@ -36,7 +36,7 @@
             </li>
             <li>
             	<label for="testip">测试IP</label>
-                <input type="text" name="testip" id="testip" class="text" value="<?php print $editinfo['testip'];?>"/>
+                <input type="text" name="testip" id="testip" class="text" value="<?php print $testip;?>"/> 当前：<?php print $editinfo['testip'];?>
             </li>
             <li>
                 <label for="subject">活动简介</label>
