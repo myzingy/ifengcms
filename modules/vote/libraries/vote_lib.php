@@ -109,12 +109,12 @@ class vote_lib
 		$fields['vid'] = "活动ID";
 		$fields['name'] = "名称";
 		$fields['code'] = "号码";
-		//$fields['thumb'] = "图片";
+		$fields['count'] = "票数";
 		$fields['info'] = "简介";
 		
 		$rules['name'] = 'trim|required';
 		$rules['code'] = 'trim|integer|min_number[1]|max_number[2000]';
-		//$rules['thumb'] = 'trim|required';
+		$rules['count'] = 'trim|integer|min_number[0]';
 		$rules['info'] = 'trim';
 		
 		$this->CI->validation->set_fields($fields);
