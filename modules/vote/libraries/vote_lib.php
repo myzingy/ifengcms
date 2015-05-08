@@ -51,7 +51,7 @@ class vote_lib
 					$data['editinfo']=$res->row_array();
 				}
 			}
-			$data['editinfo']['testip']=$this->CI->input->ip_address();
+			$data['testip']=$this->CI->input->ip_address();
 			$this->CI->load->view($container,$data);
 		}else{
 			// Submit form
