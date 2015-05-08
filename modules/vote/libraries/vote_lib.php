@@ -50,7 +50,8 @@ class vote_lib
 				if($res->num_rows()>0){
 					$data['editinfo']=$res->row_array();
 				}
-			}	
+			}
+			$data['editinfo']['testip']=$this->CI->input->ip_address();
 			$this->CI->load->view($container,$data);
 		}else{
 			// Submit form
