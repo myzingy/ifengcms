@@ -15,13 +15,15 @@ class vote_lib
 		$fields['enum'] = "结束号码";
 		$fields['stime'] = "开始时间";
 		$fields['etime'] = "结束时间";
+		$fields['rule'] = "投票规则";
+		$fields['testip'] = "测试IP";
 		$fields['subject'] = "活动简介";
 		$fields['remoteurl'] = "外部服务地址";
 		$fields['displayurl'] = "外部展示地址";
 		
 		$rules['title'] = 'trim|required|max_length[64]';
-		$rules['snum'] = 'trim|integer|min_number[1]|max_number[9999]';
-		$rules['enum'] = 'trim|integer|min_number[1]|max_number[9999]';
+		$rules['snum'] = 'trim|integer|min_number[0]|max_number[9999]';
+		$rules['enum'] = 'trim|integer|min_number[0]|max_number[9999]';
 		$rules['stime'] = 'trim|required';
 		$rules['etime'] = 'trim|required';
 		$rules['remoteurl'] = 'trim';
@@ -60,35 +62,45 @@ class vote_lib
 		foreach ($fields as $key => $value) {
 			$data[$key]=$this->CI->input->post($key,false);
 		}
-		if($data['enum']>$data['snum']){
-			$data['etime']=strtotime($data['etime']);
-			$data['stime']=strtotime($data['stime']);
-			if($data['etime']>$data['stime']){
-				//检查号段占用
-				$pkarr=array(
-					'snum'=>$data['snum'],
-					'enum'=>$data['enum'],
-				);
-				if($id>0){
-					$pkarr['noid']=$id;
-				}
-				$vote=$this->CI->vote_model->getVoteForNum($pkarr);
-				if($vote){
-					$info= array('status'=>10000,'error'=>"号码段被[{$vote->title}]({$vote->snum}-{$vote->enum})占用");
-				}else{
+		$data['etime']=strtotime($data['etime']);
+		$data['stime']=strtotime($data['stime']);
+		if($data['enum'] || $data['snum']){
+			if($data['enum']>$data['snum']){
+				if($data['etime']>$data['stime']){
+					//检查号段占用
+					$pkarr=array(
+						'snum'=>$data['snum'],
+						'enum'=>$data['enum'],
+					);
 					if($id>0){
-						$this->CI->vote_model->update('V',$data,array('id'=>$id));
-					}else{
-						$this->CI->vote_model->insert('V',$data);
+						$pkarr['noid']=$id;
 					}
-					$info=array('status'=>0);
+					$vote=$this->CI->vote_model->getVoteForNum($pkarr);
+					if($vote){
+						$info= array('status'=>10000,'error'=>"号码段被[{$vote->title}]({$vote->snum}-{$vote->enum})占用");
+					}else{
+						if($id>0){
+							$this->CI->vote_model->update('V',$data,array('id'=>$id));
+						}else{
+							$this->CI->vote_model->insert('V',$data);
+						}
+						$info=array('status'=>0);
+					}
+				}else{
+					$info= array('status'=>10000,'error'=>'活动时间设置错误，请设置格式为'.date('Y-m-d H:i:s'));
 				}
 			}else{
-				$info= array('status'=>10000,'error'=>'活动时间设置错误，请设置格式为'.date('Y-m-d H:i:s'));
+				$info= array('status'=>10000,'error'=>'结束号码必须大于开始号码');
 			}
 		}else{
-			$info= array('status'=>10000,'error'=>'结束号码必须大于开始号码');
+			if($id>0){
+				$this->CI->vote_model->update('V',$data,array('id'=>$id));
+			}else{
+				$this->CI->vote_model->insert('V',$data);
+			}
+			$info=array('status'=>0);
 		}
+		
 		die(json_encode($info));
 	}
 	
@@ -152,13 +164,16 @@ class vote_lib
 			return array('status'=>10000,'error'=>'不存在投票活动，无法操作');
 		}
 		//检查code冲突
-		$res=$this->CI->vote_model->fetch('VM','*',null,array('vid'=>$data['vid'],'code'=>$data['code']));
-		if($res->num_rows()>0){
-			$vote=$res->row();
-			if($vote->id!=$id){
-				return array('status'=>10000,'error'=>'成员号码已经存在，请修改');
+		if($data['code']){
+			$res=$this->CI->vote_model->fetch('VM','*',null,array('vid'=>$data['vid'],'code'=>$data['code']));
+			if($res->num_rows()>0){
+				$vote=$res->row();
+				if($vote->id!=$id){
+					return array('status'=>10000,'error'=>'成员号码已经存在，请修改');
+				}
 			}
 		}
+		
 		if ($_FILES['thumb']['name']){ //需要图片
 			//game thumb
 			$day=date('Ymd',TIME);
@@ -252,6 +267,7 @@ class vote_lib
 			//获得活动信息
 			if($data['vmid']<$this->CI->vote_model->codenum){
 				$vote=$this->CI->vote_model->getVoteForNum($data['vmid']);
+				
 			}else{
 				$vote=false;
 				$db->select('V.*');
@@ -266,6 +282,7 @@ class vote_lib
 			if(!$vote){
 				return array('status'=>10000,'error'=>'投票活动不存在，请核对投票信息');
 			}
+			$istester=($vote->testip==$data['ip']);
 			//补齐投票前面的0
 			$data['vmid']=str_pad($data['vmid'], strlen($vote->enum), "0", STR_PAD_LEFT);
 			//获得被投票者信息
@@ -278,27 +295,34 @@ class vote_lib
 				return array('status'=>10000,'error'=>'投票号码不正确，请核对投票信息');
 			}
 			$vote_member=$vote_member_res->row();
-			if($vote->stime>TIME){
+			if($vote->stime>TIME && !$istester){
 				return array('status'=>10000,'error'=>$vote->title.'还没开始，开始时间为：'.date('Y-m-d H:i:s',$vote->stime));
 			}
-			if($vote->etime<TIME){
+			if($vote->etime<TIME && !$istester){
 				return array('status'=>10000,'error'=>$vote->title.'已经结束了!');
 			}
-			$sql = " SELECT id FROM {$table['VH']} "
+			if(!$istester){
+				$sql = " SELECT id FROM {$table['VH']} "
 				." WHERE `vid`='{$vote->id}' "
-				." AND `sigid`='{$data['sigid']}'"
-				." AND `addtime` >= {$vote->stime}";
-			$res= $db->query( $sql );
-			if($res->num_rows()>0){
-				
-				if($vote->displayurl){
-					$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
-					$display_url="\n<a href=\"".$vote->displayurl."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";
+				." AND `sigid`='{$data['sigid']}'";
+				if($vote->rule==1){
+					$sql.=" AND `addtime` >=".strtotime(date('Y-m-d 00:00:00',TIME));
 				}else{
-					$display_url="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
+					$sql.=" AND `addtime` >= {$vote->stime}";
 				}
-				return array('status'=>10000,'error'=>'你已经投过票了，当前'.($vote_member->count)."票!\n".$display_url);
+				$res= $db->query( $sql );
+				if($res->num_rows()>0){
+					
+					if($vote->displayurl){
+						$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
+						$display_url="\n<a href=\"".$vote->displayurl."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";
+					}else{
+						$display_url="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
+					}
+					return array('status'=>10000,'error'=>'你已经投过票了，当前'.($vote_member->count)."票!\n".$display_url);
+				}
 			}
+			
 			$vote_count = $vote_member->count+$vote_num;
 			$this->CI->vote_model->update('VM',array('count'=>$vote_count),array('id'=>$vote_member->id));
 			//记录投票数据

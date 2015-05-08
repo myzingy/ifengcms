@@ -28,6 +28,17 @@
                 <input type="text" name="etime" id="etime" class="text" value="<?php print date('Y-m-d H:i:s',$editinfo['etime']?$editinfo['etime']:TIME+86400*30);?>"/>
             </li>
             <li>
+                <label for="rule">投票方式</label>
+                <select name="rule">
+                	<option value="0" <?php print $editinfo['rule']==0?'selected="selected"':'';?>>只投一票</option>
+                	<option value="1" <?php print $editinfo['rule']==1?'selected="selected"':'';?>>每天一票</option>
+                </select>
+            </li>
+            <li>
+            	<label for="testip">测试IP</label>
+                <input type="text" name="testip" id="testip" class="text" value="<?php print $editinfo['testip'];?>"/>
+            </li>
+            <li>
                 <label for="subject">活动简介</label>
                 <textarea name="subject" class="text" rows="10"><?php print $editinfo['subject'];?></textarea>
                 <label for="subject" generated="true" class="error" style="display: inline-block;"></label>
