@@ -34,7 +34,11 @@ class draw_model extends Base_model
 		//$res=$this->fetch('DH','*',null,array('did'=>$id,'phone'=>$phone));
 		$this->db->select('*');
 		$this->db->from($this->_TABLES['DH']." DH");
-		$this->db->where(" did='$id' and (phone='{$phone}' or openid='{$openid}') ",null,false);
+		if($phone){
+			$this->db->where(" did='$id' and (phone='{$phone}' or openid='{$openid}') ",null,false);
+		}else{
+			$this->db->where(" did='$id' and openid='{$openid}' ",null,false);
+		}
 		$res=$this->db->get();
 		$data=array('id'=>0);
 		$type=$ceshiFlag?1:0;
