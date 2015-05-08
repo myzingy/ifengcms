@@ -24,6 +24,10 @@
                 <input type="file" name="thumb" id="thumb" class="text" value="<?php print $editinfo['enum'];?>"/>
             </li>
             <li>
+                <label for="count">票数</label>
+                <input type="text" name="count" id="count" class="text" value="<?php print $editinfo['count'];?>"/>
+            </li>
+            <li>
                 <label for="info">简介</label>
                 <textarea name="info" class="text" rows="10"><?php print $editinfo['info'];?></textarea>
                 <label for="info" generated="true" class="error" style="display: inline-block;"></label>
