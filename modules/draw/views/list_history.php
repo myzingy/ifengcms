@@ -14,7 +14,11 @@
     </a>
     
     <a href="javascript:void(0);" id="searchPhone"><input size="11" id="phone" /><?php print  $this->bep_assets->icon('arrow_refresh');?>电话查找</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;   
+    &nbsp;&nbsp;&nbsp;&nbsp; 
+    <a id="activity_clear" class="negative">
+		<?php print  $this->bep_assets->icon('error');?>
+		清理抽奖数据
+	</a>
 </div><br/><br/>
 <table class="data_grid" cellspacing="0">
     <thead>
@@ -100,6 +104,12 @@
 				url+='/al-DH.phone/'+phone;
 			}
 			location.href=url;
+		});
+		
+		$('#activity_clear').click(function(){
+			if(window.confirm('继续将清理抽奖记录，确定继续吗？')){
+				location.href="<?php print site_url('draw/admin/draw/activity_clear/'.$id);?>";
+			}
 		});
 	};
 	function deleteField(id){

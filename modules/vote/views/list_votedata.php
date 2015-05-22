@@ -15,6 +15,11 @@
     <?php print  $this->bep_assets->icon('page');?>
     	外部数据接口
     </a>
+    &nbsp;&nbsp;&nbsp;&nbsp; 
+    <a id="vote_history_clear" class="negative">
+		<?php print  $this->bep_assets->icon('error');?>
+		清理投票记录数据&&票数归0
+	</a>
 </div><br/><br/>
 
 <?php print form_open('vote/admin/vote/delete')?>
@@ -62,7 +67,11 @@
 <?php print form_close()?>
 <script type="text/javascript">
 	pageinit=function(){
-		
+		$('#vote_history_clear').click(function(){
+			if(window.confirm('继续将清理投票记录数据&&票数归0，确定继续吗？')){
+				location.href="<?php print site_url('vote/admin/vote/vote_history_clear/'.$vid);?>";
+			}
+		});
 	};
 	function deleteField(vmid){
 		if(confirm("确认要删除吗？")){

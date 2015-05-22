@@ -370,6 +370,13 @@ class vote_lib
 	function ifengvote2web($vmid=0){
 		$ip=$this->CI->input->ip_address();
 		$_POST['openid']=$ip;
+		
+		$this->CI->load->module_library('oauth','oauth_lib');
+		$cookie=$this->CI->oauth_lib->getWechatCookie();
+		if($cookie['openid']){
+			$_POST['openid']=$cookie['openid'];
+		}
+		
 		$_POST['ip']=$ip;
 		$_POST['postid']=$vmid?$vmid:($_GET['vmid']+0);
 		return $this->ifengvote();
