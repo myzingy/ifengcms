@@ -23,6 +23,15 @@ class draw extends Admin_Controller
 		$data['module'] = 'draw';
 		$this->load->view($this->_container,$data);
 	}
+	function activity_clear($id=0){
+		$this->draw_model->delete('DH',array('did'=>$id));
+		$this->draw_model->update('D',array(
+			'view_num'=>0,
+			'ack_num'=>0,
+			'win_num'=>0,
+		),array('id'=>$id));
+		redirect($_SERVER['HTTP_REFERER'],'location');
+	}
 	function history($id){
 		$where=array('did'=>$id);
 		$limit=array('offset'=>$page,'limit'=>30);

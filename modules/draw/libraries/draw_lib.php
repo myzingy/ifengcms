@@ -24,6 +24,7 @@ class draw_lib
 		
 		$this->CI->validation->set_fields($fields);
 		$this->CI->validation->set_rules($rules);
+		$data['jsform']=rules_ci2js($rules,$fields);
 		if ( $this->CI->validation->run() === FALSE )
 		{
 			// Output any errors
@@ -67,6 +68,7 @@ class draw_lib
 		
 		$this->CI->validation->set_fields($fields);
 		$this->CI->validation->set_rules($rules);
+		$data['jsform']=rules_ci2js($rules,$fields);
 		if ( $this->CI->validation->run() === FALSE )
 		{
 			// Output any errors

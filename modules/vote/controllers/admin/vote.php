@@ -77,4 +77,9 @@ class vote extends Admin_Controller
 		$this->vote_model->delete('VM',array('id'=>$vmid));
 		die("OK");
 	}
+	function vote_history_clear($vid){
+		$this->vote_model->delete('VH',array('vid'=>$vid));
+		$this->vote_model->update('VM',array('count'=>0),array('vid'=>$vid));
+		redirect($_SERVER['HTTP_REFERER'],'location');
+	}
 }
