@@ -117,6 +117,7 @@ class special_lib
 				$serName=php_uname('s');
 				if(strstr($serName, 'Windows')===false){
 					//linux
+					exec("rm -rf $unziptarget");
 					exec("unzip -o $unzipfile -d $unziptarget");
 				}else{
 					include(FCPATH."modules/special/libraries/phpZip.php");
