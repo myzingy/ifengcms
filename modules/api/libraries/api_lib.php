@@ -470,7 +470,7 @@ class api_lib
 		$url=$this->CI->input->get('redirect_uri');
 		if(!$cookie['openid']){
 			$state=base64_encode($url);
-			$url='http://121.199.26.107:9999/auth.php?redirect_uri='.base64_encode(site_url('api/act/setWechatAuth')).'&scope=snsapi_base&state='.$state;
+			$url='http://121.43.155.126:9999/auth.php?redirect_uri='.base64_encode(site_url('api/act/setWechatAuth')).'&scope=snsapi_base&state='.$state;
 		}else{
 			if(strpos($url, '?')===false){
 				$url.='?';
