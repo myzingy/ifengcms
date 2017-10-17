@@ -5,3 +5,4 @@
 #dir
 /system/cache/*
 /system/logs/*
+/uploads/

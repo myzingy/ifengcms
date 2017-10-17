@@ -43,7 +43,10 @@ class draw_model extends Base_model
 		$data=array('id'=>0);
 		$type=$ceshiFlag?1:0;
 		if($res->num_rows()>0){
-			$this->update('DH',array('phone'=>$phone,'name'=>$name,'type'=>$type),array('did'=>$id,'openid'=>$openid));
+			$new_data=array('type'=>$type);
+			$name?$new_data['name']=$name:"";
+			$phone?$new_data['phone']=$phone:"";
+			$this->update('DH',$new_data,array('did'=>$id,'openid'=>$openid));
 			$row=$res->row();
 			$data['prize']=array(
 				'status'=>$row->pid?1:0,

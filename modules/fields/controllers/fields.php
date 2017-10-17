@@ -128,19 +128,41 @@ echo<<<ENDHTML
         <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="http://cms.wisheli.com/mnew/js/jquery.form.js"></script>
-		<script src="{$base_url}assets/js/webuploader.js"></script>
-		<script src="{$base_url}assets/js/swfupload/swfupload.js"></script>
-		<script src="{$base_url}assets/js/fields.form.js"></script>
-		<script src="{$base_url}assets/js/wechat.js"></script>
+		<script type="text/javascript">
+		//获取url参数
+		function getQueryString(name) { 
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+			var r = window.location.search.substr(1).match(reg); 
+			if (r != null) return unescape(r[2]); return null; 
+		}
+		//非IE以下增加上传的文件js
+		function add_uploadjs(){
+		    var script1=document.createElement("script");  
+		    var script2=document.createElement("script");  
+		    var script3=document.createElement("script");  
+		    script1.type="text/javascript";  
+		    script2.type="text/javascript";  
+		    script3.type="text/javascript";  
+		    script1.src="{$base_url}assets/js/webuploader.js";
+		    script2.src="{$base_url}assets/js/swfupload/swfupload.js";
+		    script3.src="{$base_url}assets/js/fields.form.js";
+		    $(script1).appendTo("head");
+		    $(script2).appendTo("head");
+		    $(script3).appendTo("head");
+		}
+		if(navigator.userAgent.indexOf("MSIE")>0){
+		  if(navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0 || navigator.userAgent.indexOf("MSIE 8.0")>0 || navigator.userAgent.indexOf("MSIE 9.0")>0){
+		  }else{
+		    add_uploadjs();
+		  }
+		}else{
+		    add_uploadjs();
+		}
+		</script>
 		<script type="text/javascript">
 			$(function(){
-				$.wechat({
-					title: $('title').text(), // 分享标题
-					desc: $('title').text(), // 分享描述
-				    link: location.href, // 分享链接
-				});
 				function Message() {
-					this.send = function(a, b) {
+					this.send = function(a, b) {	
 						window.postMessage ? a.postMessage(b, "*") : a.name = b
 					}
 				}

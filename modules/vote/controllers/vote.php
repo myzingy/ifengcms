@@ -26,7 +26,7 @@ class vote extends Public_Controller
 		}
 		if($vmid>0){//内容页
 			$data['page'] = $this->config->item('backendpro_template_dir') . "mobile_show";
-			
+
 			$res=$this->vote_model->getVoteDataList(array('id'=>$vmid),array('limit'=>1),false);
 			if($res->num_rows()>0){
 				$data['data']=$res->row();
@@ -36,9 +36,9 @@ class vote extends Public_Controller
 			
 		}else{
 			$data['page'] = $this->config->item('backendpro_template_dir') . "mobile_list";
-			$limit=array('offset'=>$page,'limit'=>30);
+			$limit=array('offset'=>$page,'limit'=>80);
 			$where=array('VM.vid'=>$vid);
-			$info=$this->vote_model->getVoteDataList($where,$limit,true,'code asc,id asc');
+			$info=$this->vote_model->getVoteDataList($where,$limit,true,'count desc,code asc,id asc');
 			if($info['data']->num_rows()>0){
 				foreach ($info['data']->result() as $k=>$r) {
 					$r->sn=$this->vote_model->getVoteMemberID($r,true);
@@ -73,16 +73,16 @@ class vote extends Public_Controller
 			$limit=$_GET['limit']?$_GET['limit']:500;
 		
 			$order=$_GET['order']?$_GET['order']:'code';
+			$status=$_GET['status']?$_GET['status']:'status';
 			$by=$_GET['by']?$_GET['by']:'asc';
 			$orderby="code asc,id asc";
 			if($order){
 				$orderby="$order $by";
 			}
 			$limit=array('offset'=>$page,'limit'=>$limit);
-			$where=array('VM.vid'=>$vid);
+			$where=array('VM.vid'=>$vid,'status'=>$status);
 			$info=$this->vote_model->getVoteDataList($where,$limit,true,$orderby);
 			$data['data']=array();
-			$data['status']=1;
 			if($info['data']->num_rows()>0){
 				foreach ($info['data']->result() as $k=>$r) {
 					$r->sn=$this->vote_model->getVoteMemberID($r,true);

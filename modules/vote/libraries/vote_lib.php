@@ -224,10 +224,10 @@ class vote_lib
 		foreach ($data as $key => $value) {
 			$data[$key]=$this->CI->input->post($key);
 		}
-		if(count($data['source_name'])>1){
+		if(count($data['source_name'])>0){
 			$data['source_name']=implode(',', $data['source_name']);
 		}
-		if(count($data['source_pic'])>1){
+		if(count($data['source_pic'])>0){
 			$data['source_pic_ext']=implode(',', $data['source_pic']);
 		}
 		$data['source_pic']=$data['source_pic'][0];
@@ -284,7 +284,6 @@ class vote_lib
 				return array('status'=>10000,'error'=>'投票活动不存在，请核对投票信息');
 			}
 			$istester=($vote->testip==$data['ip']);
-			console($vote->testip,$data['ip'],$istester);
 			//补齐投票前面的0
 			$data['vmid']=str_pad($data['vmid'], strlen($vote->enum), "0", STR_PAD_LEFT);
 			//获得被投票者信息
@@ -313,13 +312,13 @@ class vote_lib
 					$sql.=" AND `addtime` >= {$vote->stime}";
 				}
 				$res= $db->query( $sql );
-				if($res->num_rows()>0){
+				if($res->num_rows()>10){
 					
 					if($vote->displayurl){
 						$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
 						$display_url="\n<a href=\"".$vote->displayurl."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";
 					}else{
-						$display_url="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
+						$display_url="\n<a href=\"".site_url('vote_zh/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
 					}
 					return array('status'=>10000,'error'=>'你已经投过票了，当前'.($vote_member->count)."票!\n".$display_url);
 				}
@@ -356,7 +355,7 @@ class vote_lib
 				$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
 				$msg.="\n<a href=\"".$vote->displayurl."\">查看{$vote_member_name}</a>";
 			}else{
-				$msg.="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">查看{$vote_member_name}</a>";	
+				$msg.="\n<a href=\"".site_url('vote_zh/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">查看{$vote_member_name}</a>";	
 			}
 			return array('status'=>0,'msg'=>$msg,'count'=>$vote_count);
 			
@@ -379,6 +378,9 @@ class vote_lib
 		
 		$_POST['ip']=$ip;
 		$_POST['postid']=$vmid?$vmid:($_GET['vmid']+0);
+		if($_POST['postid']=='3615'){
+			return array('status'=>10000,'error'=>json_encode($_POST));
+		}
 		return $this->ifengvote();
 	}
 }

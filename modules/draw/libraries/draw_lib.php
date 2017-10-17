@@ -112,7 +112,8 @@ class draw_lib
 		redirect('draw/admin/draw/activity/','location');
 	}
 	function dodraw($id){
-		$ceshiFlag=true;
+		$ceshiFlag=false;
+		// $ceshiFlag=true;
 		//315活动特殊处理$id
 		$id=$this->create_id_315($id);
 		
@@ -150,12 +151,12 @@ class draw_lib
 				return array('status'=>10000,'error'=>'手机号填写错误！');
 			}
 		}
-		if($cookie['openid']){
-			$ceshiFlag=false;
-		}else{
-			$ceshiFlag=true;
-			$name="[测]".$name;
-		}
+		// if($cookie['openid']){
+		// 	$ceshiFlag=false;
+		// }else{
+		// 	$ceshiFlag=true;
+		// 	$name="[测]".$name;
+		// }
 		//检查用户并入库
 		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
 		$history_id=$history['id'];
@@ -228,21 +229,22 @@ class draw_lib
 		}
 		$this->CI->load->module_library('oauth','oauth_lib');
 		$cookie=$this->CI->oauth_lib->getWechatCookie();
-		if($cookie['openid']){
-			$openid=$cookie['openid'];
-		}
+		// if($cookie['openid']){
+		// 	$openid=$cookie['openid'];
+		// }
 		if(!$name){
 			return array('status'=>10000,'error'=>'必填填写姓名！');
 		}
 		if(!$phone || !preg_match("/^1[0-9]{10}$/", $phone)){
 			return array('status'=>10000,'error'=>'手机号填写错误！');
 		}
-		if($cookie['openid']){
-			$ceshiFlag=false;
-		}else{
-			$ceshiFlag=true;
-			$name="[测]".$name;
-		}
+		$ceshiFlag=false;
+		// if($cookie['openid']){
+		// 	$ceshiFlag=false;
+		// }else{
+		// 	$ceshiFlag=true;
+		// 	$name="[测]".$name;
+		// }
 		$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
 		$info['status']=0;
 		return $info;

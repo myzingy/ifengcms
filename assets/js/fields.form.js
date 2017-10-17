@@ -56,7 +56,7 @@ $(function(){
 	//location.hash=$(document).height();
 	var $exp = $('.kiss_upload_photo .photo .exp');
 	if($exp.length>0){
-		function getFlashVersion() {
+		function getFlashVersion(){
             var version;
     
             try {
@@ -112,7 +112,7 @@ $(function(){
 	        }
 	    };
 	    var uploadError=function(file, ret) {
-	    	console.log(file,ret);
+	    	//console.log(file,ret);
 	    	alertx('上传失败，请换一张照片');
 	    };
 	    var uploadProgress=function(){
@@ -130,7 +130,7 @@ $(function(){
 	    	});
 	    };
 	    if(isMobile){
-	    	console.log('使用html5初始化==>');
+	    	//console.log('使用html5初始化==>');
 	    	$input=$uploadBtn.find('input');
 	    	$input.prependTo($('.kiss_upload_photo .photo'));
 	    	$input.css({
@@ -168,8 +168,8 @@ $(function(){
 				});
 			});
 	    }else{
-	    	if(!isIE){
-				console.log('使用WebUploader初始化==>');
+	    	// if(!isIE){
+				//console.log('使用WebUploader初始化==>');
 				var uploader = WebUploader.create({
 			    	swf: base_url+'assets/js/webuploader0.1.5/Uploader.swf',
 			        server: Kiss.sApi, // 文件接收服务端
@@ -201,78 +201,78 @@ $(function(){
 			    uploader.on('uploadError', function(file, ret) {
 			    	uploadError(file, ret);
 			    });
-			}else{
-				console.log('使用swfupload初始化==>');
-				//$('.kiss_upload_photo').css({width:150,height:30});
-				var but_height=45;
-				var up_width=$('.kiss_upload_photo').width()-12;
-				var up_height=$('.kiss_upload_photo').height()-40;
-				$('<div id="buttonPlaceholderDiv" style="padding-top:'+((up_height-but_height)/2)+'px;"><div id="buttonPlaceholder"></div></div>').appendTo('.kiss_upload_photo .photo');
-				//使用swfupload初始化
-				var settings={
-					flash_url : base_url+"assets/js/swfupload/swfupload.swf",
-					file_post_name:"pic1",
+			// }else{
+			// 	console.log('使用swfupload初始化==>');
+			// 	//$('.kiss_upload_photo').css({width:150,height:30});
+			// 	var but_height=45;
+			// 	var up_width=$('.kiss_upload_photo').width()-12;
+			// 	var up_height=$('.kiss_upload_photo').height()-40;
+			// 	$('<div id="buttonPlaceholderDiv" style="padding-top:'+((up_height-but_height)/2)+'px;"><div id="buttonPlaceholder"></div></div>').appendTo('.kiss_upload_photo .photo');
+			// 	//使用swfupload初始化
+			// 	var settings={
+			// 		flash_url : base_url+"assets/js/swfupload/swfupload.swf",
+			// 		file_post_name:"pic1",
 					
-					upload_url: Kiss.sApi,
-					post_params: {"name" : "test"},
+			// 		upload_url: Kiss.sApi,
+			// 		post_params: {"name" : "test"},
 					
-					// File Upload Settings
-					file_size_limit : '10MB',  	// 1000MB
-					file_types : '*.jpg;*.jpeg;*.gif;*.png',    //*.*
-					file_types_description : "Web Image Files",//"Web Image Files",
-					file_upload_limit : 1,//20
-					file_queue_limit : 0,
+			// 		// File Upload Settings
+			// 		file_size_limit : '10MB',  	// 1000MB
+			// 		file_types : '*.jpg;*.jpeg;*.gif;*.png',    //*.*
+			// 		file_types_description : "Web Image Files",//"Web Image Files",
+			// 		file_upload_limit : 1,//20
+			// 		file_queue_limit : 0,
 					
-					//file_queue_error_handler : fileQueueError,
-					file_dialog_complete_handler : function(){
-						//选择好文件后提交
-						this.startUpload();
-					},
-					//file_queued_handler : fileQueued,
-					swfupload_load_failed_handler : swfUploadLoadFailed, //swf 加载失败
-					swfupload_loaded_handler : swfUploadLoaded,  //swf 加载完成
+			// 		//file_queue_error_handler : fileQueueError,
+			// 		file_dialog_complete_handler : function(){
+			// 			//选择好文件后提交
+			// 			this.startUpload();
+			// 		},
+			// 		//file_queued_handler : fileQueued,
+			// 		swfupload_load_failed_handler : swfUploadLoadFailed, //swf 加载失败
+			// 		swfupload_loaded_handler : swfUploadLoaded,  //swf 加载完成
 					
-					upload_start_handler: startUpload,
-					upload_progress_handler : uploadProgress,
-					upload_error_handler : uploadError,
-					upload_success_handler : uploadSuccess,
-					upload_complete_handler : uploadComplete,
+			// 		upload_start_handler: startUpload,
+			// 		upload_progress_handler : uploadProgress,
+			// 		upload_error_handler : uploadError,
+			// 		upload_success_handler : uploadSuccess,
+			// 		upload_complete_handler : uploadComplete,
 		
-					// Button Settings
-					//button_image_url : base_url+"assets/js/swfupload/select-files-min.png",
-					//button_image_url : "http://p1.qhimg.com/t0166c44746ba2e85d1.png",
-					button_placeholder_id : "buttonPlaceholder",
-					//button_placeholder:$('.kiss_upload_photo .photo .upload_btn')[0],
-					button_width: up_width,
-					button_height: up_height-but_height,
-					button_text : '<span>&nbsp;</span><img width="100%"  src="'+base_url+'assets/js/swfupload/select-files-min.png"/>',
-					custom_settings : {
-						photoContainer_Id   : "photoContainer",  	//图片的容器id
-						btnUpload_ID		: "btnUpload",          //上传按钮
-						insertAll_Id		: "insertAll", 			//全部插入
-						clearAll_Id			: "clearAll", 			//全部清空
-					   	errorMsg_Id			: "errorMsg",  			//错误信息
-					  	errorMsg_fadeOutTime: 2000  				//错误信息谈出的时间
-					},
-					// Debug Settings
-					debug: false,   //是否显示调试窗口
-					auto_upload:true
-				};
-				setTimeout(function (){swfu = new SWFUpload(settings);},0);
-				//swf 加载失败
-				function swfUploadLoadFailed() {
-					//clearTimeout(this.customSettings.loadingTimeout);
-					var message='<div id="divAlternateContent" style="background-color: #FFFF66; text-align:center;">'
-							+'<a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank"><font color="red">请安装或者升级您的Flash插件!</font></a></div>';
-				}
+			// 		// Button Settings
+			// 		//button_image_url : base_url+"assets/js/swfupload/select-files-min.png",
+			// 		//button_image_url : "http://p1.qhimg.com/t0166c44746ba2e85d1.png",
+			// 		button_placeholder_id : "buttonPlaceholder",
+			// 		//button_placeholder:$('.kiss_upload_photo .photo .upload_btn')[0],
+			// 		button_width: up_width,
+			// 		button_height: up_height-but_height,
+			// 		button_text : '<span>&nbsp;</span><img width="100%"  src="'+base_url+'assets/js/swfupload/select-files-min.png"/>',
+			// 		custom_settings : {
+			// 			photoContainer_Id   : "photoContainer",  	//图片的容器id
+			// 			btnUpload_ID		: "btnUpload",          //上传按钮
+			// 			insertAll_Id		: "insertAll", 			//全部插入
+			// 			clearAll_Id			: "clearAll", 			//全部清空
+			// 		   	errorMsg_Id			: "errorMsg",  			//错误信息
+			// 		  	errorMsg_fadeOutTime: 2000  				//错误信息谈出的时间
+			// 		},
+			// 		// Debug Settings
+			// 		debug: false,   //是否显示调试窗口
+			// 		auto_upload:true
+			// 	};
+			// 	setTimeout(function (){swfu = new SWFUpload(settings);},0);
+			// 	//swf 加载失败
+			// 	function swfUploadLoadFailed() {
+			// 		//clearTimeout(this.customSettings.loadingTimeout);
+			// 		var message='<div id="divAlternateContent" style="background-color: #FFFF66; text-align:center;">'
+			// 				+'<a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank"><font color="red">请安装或者升级您的Flash插件!</font></a></div>';
+			// 	}
 				
-				//swf 加载 完成
-				function swfUploadLoaded() {
-					//var self = this;
-					//clearTimeout(this.customSettings.loadingTimeout);
-					$("#"+this.customSettings.btnUpload_ID).click(function (){swfu.startUpload()});
-				}
-			}
+			// 	//swf 加载 完成
+			// 	function swfUploadLoaded() {
+			// 		//var self = this;
+			// 		//clearTimeout(this.customSettings.loadingTimeout);
+			// 		$("#"+this.customSettings.btnUpload_ID).click(function (){swfu.startUpload()});
+			// 	}
+			// }
 	    }
 	   	
 	    

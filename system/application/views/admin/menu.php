@@ -85,7 +85,8 @@ Examples can be seen below for menu_bep_system
     <?php if(check('vote',NULL,FALSE)):?>
     <li id="menu_bep_system_vote"><span class="icon_computer">投票管理</span>
         <ul>
-        	<li><?php print anchor('vote/admin/vote/index','投票管理',array('class'=>'icon_application'))?></li>
+        	<li><?php print anchor('vote/admin/vote/index','凤凰陕西投票管理',array('class'=>'icon_application'))?></li>
+        	<li><?php print anchor('vote_zh/admin/vote/index','中韩交流投票管理',array('class'=>'icon_application'))?></li>
         </ul>
     </li>
     <?php endif;?>

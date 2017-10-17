@@ -426,29 +426,29 @@
                       <label class="control-label valtype" data-valtype="label_imgfile">Image Button</label>
                        <!-- File Upload -->
                       <div class="controls">
-	                  	<div class="kiss_upload_photo">
-						    <div class="photo">
-						        <div class="kiss_loading"></div>
-						        <div class="exp"></div>
-						        <div class="upload_btn webuploader-container">
-							        <div class="webuploader-pick"></div>
-							        <div id="rt_rt_18u5iu5do84v44rb941c1j164r1" style="position: absolute; top: 0px; left: 0px; width: 254px; height: 210px; overflow: hidden; bottom: auto; right: auto;">
-							        	<input type="file" name="图片" class="webuploader-element-invisible" accept="image/*">
-							        	<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"></label>
-							        </div>
-							    </div>
-							</div>
-					    </div>
-					    <div class="kiss_upload_success">
-						    <div class="photo">
-						        <div class="preview">
-						            <img src="./assets/blank.gif">
-						        </div>
-						    </div>
-						    <div class="msg"></div>
-						</div>
-					  </div>
-					</div>  
+                        <div class="kiss_upload_photo">
+                          <div class="photo">
+                            <div class="kiss_loading"></div>
+                            <div class="exp"></div>
+                            <div class="upload_btn webuploader-container">
+                              <div class="webuploader-pick"></div>
+                              <div id="rt_rt_18u5iu5do84v44rb941c1j164r1" style="position: absolute; top: 0px; left: 0px; width: 254px; height: 210px; overflow: hidden; bottom: auto; right: auto;">
+                                <input type="file" name="图片" class="webuploader-element-invisible" accept="image/*">
+                                <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+            					  <div class="kiss_upload_success">
+            						    <div class="photo">
+            						        <div class="preview">
+            						            <img src="./assets/blank.gif">
+            						        </div>
+            						    </div>
+            						    <div class="msg"></div>
+            						</div>
+					           </div>
+					        </div>  
                     
                     <div class="control-group component" data-type="text" rel="popover" title="Text Input" trigger="manual" data-content="
                       &lt;form class=&#39;form&#39;&gt;
@@ -581,5 +581,12 @@ $(function(){
     <script src="./assets/jquery.form.min.js"></script>
     <script src="./assets/bootstrap.min.js"></script>
     <script src="./assets/fb.js"></script>
+    <script>
+      function getQueryString(name) { 
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+        var r =   .search.substr(1).match(reg); 
+        if (r != null) return unescape(r[2]); return null; 
+      } 
+    </script>
 	<div id="style_script"></div>
 </body></html>

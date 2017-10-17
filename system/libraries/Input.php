@@ -371,6 +371,11 @@ class CI_Input {
 			$this->ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		}
 
+		if ($this->server('HTTP_X_FORWARDED_FOR'))
+		{
+			$this->ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+
 		if ($this->ip_address === FALSE)
 		{
 			$this->ip_address = '0.0.0.0';
