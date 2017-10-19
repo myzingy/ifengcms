@@ -20,6 +20,7 @@ class vote_lib
 		$fields['subject'] = "活动简介";
 		$fields['remoteurl'] = "外部服务地址";
 		$fields['displayurl'] = "外部展示地址";
+		$fields['background'] = "背景色";
 		
 		$rules['title'] = 'trim|required|max_length[64]';
 		$rules['snum'] = 'trim|integer|min_number[0]|max_number[9999]';
@@ -28,6 +29,7 @@ class vote_lib
 		$rules['etime'] = 'trim|required';
 		$rules['remoteurl'] = 'trim';
 		$rules['displayurl'] = 'trim';
+		$rules['background'] = 'trim';
 		
 		$this->CI->validation->set_fields($fields);
 		$this->CI->validation->set_rules($rules);
@@ -65,6 +67,40 @@ class vote_lib
 		}
 		$data['etime']=strtotime($data['etime']);
 		$data['stime']=strtotime($data['stime']);
+
+        if ($_FILES['thumb']['name']){ //需要图片
+            //game thumb
+            $day=date('Ymd',TIME);
+            $path='uploads/'.$day;
+            $dir=FCPATH.$path;
+            $filename=$day.rand(10000,99999);
+            @mkdir($dir,0777);
+            $config['upload_path'] = $dir;
+            $config['allowed_types'] = 'jpg|jpeg|png|bmp';
+            $config['max_size'] = 1024*8;
+            $config['max_width']  = 8000;
+            $config['max_height']  = 8000;
+            //$config['file_name'] = $filename;
+            $config['encrypt_name'] = true;
+            $this->CI->load->library('upload', $config);
+            
+            $imgflag=false;
+            
+            if (!$this->CI->upload->do_upload('thumb'))
+            {
+                $upload = $this->CI->upload->display_errors();
+            } 
+            else
+            {
+                $upload = $this->CI->upload->data();
+            }
+            if(is_array($upload)){
+                $imgflag=true;
+                $data['thumb']=base_url().$path.'/'.$upload['file_name'];
+            }
+            //if(!$imgflag) flashMsg('info','你本次操作没有上传任何图片。');
+        }
+
 		if($data['enum'] || $data['snum']){
 			if($data['enum']>$data['snum']){
 				if($data['etime']>$data['stime']){
@@ -94,6 +130,7 @@ class vote_lib
 				$info= array('status'=>10000,'error'=>'结束号码必须大于开始号码');
 			}
 		}else{
+
 			if($id>0){
 				$this->CI->vote_model->update('V',$data,array('id'=>$id));
 			}else{
@@ -111,6 +148,7 @@ class vote_lib
 		$fields['code'] = "号码";
 		$fields['count'] = "票数";
 		$fields['info'] = "简介";
+		$fields['custom'] = "自定义字段";
 		
 		$rules['name'] = 'trim|required';
 		$rules['code'] = 'trim|integer|min_number[1]|max_number[2000]';
@@ -312,13 +350,13 @@ class vote_lib
 					$sql.=" AND `addtime` >= {$vote->stime}";
 				}
 				$res= $db->query( $sql );
-				if($res->num_rows()>10){
+				if($res->num_rows()>=$vote->vote_max){
 					
 					if($vote->displayurl){
 						$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
 						$display_url="\n<a href=\"".$vote->displayurl."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";
 					}else{
-						$display_url="\n<a href=\"".site_url('vote_zh/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
+						$display_url="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">{$vote_member->name}想你了，赶快邀请更多朋友关注我们投票吧！</a>";	
 					}
 					return array('status'=>10000,'error'=>'你已经投过票了，当前'.($vote_member->count)."票!\n".$display_url);
 				}

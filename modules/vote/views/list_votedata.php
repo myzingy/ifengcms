@@ -11,6 +11,10 @@
     <?php print  $this->bep_assets->icon('lightning');?>
     	自动导入数据
     </a>
+    <a href="<?php print  site_url('vote/admin/vote/export/'.$vid)?>">
+    <?php print  $this->bep_assets->icon('lightning');?>
+    	导出数据
+    </a>
     <a target="_blank" href="<?php print  site_url('vote/ifengvotedata/json/'.$vid.'?limit=10&callback=jQuery1234567890')?>">
     <?php print  $this->bep_assets->icon('page');?>
     	外部数据接口

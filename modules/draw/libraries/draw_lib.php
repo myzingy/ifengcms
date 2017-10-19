@@ -61,10 +61,12 @@ class draw_lib
 		$fields['title'] = "活动名称";
 		$fields['stime'] = "开始时间";
 		$fields['etime'] = "结束时间";
+        $fields['draw_max'] = "抽奖次数";
 		
 		$rules['title'] = 'trim|required|max_length[100]';
 		$rules['stime'] = 'trim|required';
 		$rules['etime'] = 'trim|required';
+		$rules['draw_max'] = 'trim|required';
 		
 		$this->CI->validation->set_fields($fields);
 		$this->CI->validation->set_rules($rules);
@@ -158,7 +160,11 @@ class draw_lib
 		// 	$name="[测]".$name;
 		// }
 		//检查用户并入库
-		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag);
+        $draw_max = !empty($info['draw']->draw_max) ? intval($info['draw']->draw_max) : 1;
+        if($draw_max<1) {
+            $draw_max = 1;
+        }
+		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag, $draw_max);
 		$history_id=$history['id'];
 		if($history_id<1){
 			return array('status'=>10000,'error'=>'你已经抽过奖了！','prize'=>$history['prize']);

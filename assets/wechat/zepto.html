@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>zepto测试页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- 为了确保适当的绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 可以禁用其缩放（zooming）功能 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 对手机设备的一些设置 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <!--//将此JS放入head部分，用户获取用户openid-->
+    <script type="text/javascript">
+        var PUBLIC__WECHAT_OPENID = Math.random();
+    </script>
+    <script type="text/javascript" src='js/getWechatAuth.js'></script>
+    <script type="text/javascript">alert(PUBLIC__WECHAT_OPENID);</script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/wechat_share_zepto.js"></script>
+    <script type="text/javascript">
+        // 微信分享
+        var sharecfj = {
+            title:'zepto测试页面', // 分享标题
+            desc:'zepto测试页面', // 分享描述
+            link: location.href, // 分享链接
+            imgUrl: 'http://cms.wisheli.com/uploads/special/wxb/images/share.jpg' //分享图标
+        }
+        $wx=new $.fn.wechat();
+        $wx.share(sharecfj);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

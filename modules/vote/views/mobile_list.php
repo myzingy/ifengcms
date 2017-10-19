@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/app.css?43trfh">
 <script type="text/javascript" src="<?php print base_url()?>assets/vote_m_host2015/js/jquery-1.9.1.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="http://www.duduxy.com/wechat/js/wechat_share_jquery.js"></script>
+<script type="text/javascript" src="<?php print base_url()?>assets/wechat/js/wechat_share_jquery.js"></script>
 <script type="text/javascript">
     // 微信分享
     var sharecfj = {
@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<section class="page page_list">
+<section class="page page_list"<?php if(!empty($background)): ?> style="background:<?php echo $background; ?>"<?php endif; ?>>
     <div class="tip_cont">
         <div class="cont_v">
             <div class="btn openbtn animated">
@@ -44,19 +44,25 @@
             </div>
         </div>
     </div>
-    <div class="banner"><img src="<?php print base_url()?>assets/vote_m_host2015/images/banner.png"></div>
+    <div class="banner"><img src="<?php if(!empty($thumb)): ?><?php echo $thumb; ?><?php else: ?><?php print base_url()?>assets/vote_m_host2015/images/banner.png<?php endif; ?>"></div>
     <ul class="players">
 		<?php if($data):foreach($data as $r):?>
         <li class="player fl">
             <div class="img">
                 <a href="<?php print $r->url;?>" class="img"><img src="<?php print $r->thumb?$r->thumb:(base_url() . '/images/head.jpg');?>" onerror="this.src='<?php print base_url() . 'assets/images/head.jpg';?>';"></a>
-                <span class="status"><?php print $r->status;?>强<span>
             </div>
             <div class="infor1">
                 <?php print $r->get_status;?>
                 <span class="fl"><?php print $r->name;?></span>
                 <span class="fr"><?php print $r->info;?></span>
                 <div class="clear"></div>
+
+                <?php if( !empty($r->custom) ): ?>
+                <?php $custom = explode('#line#', $r->custom); ?>
+                <?php foreach($custom as $value): ?>
+                <p><?php echo $value; ?></p>
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="infor2">
                 <div class="fl no">NO:<span class="num"><?php print $r->sn;?></span></div>

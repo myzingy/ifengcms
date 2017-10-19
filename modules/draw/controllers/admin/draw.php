@@ -46,6 +46,26 @@ class draw extends Admin_Controller
 		//echo $this->draw_model->db->last_query();
 		$this->load->view($this->_container,$data);
 	}
+    function export($id)
+    {
+		$where=array('did'=>$id);
+		$limit=array('offset'=>$page,'limit'=>30);
+		$info=$this->draw_model->getHistoryList($where,$limit,true);
+		$members = $info['data']->result_array();
+
+        $filename = md5(time());
+        header("Content-Type: text/csv");  
+        header("Content-Disposition: attachment; filename={$filename}.csv");  
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');  
+        header('Expires:0');  
+        header('Pragma:public'); 
+        
+        echo "姓名,电话,奖品,OpenId,中奖时间\n";
+        foreach($members as $member){
+            $datetime = date('Y-m-d H:i:s', $member['addtime']);
+            echo "{$member['name']},{$member['phone']},{$member['pname']},{$member['openid']},{$datetime}\n";
+        }
+    }
 	function prize(){
 		$limit=array('offset'=>$page,'limit'=>30);
 		$data['params']=$this->uri->getParamsArr();

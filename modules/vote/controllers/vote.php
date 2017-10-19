@@ -23,6 +23,8 @@ class vote extends Public_Controller
 		if($res->num_rows()>0){
 			$vote=$res->row();
 			$data['title']=$data['header'] = $vote->title;
+			$data['thumb'] = $vote->thumb;
+			$data['background'] = $vote->background;
 		}
 		if($vmid>0){//内容页
 			$data['page'] = $this->config->item('backendpro_template_dir') . "mobile_show";
@@ -36,7 +38,7 @@ class vote extends Public_Controller
 			
 		}else{
 			$data['page'] = $this->config->item('backendpro_template_dir') . "mobile_list";
-			$limit=array('offset'=>$page,'limit'=>80);
+			$limit=array('offset'=>$page,'limit'=>3000);
 			$where=array('VM.vid'=>$vid);
 			$info=$this->vote_model->getVoteDataList($where,$limit,true,'count desc,code asc,id asc');
 			if($info['data']->num_rows()>0){

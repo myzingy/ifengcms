@@ -8,6 +8,12 @@
     	只看中奖者
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="<?php print  site_url('draw/admin/draw/export/'.$id)?>">
+    <?php print  $this->bep_assets->icon('lightning');?>
+    	导出数据
+    </a>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="<?php print site_url('draw/admin/draw/history/'.$id);?>">
     <?php print  $this->bep_assets->icon('add');?>
     	查看全部

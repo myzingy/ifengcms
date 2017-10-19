@@ -35,11 +35,26 @@
                 </select>
             </li>
             <li>
+                <label for="enum">每人每天最多投多少票</label>
+                <input type="text" name="vote_max" id="vote_max" class="text" value="<?php print $editinfo['vote_max'];?>"/>
+            </li>
+            <li>
             	<label for="testip">测试IP</label>
                 <input type="text" name="testip" id="testip" class="text" value="<?php print $testip;?>"/>
                 <?php if($editinfo['testip']):?>
                                                             当前IP：<?php print $editinfo['testip'];?>
                 <?php endif;?>
+            </li>
+            <li>
+                <label for="thumb">头图
+                <?php if($editinfo['thumb']):?>
+                <img style="margin-top: -20px; margin-left: 10px;" width="50" height="50" src="<?php print $editinfo['thumb'];?>" />
+                <?php endif;?></label>
+                <input type="file" name="thumb" id="thumb" class="text" value="<?php print $editinfo['enum'];?>"/>
+            </li>
+            <li>
+                <label for="enum">背景色</label>
+                <input type="text" name="background" id="background" class="text" value="<?php print $editinfo['background'];?>"/>
             </li>
             <li>
                 <label for="subject">活动简介</label>
@@ -58,7 +73,7 @@
             </li>
             <li class="submit">
             	<div class="buttons">
-            		<button type="submit" class="positive" name="submit" value="submit">
+            		<button type="submit" class="positive" value="submit">
             			<?php print $this->bep_assets->icon('key') ?>
             			提交
             		</button>

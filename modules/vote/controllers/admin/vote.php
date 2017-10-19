@@ -45,6 +45,26 @@ class vote extends Admin_Controller
 		$data['module'] = 'vote';
 		$this->load->view($this->_container,$data);
 	}
+    public function export($id)
+    {
+		$limit=array('offset'=>$page,'limit'=>10000000);
+		$where=array('VM.vid'=>$id);
+		$info=$this->vote_model->getVoteDataList($where,$limit,true,'count desc');
+
+        $members = $info['data']->result_array();
+        
+        $filename = md5(time());
+        header("Content-Type: text/csv");  
+        header("Content-Disposition: attachment; filename={$filename}.csv");  
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');  
+        header('Expires:0');  
+        header('Pragma:public'); 
+        
+        echo "号码,名称,票数\n";
+        foreach($members as $member){
+            echo "{$member['code']},{$member['name']},{$member['count']}\n";
+        }
+    }
 	function autovotedata($vid){
 		// Display Page
 		$data['header'] = '导入投票数据';

@@ -30,7 +30,7 @@ class draw_model extends Base_model
 		$this->db->update($this->_TABLES['D']);
 		return $info;
 	}
-	function setDrawHistory($id,$openid,$name,$phone,$ceshiFlag){
+	function setDrawHistory($id,$openid,$name,$phone,$ceshiFlag, $draw_max=1){
 		//$res=$this->fetch('DH','*',null,array('did'=>$id,'phone'=>$phone));
 		$this->db->select('*');
 		$this->db->from($this->_TABLES['DH']." DH");
@@ -42,7 +42,7 @@ class draw_model extends Base_model
 		$res=$this->db->get();
 		$data=array('id'=>0);
 		$type=$ceshiFlag?1:0;
-		if($res->num_rows()>0){
+		if($res->num_rows()>=$draw_max){
 			$new_data=array('type'=>$type);
 			$name?$new_data['name']=$name:"";
 			$phone?$new_data['phone']=$phone:"";

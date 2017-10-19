@@ -20,6 +20,10 @@
                 <input type="text" name="etime" id="etime" class="text" value="<?php print date('Y-m-d H:i:s',$editinfo['draw']->etime?$editinfo['draw']->etime:(TIME+7*86400));?>"/>
             </li>
             <li>
+                <label for="enum">每人每天最多最多抽奖次数<font color="red">*</font></label>
+                <input type="text" name="draw_max" id="draw_max" class="text" value="<?php print $editinfo['draw']->draw_max;?>"/>
+            </li>
+            <li>
                 <label for="title">奖品ID<font color="red">*</font></label>
                 <?php
                 $prize=$editinfo['prize'];

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/app.css?43trfh">
 <script type="text/javascript" src="<?php print base_url()?>assets/vote_m_host2015/js/jquery-1.9.1.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="http://www.duduxy.com/wechat/js/wechat_share_jquery.js"></script>
+<script type="text/javascript" src="<?php print base_url()?>assets/wechat/js/wechat_share_jquery.js"></script>
 <script type="text/javascript">
     // 微信分享
     var sharecfj = {
@@ -49,12 +49,18 @@
         <div class="player">
             <div class="img">
                 <a><img src="<?php print $data->thumb?$data->thumb:(base_url() . '/images/head.jpg');?>" onerror="this.src='<?php print base_url() . 'assets/images/head.jpg';?>';"></a>
-                <span class="status"><?php print $data->status;?>强<span>
             </div>
             <div class="infor1">
                 <span class="fl"><?php print $data->name;?></span>
-                <span class="fr"><?php print $data->infor;?></span>
+                <span class="fr"><?php print $data->info;?></span>
                 <div class="clear"></div>
+
+                <?php if( !empty($data->custom) ): ?>
+                <?php $custom = explode('#line#', $data->custom); ?>
+                <?php foreach($custom as $value): ?>
+                <p><?php echo $value; ?></p>
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="infor2">
                 <div class="fl no">NO:<span class="num"><?php print $data->sn;?></span></div>

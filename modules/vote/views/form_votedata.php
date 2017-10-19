@@ -32,6 +32,11 @@
                 <textarea name="info" class="text" rows="10"><?php print $editinfo['info'];?></textarea>
                 <label for="info" generated="true" class="error" style="display: inline-block;"></label>
             </li>
+            <li>
+                <label for="custom">自定义字段</label>
+                <textarea name="custom" class="text" rows="10"><?php print $editinfo['custom'];?></textarea>
+                <label for="custom" generated="true" class="error" style="display: inline-block;">格式：作品名#：测试，多个字段时以“#line#”分隔开</label>
+            </li>
             <li class="submit">
             	<div class="buttons">
             		<button type="submit" class="positive" value="submit">
