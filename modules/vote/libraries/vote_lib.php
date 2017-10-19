@@ -21,6 +21,7 @@ class vote_lib
 		$fields['remoteurl'] = "外部服务地址";
 		$fields['displayurl'] = "外部展示地址";
 		$fields['background'] = "背景色";
+		$fields['vote_max'] = "投票次数";
 		
 		$rules['title'] = 'trim|required|max_length[64]';
 		$rules['snum'] = 'trim|integer|min_number[0]|max_number[9999]';
@@ -30,6 +31,7 @@ class vote_lib
 		$rules['remoteurl'] = 'trim';
 		$rules['displayurl'] = 'trim';
 		$rules['background'] = 'trim';
+        $rules['vote_max'] = 'trim|required';
 		
 		$this->CI->validation->set_fields($fields);
 		$this->CI->validation->set_rules($rules);
