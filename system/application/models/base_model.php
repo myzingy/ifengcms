@@ -234,6 +234,7 @@ class Base_model extends Model
 		$config['total_rows'] = $datanum;
 		$config['per_page'] = $per_page;
 		$config['cur_page'] = $this->page;
+		$config['num_links'] = 9;
 		
 		$config['full_tag_open'] = '<nav class="pagination loop-pagination">';
 		$config['full_tag_close'] = '<nav>';
