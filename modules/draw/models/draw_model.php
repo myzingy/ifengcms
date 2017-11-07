@@ -53,10 +53,25 @@ class draw_model extends Base_model
 				'name'=>$row->pname,
 				'time'=>date('Y-m-d H:i:s',$row->addtime)
 			);
-		}else{
-			$this->insert('DH',array('did'=>$id,'phone'=>$phone,'name'=>$name,'addtime'=>TIME,'openid'=>$openid,'type'=>$type));
-			$data['id']=$this->db->insert_id();
+
+            return $data;
 		}
+
+		$this->db->select('DH.*');
+		$this->db->from($this->_TABLES['DH'] ." DH");
+   		if($phone){
+			$this->db->where(" did='$id' and (phone='{$phone}' or openid='{$openid} AND pid IS NOT NULL') ",null,false);
+		}else{
+			$this->db->where(" did='$id' and openid='{$openid}' AND pid IS NOT NULL ",null,false);
+		}
+        $res=$this->db->get();
+        if($res->num_rows()> 0){
+            return array('id' => 0);
+        }
+			
+        $this->insert('DH',array('did'=>$id,'phone'=>$phone,'name'=>$name,'addtime'=>TIME,'openid'=>$openid,'type'=>$type));
+		$data['id']=$this->db->insert_id();
+	
 		return $data;
 	}
 	function updatePrizeStockNum($id){

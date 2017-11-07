@@ -24,6 +24,7 @@ class vote extends Public_Controller
 			$vote=$res->row();
 			$data['title']=$data['header'] = $vote->title;
 			$data['thumb'] = $vote->thumb;
+			$data['thumb2'] = $vote->thumb2;
 			$data['background'] = $vote->background;
 		}
 		if($vmid>0){//内容页

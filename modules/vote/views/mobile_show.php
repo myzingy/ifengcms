@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<section class="page page_show">
+<section class="page page_show"<?php if(!empty($background)): ?> style="background:<?php echo $background; ?>"<?php endif; ?>>
     <div class="tip_cont">
         <div class="cont_v">
             <div class="btn openbtn animated">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="banner"><img src="<?php print base_url()?>assets/vote_m_host2015/images/head_ad.png"></div>
+    <div class="banner"><img src="<?php if(!empty($thumb2)): ?><?php echo $thumb2; ?><?php else: ?><?php print base_url()?>assets/vote_m_host2015/images/head_ad.png<?php endif; ?>"></div>
     <div class="players">
         <div class="player">
             <div class="img">

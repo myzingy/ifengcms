@@ -46,6 +46,41 @@ class fields extends Admin_Controller
 		$data['module'] = 'fields';
 		$this->load->view($this->_container,$data);
 	}
+    public function export($fid=0)
+    {
+		$res=$this->fields_model->fetch('F','*',null,array('id'=>$fid));
+		if($res->num_rows()>0){
+			$field=$res->row();
+			$table=$this->fields_model->fileds_table_prefix.$field->tab_name;
+			$data['fid']=$fid;
+			$data['dbkey']=json_decode($field->fields_json,true);
+			$fields=$this->fields_model->db->list_fields($table);
+			$data['tab_index']=$fid;
+		} else{
+            die('没有数据');
+        }
+
+        $this->fields_model->db->select('*');
+        $this->fields_model->db->from($table);
+        $this->fields_model->db->order_by('id desc');
+
+        $rows = $this->fields_model->db->get()->result_array();
+
+        //print_r($data['fields']);exit;
+        
+        $filename = md5(time());
+        header("Content-Type: text/csv");  
+        header("Content-Disposition: attachment; filename={$filename}.csv");  
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');  
+        header('Expires:0');  
+        header('Pragma:public'); 
+        
+        echo sprintf("%s\n", implode(',', $fields));
+        foreach($rows as $row){
+            echo sprintf("%s\n", implode(',', $row));
+        }
+    }
+
 	function formdata($fid=0){
 		$res=$this->fields_model->fetch('F','*',null,array('id'=>$fid));
 		if($res->num_rows()>0){

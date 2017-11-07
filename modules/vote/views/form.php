@@ -46,11 +46,18 @@
                 <?php endif;?>
             </li>
             <li>
-                <label for="thumb">头图
+                <label for="thumb">投票头图
                 <?php if($editinfo['thumb']):?>
                 <img style="margin-top: -20px; margin-left: 10px;" width="50" height="50" src="<?php print $editinfo['thumb'];?>" />
                 <?php endif;?></label>
-                <input type="file" name="thumb" id="thumb" class="text" value="<?php print $editinfo['enum'];?>"/>
+                <input type="file" name="thumb" id="thumb" class="text" value="<?php print $editinfo['thumb'];?>"/>
+            </li>
+            <li>
+                <label for="thumb">详情头图
+                <?php if($editinfo['thumb2']):?>
+                <img style="margin-top: -20px; margin-left: 10px;" width="50" height="50" src="<?php print $editinfo['thumb2'];?>" />
+                <?php endif;?></label>
+                <input type="file" name="thumb2" id="thumb2" class="text" value="<?php print $editinfo['thumb2'];?>"/>
             </li>
             <li>
                 <label for="enum">背景色</label>

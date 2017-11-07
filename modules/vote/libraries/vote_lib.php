@@ -103,6 +103,39 @@ class vote_lib
             //if(!$imgflag) flashMsg('info','你本次操作没有上传任何图片。');
         }
 
+        if ($_FILES['thumb2']['name']){ //需要图片
+            //game thumb
+            $day=date('Ymd',TIME);
+            $path='uploads/'.$day;
+            $dir=FCPATH.$path;
+            $filename=$day.rand(10000,99999);
+            @mkdir($dir,0777);
+            $config['upload_path'] = $dir;
+            $config['allowed_types'] = 'jpg|jpeg|png|bmp';
+            $config['max_size'] = 1024*8;
+            $config['max_width']  = 8000;
+            $config['max_height']  = 8000;
+            //$config['file_name'] = $filename;
+            $config['encrypt_name'] = true;
+            $this->CI->load->library('upload', $config);
+            
+            $imgflag=false;
+            
+            if (!$this->CI->upload->do_upload('thumb2'))
+            {
+                $upload = $this->CI->upload->display_errors();
+            } 
+            else
+            {
+                $upload = $this->CI->upload->data();
+            }
+            if(is_array($upload)){
+                $imgflag=true;
+                $data['thumb2']=base_url().$path.'/'.$upload['file_name'];
+            }
+            //if(!$imgflag) flashMsg('info','你本次操作没有上传任何图片。');
+        }
+
 		if($data['enum'] || $data['snum']){
 			if($data['enum']>$data['snum']){
 				if($data['etime']>$data['stime']){

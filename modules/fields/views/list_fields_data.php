@@ -47,6 +47,10 @@
     <?php print  $this->bep_assets->icon('application_cascade');?>
     	短信群发
     </a>
+    <a href="<?php print  site_url('fields/admin/fields/export/'.$fid)?>">
+    <?php print  $this->bep_assets->icon('lightning');?>
+    	导出数据
+    </a>
 </div><br/><br/>
 
 <?php print form_open('article/admin/article/switchStatus')?>
