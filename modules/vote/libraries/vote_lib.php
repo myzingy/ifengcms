@@ -428,7 +428,7 @@ class vote_lib
 				$vote->displayurl=str_replace('_remoteid_', $vote_member->remoteid, $vote->displayurl);
 				$msg.="\n<a href=\"".$vote->displayurl."\">查看{$vote_member_name}</a>";
 			}else{
-				$msg.="\n<a href=\"".site_url('vote_zh/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">查看{$vote_member_name}</a>";	
+				$msg.="\n<a href=\"".site_url('vote/display/show/'.$vote_member->vid.'/'.$vote_member->id)."\">查看{$vote_member_name}</a>";	
 			}
 			return array('status'=>0,'msg'=>$msg,'count'=>$vote_count);
 			
