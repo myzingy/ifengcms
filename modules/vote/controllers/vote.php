@@ -26,6 +26,7 @@ class vote extends Public_Controller
 			$data['thumb'] = $vote->thumb;
 			$data['thumb2'] = $vote->thumb2;
 			$data['background'] = $vote->background;
+			$data['subject'] = $vote->subject;
 		}
 		if($vmid>0){//内容页
 			$data['page'] = $this->config->item('backendpro_template_dir') . "mobile_show";
