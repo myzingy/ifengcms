@@ -3,19 +3,11 @@
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/animate.css">
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/app.css?43trfh">
 <script type="text/javascript" src="<?php print base_url()?>assets/vote_m_host2015/js/jquery-1.9.1.min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="<?php print base_url()?>assets/wechat/js/wechat_share_jquery.js"></script>
-<script type="text/javascript">
-    // 微信分享
-    var sharecfj = {
-        title:'<?php print $title;?>', // 分享标题
-        desc:'<?php print $title;?>', // 分享描述
-        link: location.href, // 分享链接
-        imgUrl: 'http://cms.wisheli.com/uploads/special/host2015_m/images/share.jpg' //分享图标
-    }
-    $wx=new $.wechat();
-    $wx.share(sharecfj);
-</script>
+
+<div id="shareConfig" data-title="<?php echo $title; ?>" data-text="<?php echo $subject; ?>" data-img="<?php echo $thumb; ?> " style="display:none"></div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://p3.ifengimg.com/a/2017/0809/wxshare.js"></script>
 
 
 <div id="loading">
