@@ -167,7 +167,11 @@ class draw_lib
 		$history=$this->CI->draw_model->setDrawHistory($id,$openid,$name,$phone,$ceshiFlag, $draw_max);
 		$history_id=$history['id'];
 		if($history_id<1){
-			return array('status'=>10000,'error'=>'你已经抽过奖了！','prize'=>$history['prize']);
+            if($history['prize']['status'] >= 1) {
+                return array('status'=>10000,'error'=>'你已经中过奖了！奖品：'.$history['prize']['name'],'prize'=>$history['prize']);
+            } else{
+                return array('status'=>10000,'error'=>'你已经抽过奖了！','prize'=>$history['prize']);
+            }
 		}
 		//概率基数
 		$gl=10000;
