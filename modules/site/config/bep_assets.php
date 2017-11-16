@@ -65,7 +65,7 @@ $config['asset'][] = array('file'=>'bep_icons.php','type'=>'css');
 $config['asset'][] = array('file'=>'demo_table.css');
 
 // BackendPro JS
-//$config['asset'][] = array('file'=>'jquery.min.js', 'name'=>'jquery');
+$config['asset'][] = array('file'=>'jquery.min.js', 'name'=>'jquery');
 $config['asset'][] = array('file'=>'jquery-ui.min.js', 'name' => 'jquery_ui', 'needs'=>'jquery');
 $config['asset'][] = array('file'=>'jquery.cookie.js', 'needs'=>'jquery');
 $config['asset'][] = array('file'=>'jquery.treeview.js', 'needs'=>'jquery.cookie');
