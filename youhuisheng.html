@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>抽奖</title>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/youhuisheng-ser.js"></script>
+    <script>
+    	var showPayCode=function(json){
+    		console.log('--showPayCode--',json);
+    		alert('确认订单，请扫码支付');
+    		$('#code_url').attr('src',json.code_url);
+    	};
+    	var payAccess=function(json){
+    		console.log('--payAccess--',json);
+    		alert('支付成功！！！');
+    	};
+    	$(function(){
+    		var yhs=$.youhuisheng({
+    			showPayCode:showPayCode
+    		});
+    		var imgsrc=yhs.createQRsrc({
+					size:150,
+					proName:'哇哈哈',
+					oldPrice:10,
+					nowPrice:1,
+					timeDay:1,
+				});
+    		$('#demo img.code').attr('src',imgsrc);
+    	});
+    </script>
+</head>
+<body style="height: 1000px;">
+    <div id="container">
+        <div id="demo">
+            <img class="code" alt="" src="" width="400" height="400" /><img src="" width="400" height="400" id="code_url" />
+        </div>
+    </div>
+    
+</body>
+</html>
