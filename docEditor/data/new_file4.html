@@ -1,0 +1,547 @@
+
+                    <!-- demo8 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab8-1">demo8：效果展示</a></li>
+                            <li><a href="#tab8-2">demo8：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab8-1">
+                                <img src="images/demo_8.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab8-2">
+<pre><code>
+&lt;!-- demo8开始 --&gt;
+&lt;!-- 手风琴样式--&gt;
+&lt;link rel="stylesheet" href="http://y0.ifengimg.com/package/special_20150212_45312/css/grid-accordion.css"/&gt;
+&lt;!-- 手风琴js引入 --&gt;
+&lt;script src="http://y0.ifengimg.com/package/special_20150212_45312/js/jquery.gridAccordion.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+jQuery.noConflict();
+(function($){
+    $(document).ready(function(){
+        //手风琴初始化
+        $('.accordion').gridAccordion({
+          width:990,
+          height:600,
+          columns: 5,
+          distance: 2,
+          shuffle: true,
+          closedPanelWidth: 10,
+          closedPanelHeight: 10,
+          alignType: 'centerCenter',
+          slideshow:true,
+          shuffle: false,
+          panelProperties:{
+            0:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            2:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            3:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            4:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            5:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            6:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            7:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            8:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            9:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            10:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            11:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            12:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            13:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+            14:{captionWidth:200, captionHeight:35, captionTop:30, captionLeft:30},
+          }
+        });
+    });
+})(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_8"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo8演示&lt;/h3&gt;&lt;/div&gt;
+            &lt;ul class="accordion" style="margin: 0 auto;"&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561014_0.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dc983bd88e5.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561014_1.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dc9836807bb.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561014_2.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dc983083b9f.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561014_4.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dc982da1eb4.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561014_3.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dc98292ddfe.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_5.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca8b38818b.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_6.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca9491a93d.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_7.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0213/rdn_54dd6d5a10608.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_8.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca8b6d9193.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_9.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca8bc8dbb2.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_0.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca19e67e11.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_1.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca1a2bf1c9.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_2.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca199e9155.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+               &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_3.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca3623655f.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                  &lt;a href="http://sn.ifeng.com/lvyoupindao/detail_2015_02/12/3561025_4.shtml" target="_blank"&gt; &lt;img src="http://y2.ifengimg.com/06755d8f0e294264/2015/0212/rdn_54dca3a2bb221.png" alt=""&gt;&lt;/a&gt;
+                  &lt;!-- &lt;div class="caption"&gt;This is just a simple caption.&lt;/div&gt; --&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;!-- html 结束 --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo8结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- demo17 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab17-1">demo17：效果展示</a></li>
+                            <li><a href="#tab17-2">demo17：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab17-1">
+                                <img src="images/demo_17.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab17-2">
+<pre><code>
+&lt;!-- demo17开始 --&gt;
+&lt;div class="demo demo_17"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo17演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;ul class="content"&gt;
+            &lt;li class="list_1"&gt;
+                &lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2014_05/25/2325293_0.shtml" target="_blank" class="item"&gt;
+                    &lt;img src="http://y1.ifengimg.com/package/t_20140515__15395/images/rdn_5381e8b608ab4.jpg"&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;蒙古长调现场演绎&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="list_2"&gt;
+                &lt;a href="http://sn.ifeng.com/shanxizhuanti/xiqiajingjuli/" target="_blank" class="item"&gt;
+                    &lt;img src="http://y1.ifengimg.com/package/t_20140515__15395/images/rdn_5382aa4b12227.jpg"&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;凤凰镜距离 浐灞展馆写真&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="list_3"&gt;
+                &lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2014_05/24/2323952_2.shtml" target="_blank" class="item"&gt;
+                    &lt;img src="http://y1.ifengimg.com/package/t_20140515__15395/images/rdn_5382aa748b985.jpg" width='250' height='345'&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;空港新城展馆&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="list_4"&gt;
+                &lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2014_05/23/2322673_0.shtml" target="_blank" class="item"&gt;
+                    &lt;img src="http://y2.ifengimg.com/24f2a71d29b5a784/2014/0526/rdn_53831d98406cb.jpg"&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;国际馆风采&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+
+            &lt;li class="list_5"&gt;
+                &lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2014_05/26/2330758_0.shtml"target="_blank" class="item"&gt;
+                    &lt;img src="http://y3.ifengimg.com/5282065fe30d3e7f/2014/0526/rdn_5382e145703c7.jpg"&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;意大利歌剧与陕西秦腔同台唱响&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+
+            &lt;li class="list_6"&gt;
+                &lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2014_05/26/2332163_0.shtml" target="_blank" class="item"&gt;
+                    &lt;img src="http://y2.ifengimg.com/24f2a71d29b5a784/2014/0526/rdn_538320ac754dd.jpg" width='356' height='254'&gt;
+                    &lt;div class="cover"&gt;
+                        &lt;div class="text"&gt;&lt;p&gt;连云港快速列车模型&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="textbg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo17结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- demo37 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab37-1">demo37：效果展示</a></li>
+                            <li><a href="#tab37-2">demo37：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab37-1">
+                                <img src="images/demo_37.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab37-2">
+<pre><code>
+&lt;!-- demo37开始 --&gt;
+&lt;div class="demo demo_37"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo37演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;ul class="imags"&gt;
+            &lt;li class="fl"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f28300c69b2.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f27982e3e02.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl" style="margin-right:0;"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f2437d48a1e.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f27a318d5b2.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f244b3d418e.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl" style="margin-right:0;"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f27aac5d2a5.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl" style="margin-bottom:0;"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f248440be21.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl" style="margin-bottom:0;"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y3.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f2dc6b2dfae.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class="fl" style="margin-right:0; margin-bottom:0;"&gt;
+                &lt;a href="#"&gt;
+                    &lt;img src="http://y3.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f2dca959699.jpg"&gt;
+                    &lt;h3&gt;目前确定参展的国内外展公司了文化旅游名镇大型欢乐世界等特色展商。&lt;/h3&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo37结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!--demo55-->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab55-1">demo55：效果展示</a></li>
+                            <li><a href="#tab55-2">demo55：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab55-1">
+                                <img src="images/demo_55.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab55-2">
+<pre><code>
+&lt;!-- demo55开始 --&gt;
+&lt;script type="text/javascript"&gt;
+    jQuery.noConflict();
+    (function($){
+        $(document).ready(function(){
+            $(".demo_55 .imgbox2").hover(function(){
+                $(this).find('p').stop().slideDown(300);
+            },function(){
+                $(this).find('p').stop().slideUp(300);
+            });
+        });
+    })(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_55"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo55演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;div class="w250"&gt;
+            &lt;div class="height60"&gt;&lt;/div&gt;
+            &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，支持人大、政府、政协等依法依章工作，和担当的关系，主动祛
+            &lt;/p&gt;
+            &lt;div class="height60"&gt;&lt;/div&gt;
+            &lt;div class="imgbox2"&gt;
+                &lt;a href="" target="_blank"&gt;&lt;img src="http://p3.ifengimg.com/a/2017/0830/img04.jpg" alt=""&gt;
+                    &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                        娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，&lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="w250 imgbox2"&gt;
+            &lt;a href="" target="_blank"&gt;
+                &lt;img src="http://p3.ifengimg.com/a/2017/0830/img05.jpg" alt=""&gt;
+                &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                    娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，&lt;/p&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;div class="w250"&gt;
+            &lt;div class="imgbox2"&gt;
+                &lt;a href="" target="_blank"&gt;&lt;img src="http://p3.ifengimg.com/a/2017/0830/img06.jpg" alt=""&gt;
+                    &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                        娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，&lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2"&gt;
+                &lt;a href="" target="_blank"&gt;&lt;img src="http://p3.ifengimg.com/a/2017/0830/img06.jpg" alt=""&gt;
+                    &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                        娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，&lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="w250"&gt;
+            &lt;div style="height: 250px"&gt;&lt;/div&gt;
+            &lt;div class="imgbox2"&gt;
+                &lt;a href="" target="_blank"&gt;&lt;img src="http://p3.ifengimg.com/a/2017/0830/img06.jpg" alt=""&gt;
+                    &lt;p&gt;精心维护省委班子的团结 &lt;br/&gt;
+                        娄勤俭强调，要精诚团结抓落实，向团结要战斗力，精心维护省委班子的团结，&lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo55结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!--demo59-->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab59-1">demo59：效果展示</a></li>
+                            <li><a href="#tab59-2">demo59：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab59-1">
+                                <img src="images/demo_59.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab59-2">
+<pre><code>
+&lt;!-- demo59开始 --&gt;
+&lt;script type="text/javascript"&gt;
+    jQuery.noConflict();
+    (function($){
+        $(document).ready(function(){
+
+        });
+    })(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_59"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo59演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;div class="zayx"&gt;
+            &lt;div class="imgbox2 img1"&gt;
+                &lt;a&gt;
+                    &lt;img src="http://p2.ifengimg.com/a/2017_17/682b7f4e0452613_size71_w340_h175.jpg" alt="" width="340" height="175"&gt;
+                    &lt;h4&gt;自然风光&lt;/h4&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2 img2"&gt;
+                &lt;a&gt; &lt;img src="http://p1.ifengimg.com/a/2017_17/74794c9bce0a478_size48_w155_h240.jpg" alt="" width="155" height="240"&gt; &lt;h4&gt;矿产资源&lt;/h4&gt; &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2 img3"&gt;
+                &lt;a&gt; &lt;img src="http://p2.ifengimg.com/a/2017_17/70ddb92a8e8e41f_size55_w195_h250.jpg" alt="" width="195" height="250"&gt; &lt;h4&gt;羚牛&lt;/h4&gt; &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2 img4"&gt;
+                &lt;a&gt; &lt;img src="http://p3.ifengimg.com/a/2017_17/98348008a464071_size125_w415_h275.jpg" alt="" width="415" height="275"&gt; &lt;h4&gt;镇安清真寺&lt;/h4&gt; &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2 img5"&gt;
+                &lt;a&gt; &lt;img src="http://p1.ifengimg.com/a/2017_17/f2791ef73b34a82_size94_w330_h230.jpg" alt="" width="330" height="230"&gt; &lt;h4&gt;自然风光&lt;/h4&gt; &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="imgbox2 img6"&gt;
+                &lt;a&gt; &lt;img src="http://p1.ifengimg.com/a/2017_17/41dd58d5fe7b342_size42_w230_h170.jpg" alt="" width="230" height="170"&gt; &lt;h4&gt;镇安板栗&lt;/h4&gt; &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo59结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!--demo62-->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab62-1">demo62：效果展示</a></li>
+                            <li><a href="#tab62-2">demo62：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab62-1">
+                                <img src="images/demo_62.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab62-2">
+<pre><code>
+&lt;!-- demo62开始 --&gt;
+&lt;script type="text/javascript"&gt;
+    jQuery.noConflict();
+    (function($){
+        $(document).ready(function(){
+            $(".demo_62 .imgbox").mouseenter(function(){
+                $(this).addClass("hover");
+            }).mouseleave(function(){
+                $(this).removeClass("hover");
+            });
+        });
+    })(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_62"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo62演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;div class="yx"&gt;
+            &lt;div class="w250 fl"&gt;
+                &lt;div class="imgbox"&gt;
+                    &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-01.png" alt=""/&gt;
+                    &lt;div class="overlay"&gt;
+                        &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="imgbox"&gt;
+                    &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-02.png" alt=""/&gt;
+                    &lt;div class="overlay"&gt;
+                        &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="w415 fl"&gt;
+                &lt;div&gt;
+                    &lt;div class="w160 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-03.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="w255 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-04.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;div class="w255 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-05.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="w160 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-06.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;div class="w160 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-07.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="w255 fl"&gt;
+                        &lt;div class="imgbox"&gt;
+                            &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-08.png" alt=""/&gt;
+                            &lt;div class="overlay"&gt;
+                                &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="w335 fl"&gt;
+                &lt;div class="imgbox"&gt;
+                    &lt;img src="http://p3.ifengimg.com/a/2017/0830/yangxianimage-09.png" alt=""/&gt;
+                    &lt;div class="overlay"&gt;
+                        &lt;a href="##" target="_blank" class="expand"&gt;耀州窑是中国传统制瓷工艺中的珍品，宋代名窑之一。&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo62结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>编辑知识库  凤凰网陕西</title>
+<meta name="keywords" content="社会化媒体营销平台"/>
+<meta name="description" content="社会化媒体营销平台"/>
+<link href="http://p2.ifengimg.com/a/2017/0413/ifengicon.ico" mce_href="http://p2.ifengimg.com/a/2017/0413/ifengicon.ico" rel="icon" type="image/x-icon" />
+<link href="http://p2.ifengimg.com/a/2017/0413/ifengicon.ico" mce_href="http://p2.ifengimg.com/a/2017/0413/ifengicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="http://p2.ifengimg.com/a/2017/0413/ifengicon.png" rel="apple-touch-icon" />
+<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+<link rel="stylesheet" href="//s.amazeui.org/assets/2.x/css/amaze.min.css?v=ivnei6ag">
+<!-- 代码高亮-黑色主题样式 -->
+<link rel="stylesheet" href="css/atelier-dune-dark.css"/>
+<link rel="stylesheet" type="text/css" href="css/app.css"/>
+<!-- 代码高亮js -->
+<script src="js/highlight.pack.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，蔚蓝传媒暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>以获得更好的体验！</p>
+<![endif]-->
+<header class="">
+  <div class="am-container">
+    <h1 class="am-topbar-brand"><a href="http://sn.ifeng.com/" target="_blank"><img src="images/logo.png"></a></h1>
+    <div class="am-collapse am-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+        	<!-- <li><a href="#">Web前端知识库</a></li> -->
+            <li class="am-active"><a href="index.html">编辑知识库</a></li>
+        </ul>
+    </div>
+  </div>
+</header>
+<div class="amz-banner">
+	<div class="amz-container" data-am-scrollspy="{animation: 'scale-up', repeat: false}">
+		<h2>编辑知识库 版本号 docEditorV3.1</h2>
+		<p>多视频板块增加了一个模板，样式更新在新的模板包里，请下载最新的模板基础包<br/>新的VPN链接地址请参考VPN配置方法</p>
+	</div>
+</div>
+
+<section class="am-container" id='editor' data-tag="js-scrollspynav">
+	<!-- 侧边导航 -->
+	<div class="col-md-3 am-u-md-3" id="siderbar">
+		<div id="amz-offcanvas" class="am-offcanvas doc-offcanvas">
+			<section class="amz-sidebar am-offcanvas-bar ">
+				<ul class="am-nav" data-am-scrollspynav="{offsetTop: 5}">
+	        <li class="am-nav-header">PC端demo列表</li>
+	        <li><a href="#part5-1">焦点图</a></li>
+	        <li><a href="#part5-2">图文展示</a></li>
+	        <li><a href="#part5-3">图文切换</a></li>
+	        <li><a href="#part5-4">多图展示</a></li>
+	        <li><a href="#part5-5">多视频切换</a></li>
+	        <li><a href="#part5-6">高清大图</a></li>
+	        <li><a href="#part5-7">其他</a></li>
+	        <li class="am-nav-header">移动端demo列表</li>
+	        <li><a href="#part6-1">移动端demo列表</a></li>
+					<li class="am-nav-header">操作技术知识</li>
+					<li><a href="#part1-1">常用快捷键<span class="am-nav-en">文档操作类</span></a></li>
+					<li><a href="#part1-2">Windows快捷键<span class="am-nav-en">界面操作</span></a></li>
+					<li class="am-nav-header">代码基础知识</li>
+					<li><a href="#part2-1">初识代码<span class="am-nav-en">html、css、js之间的关系</span></a></li>
+					<li><a href="#part2-2">认识html标签<span class="am-nav-en">常见标签</span></a></li>
+					<li><a href="#part2-3">显示文件的后缀名<span class="am-nav-en">方便操作</span></a></li>
+					<li><a href="#part2-4">前端的编辑工具<span class="am-nav-en">sublime</span></a></li>
+					<li class="am-nav-header">专题后台——lark</li>
+					<li><a href="#part3-1">VPN的配置<span class="am-nav-en">连接方法</span></a></li>
+					<li><a href="#part3-2">专题构成<span class="am-nav-en">认识专题</span></a></li>
+					<li><a href="#part3-3">专题上传<span class="am-nav-en">注意事项</span></a></li>
+					<li class="am-nav-header">专题搭建专题</li>
+					<li><a href="#part4-1">海报专题搭建方法<span class="am-nav-en">海报专题</span></a></li>
+					<li><a href="#part4-2">模板专题搭建方法<span class="am-nav-en">模板专题</span></a></li>
+					<li><a href="#part4-4">页面分享代码调用<span class="am-nav-en">模板专题</span></a></li>
+				</ul>
+			</section>
+			<div class="amz-pager">
+				<a href="#up" class="am-icon-caret-up" data-rel="scrollUp"></a>
+				<a href="#down" class="am-icon-caret-down" data-rel="scrollDown"></a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="am-u-md-9 " id="editor-cont">
+		<!--<div class="am-margin-vertical-xl"></div>-->
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="margin-top: 0px;">
+            <h2 class="am-titlebar-title">PC端demo列表</h2>
+        </div>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-1">
+                <dt class="am-accordion-title list_type" data-list="1">焦点图</dt>
+                <dd class="am-accordion-bd am-collapse">
+               
+             
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class=" am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-2">
+                <dt class="am-accordion-title list_type" data-list="2">图文展示</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-3">
+                <dt class="am-accordion-title list_type" data-list="3">图文切换</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-4">
+                <dt class="am-accordion-title list_type" data-list="4">多图展示</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-5">
+                <dt class="am-accordion-title list_type" data-list="5">多视频切换</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-6">
+                <dt class="am-accordion-title list_type" data-list="6">高清大图</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part5-7">
+                <dt class="am-accordion-title list_type" data-list="7">其他</dt>
+                <dd class="am-accordion-bd am-collapse">
+
+                </dd>
+            </dl>
+        </section>
+        
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+            <h2 class="am-titlebar-title">移动端demo列表</h2>
+       </div>
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <dl class="am-accordion-item" id="part6-1">
+                <dt class="am-accordion-title list_type" data-list="8">移动端demo列表</dt>
+                <dd class="am-accordion-bd am-collapse">
+               
+             
+                </dd>
+            </dl>
+        </section>
+
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+		    <h2 class="am-titlebar-title">操作技术知识 </h2>
+		    <nav class="am-titlebar-nav"><a href="http://jingyan.baidu.com/article/e3c78d6463e38a3c4c85f5b6.html" target="_blank" class="">WiN7快捷键大全</a></nav>
+		</div>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part1-1">
+		    <dt class="am-accordion-title">
+		      常用快捷键
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		      <div class="am-accordion-content">
+		        <p>Ctrl + C 复制选择的项目</p>
+		        <p>Ctrl + X 剪切选择的项目</p>
+		        <p>Ctrl + V 粘贴选择的项目  Ctrl + Z 撤消操作</p>
+		        <p>Ctrl + Y 重新执行某项操作</p>
+		        <p>Ctrl + S 保存</p>
+		        <p>Ctrl + Shift + S 另存为</p>
+		        <p>Ctrl + N 打开新窗口</p>	
+		        <p>Ctrl + Shift + N 新建文件夹</p>
+		        <p>Delete 删除所选项目并将其移动到“回收站”</p>
+		        <p>Shift + Delete 不先将所选项目移动到“回收站”而直接将其删除</p>
+		      </div>
+		    </dd>
+		  </dl>
+		  <dl class="am-accordion-item" id="part1-2">
+		    <dt class="am-accordion-title">
+		      Windows快捷键
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		      <div class="am-accordion-content">
+		      	<p>ALT+TAB 切换应用</p>
+		      	<p>CTRL+TAB 当前应用标签的切换</p>
+		        <p>Win：打开或关闭开始菜单</p>
+		        <p>Win + D：显示桌面</p>
+		        <p>Win + M：最小化所有窗口</p>
+		        <p>Win + SHIFT + M：还原最小化窗口到桌面上</p>
+		        <p>Win + E：打开我的电脑</p>
+		      </div>
+		    </dd>
+		  </dl>
+		</section>
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+		    <h2 class="am-titlebar-title">代码基础知识</h2>
+		    <nav class="am-titlebar-nav"><a href="http://www.imooc.com/learn/9" target="_blank" class="">了解更多HTML+CSS基础课程</a></nav>
+		</div>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part2-1">
+		    <dt class="am-accordion-title">
+		      初识代码——html、css、js之间的关系
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<ul>
+		    			<li>HTML是页面的内容</li>
+		    			<li>CSS就是负责页面样式的，美化HTML的</li>
+		    			<li>js(javascript)是让HTML更生动，更好看，让网页会动起来 <span class="am-badge am-badge-primary am-radius">不需要掌握</span></li>
+		    		</ul>
+		    		<h3>认识html文件（后缀为“.html”）:</h3>
+<pre><code>
+<!-- &lt;?xml version=&quot;1.0&quot;?&gt; -->
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+		    		<h3>认识css文件（后缀为“.css”）如下:</h3>
+<pre><code>
+&lt;style&gt;
+h1{font-size:14px;}
+p{color:#252525;}
+a{text-algin:center;}
+&lt;/style&gt;
+</code></pre>
+		    		<h3>认识js文件（后缀为“.js”）如下:</h3>
+<pre><code>
+&lt;script text="text/javascript"&gt;
+document.getElementById("#cro");
+$("#cro").css("color","red");
+&lt;/script&gt;
+</code></pre>
+		    		
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part2-2">
+		    <dt class="am-accordion-title">
+		      认识html标签
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<h3>常用标签：<a href="http://www.w3school.com.cn/tags/index.asp" target="_blank" class="am-fr">了解更多标签</a></h3>
+		    		<p>div、li、p、a、img、及h系列</p>
+		    		<h3>标签的规则：一般标签都需要闭合</h3>
+		    		如下面：
+<pre><code>
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+		&lt;h1&gt;这是一个主标题标签&lt;/h1&gt;
+		&lt;h2&gt;这是一个副标题标签&lt;/h2&gt;
+		&lt;div&gt;这是一个div标签&lt;/div&gt;
+		&lt;ul&gt;
+			&lt;li&gt;这是一个无需列表标签&lt;/li&gt;
+			&lt;li&gt;这是一个无需列表标签2&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p>这是一个段落标签&lt;/p&gt;
+		&lt;a href="#"&gt;这是一个超链接标签&lt;/a&gt;
+		&lt;img src="" alt="这是一个图片标签"&gt;
+	&lt;body&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+		    		<h3>重点认识两个标签：<span class="am-badge am-badge-primary am-radius">img标签</span> <span class="am-badge am-badge-primary am-radius">a标签</span></h3>
+<pre><code>
+&lt;a href="链接的地址" target="_blank" &gt;这是一个超链接标签&lt;/a&gt;
+&lt;img src="图片的地址" alt="这是一个图片标签"&gt;
+</code></pre>
+					<p>关于a标签的属性: <a href="http://www.w3school.com.cn/tags/tag_a.asp" target="_blank" class="am-fr">了解更多a</a></p>
+					<ul>
+						<li>href：规定链接指向的页面的 URL。</li>
+						<li>
+							target：规定在何处打开链接文档。
+							<p>_blank:浏览器总在一个新打开、未命名的窗口中载入目标文档。</p>
+							<p>_self:默认。在相同的框架中打开被链接文档。</p>
+							<p>_parent:	在父框架集中打开被链接文档。</p>
+							<p>_top:在整个窗口中打开被链接文档。</p>
+						</li>
+					</ul>
+					<p>关于img标签的属性: <a href="http://www.w3school.com.cn/tags/tag_img.asp" target="_blank" class="am-fr">了解更多img</a></p>
+					<ul>
+						<li>src：规定显示图像的 URL。</li>
+						<li>alt：规定图像的替代文本。</li>
+						<li>width：设置图像的宽度。</li>
+						<li>height：定义图像的高度。</li>
+					</ul>
+
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part2-3">
+		    <dt class="am-accordion-title">
+		      设置显示文件的后缀名
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		      <div class="am-accordion-content">
+		      	<p>不设置“显示文件后缀名”弊端：<span class="am-badge am-badge-primary">无法识别文件的格式</span> <span class="am-badge am-badge-primary">分不清图片的格式</span> <span class="am-badge am-badge-primary">文件调用容易出错</span></p>
+		      	<p>未设置如下图：<img src="images/tem_1.jpg" alt=""></p>
+		        <p class="am-text-default am-text-primary">设置方法：打开文件夹——"组织"——“文件夹选项”——“查看”——取消“隐藏已知文件的拓展名”——“确定”</p>
+		        <p><img src="images/tem_2.jpg" alt=""></p>
+		        <p>设置完成效果如下图：(文件格式鲜明)<img src="images/tem_3.jpg" alt=""></p>
+		      </div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part2-4">
+		    <dt class="am-accordion-title">
+		      前端的编辑工具 sublime
+		    </dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<p>sublime编辑器优点：</p>
+		    		<ul>
+		    			<li>主题色彩鲜明（一眼识别标签、链接、资源、文字）；</li>
+		    			<li>代码提示、自动补全；多点输入；</li>
+		    			<li>注释方便；变迁闭合提示；</li>
+		    			<li>多语言编辑支持.tet、.html、.css、.js等</li>
+		    		</ul>
+		    		<p>下载链接：</p>
+		    		<div class="am-g">
+		    			<div class="am-u-md-6">
+							<a href="https://pan.baidu.com/share/init?shareid=3545628426&uk=2895849262" class="am-btn am-btn-sm am-btn-primary" target="_blank">V3.0 3095 完美破解汉化 32位<i class="am-icon-cloud-download"></i></a>
+		    				<p class="am-text-center ">提取码：5bbm</p>
+		    			</div>
+		    			<div class="am-u-md-6">
+							<a href="https://pan.baidu.com/share/init?shareid=3226640965&uk=2895849262" class="am-btn am-btn-sm am-btn-primary" target="_blank">V3.0 3095 完美破解汉化 64位<i class="am-icon-cloud-download"></i></a>
+		    				<p class="am-text-center ">提取码：hg4p</p>
+		    			</div>
+		    		</div>
+		    		
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+		    <h2 class="am-titlebar-title">专题后台——LARK</h2>
+		</div>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part3-1">
+		    <dt class="am-accordion-title">凤凰VPN的链接设置</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<p>连接设置方法如下图</p>
+		    		<ul>
+		    			<li>
+		    				<h4>第一步：新建VPN</h4>
+		    				<p><img src="images/vpn1.jpg" alt=""></p>
+		    				<p><img src="images/vpn2.jpg" alt=""></p>
+		    				<p><img src="images/vpn3.jpg" alt=""></p>
+		    				<p><img src="images/vpn4.jpg" alt=""></p>
+		    				<p><img src="images/vpn5.jpg" alt=""></p>
+		    				<p><img src="images/vpn6.jpg" alt=""></p>
+		    				<p class="am-badge am-badge-primary">输入用户名和密码时，注意大小写、空格符、中英文状态</p>
+		    				<p class=""><img src="images/vpn7.jpg" alt=""></p>
+		    				<p class="am-badge am-badge-primary">出现下面，表示已新建成功并连接成功。（未完，目前是断网的）</p>
+		    				<p class=""><img src="images/vpn8.jpg" alt=""></p>
+		    			</li>
+		    			<li>
+		    				<h4>第二步：VPN属性设置</h4>
+		    				<p><img src="images/vpn9.jpg" alt=""></p>
+		    				<p data-am-widget="gallery" class="am-gallery" data-am-gallery="{pureview: 1}"><img src="images/vpn10.jpg" alt="vpn属性设置" data-rel="images/vpn10.jpg"/></p>
+		    				<p class="am-badge am-badge-primary">记得重启电脑才算最终设置完成</p>
+		    			</li>
+		    			<li>
+		    				<a href="http://biz.lark.ifeng.com/login.html?backurl=http%3A%2F%2Fbiz.lark.ifeng.com%2Flark%2Findex.jhtml" class="am-padding-rigth-xl" target="_blank">新后台上传专题地址</a>
+		    				<a href="http://biz.cmpp.ifeng.com/Cmpp/runtime/index.jhtml?nodeId=21001" target="_blank">新后台发布文章地址</a>
+		    			</li>
+		    		</ul>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part3-2">
+		    <dt class="am-accordion-title">专题构成</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<p>专题组成部分</p>
+		    		<p><img src="images/zt_img1.jpg" alt=""></p>
+		    		<ul>
+		    			<li><span class="am-badge am-badge-primary">html</span> 编辑主要操作个更改文件，不要随意修改文件的名</li>
+		    			<li><span class="am-badge am-badge-primary">images</span> 图片的存放位置</li>
+		    			<li><span class="am-badge am-badge-primary">css</span> 样式文件的寻访位置</li>
+		    			<li><span class="am-badge am-badge-primary">js</span> js文件的存放位置</li>
+		    		</ul>
+		    		<p>专题包至少含有一个"index.html",其他文件并不是必要的</p>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part3-3">
+		    <dt class="am-accordion-title">专题上传注意事项</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<ul>
+		    			<li><span class="am-badge am-badge-primary">至少包含"index.html"文件</span> 专题最基础的组成部分</li>
+		    			<li><span class="am-badge am-badge-primary">专题上传压缩包格式必须是".zip"</span> 后台上传只认这种模式</li>
+		    			<li><span class="am-badge am-badge-primary">专题标签必须都闭合</span> 代码的基本规则</li>
+		    		</ul>
+		    		<p>上传专题的技巧：如果出现代码未闭合的情况，你可只压缩"index.html"上传（节约上传时间）,后台检查通过后再整包上传</p>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+		    <h2 class="am-titlebar-title">专题制作</h2>
+		</div>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part4-1">
+		    <dt class="am-accordion-title">海报专题制作</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<h3>增加知识点：认识css:background</h3>
+		    		<p>background:#000 url(images/bg1.jpg) no-repeat center 0;</p>
+		    		<ul>
+		    			<li>#000: 背景颜色，16位色值</li>
+		    			<li>url(图片的地址): 背景图片的地址</li>
+		    			<li>no-repeat: 背景不重复</li>
+		    			<li>center 0：center表示水平居中，0表示居上0</li>
+		    		</ul>
+		    		<p><a href="http://p3.ifengimg.com/a/2017/0831/demo_poster.zip" class="am-btn am-btn-sm am-btn-primary" target="_blank">海报专题包下载<i class="am-icon-cloud-download"></i></a></p>
+		    		<ul>
+		    			<li>第一步：下载海报专题报;</li>
+		    			<li>第二步：把切好的图片放入专题包里面的images文件夹中</li>
+		    			<li>第三步：用小黑打开index.html文件，在文件中找到下面
+<pre><code>
+&lt;!-- 海报内容区域开始 --&gt;
+&lt;div class="part part1"&gt;&lt;/div&gt;
+&lt;div class="part part2"&gt;&lt;/div&gt;
+&lt;!-- 如需增加更多，以次增加下面代码，并以次修改后面的数值 --&gt;
+&lt;!-- &lt;div class="part part3"&gt;&lt;/div&gt; --&gt;
+&lt;!-- 海报内容区域结束 --&gt;
+</code></pre>
+在此处增加相应代码与你的图片数相同;
+比如：海报专题切了5张图对应如下
+<pre><code>
+&lt;!-- 海报内容区域开始 --&gt;
+&lt;div class="part part1"&gt;&lt;/div&gt;
+&lt;div class="part part2"&gt;&lt;/div&gt;
+&lt;div class="part part3"&gt;&lt;/div&gt;
+&lt;div class="part part4"&gt;&lt;/div&gt;
+&lt;div class="part part5"&gt;&lt;/div&gt;
+&lt;!-- 如需增加更多，以次增加下面代码，并以次修改后面的数值 --&gt;
+&lt;!-- &lt;div class="part part3"&gt;&lt;/div&gt; --&gt;
+&lt;!-- 海报内容区域结束 --&gt;
+</code></pre>
+		    			</li>
+		    			<li>第四步：修改背景图片的地址和高度；
+<pre><code>
+&lt;style type="text/css"&gt;
+.part{width:100%; background:url(images/bg1.jpg) no-repeat center 0; height:497px;}
+.part1{background-image:url(images/bg1.jpg); height:497px;}/*海报第一块图片设置，图片的地址和高度*/
+.part2{background-image:url(images/bg2.jpg); height:497px;}/*海报第er块图片设置，图片的地址和高度*/
+&lt;/style&gt;
+</code></pre>
+此处这块的part1,part2与海报区域内容区域的相对应，比如：海报专题切了5张图对应代码如下;
+<pre><code>
+&lt;style type="text/css"&gt;
+.part{width:100%; background:url(images/bg1.jpg) no-repeat center 0; height:497px;}
+.part1{background-image:url(images/bg1.jpg); height:497px;}/*海报第一块图片设置，图片的地址和高度*/
+.part2{background-image:url(images/bg2.jpg); height:497px;}/*海报第二块图片设置，图片的地址和高度*/
+.part3{background-image:url(images/bg2.jpg); height:497px;}/*海报第三块图片设置，图片的地址和高度*/
+.part4{background-image:url(images/bg2.jpg); height:497px;}/*海报第四块图片设置，图片的地址和高度*/
+.part5{background-image:url(images/bg2.jpg); height:497px;}/*海报第五块图片设置，图片的地址和高度*/
+&lt;/style&gt;
+</code></pre>
+
+		    			</li>
+		    		</ul>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part4-2">
+		    <dt class="am-accordion-title">模板专题制作</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<ul>
+		    			<li>
+		    				第一步：下载模板专题基础包;
+		    				<p><a href="http://p1.ifengimg.com/a/2017/1027/demo.zip" class="am-btn am-btn-sm am-btn-primary" target="_blank">PC模板基础包下载<i class="am-icon-cloud-download"></i></a></p>
+		    				<p><a href="http://p0.ifengimg.com/a/2017/1024/m_demo.zip" class="am-btn am-btn-sm am-btn-primary" target="_blank">移动模板基础包下载<i class="am-icon-cloud-download"></i></a></p>
+		    			</li>
+		    			<li>第二步：在下面模板列表中找到你需要的模板;</li>
+		    			<li>第三步：点击“复制代码”，复制全部代码到你们模板基础包body内部;</li>
+		    			<li>第四步：保存预览你的专题页面</li>
+		    		</ul>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+		<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+		  <dl class="am-accordion-item" id="part4-4">
+		    <dt class="am-accordion-title">页面分享代码调用</dt>
+		    <dd class="am-accordion-bd am-collapse">
+		    	<div class="am-accordion-content">
+		    		<h3>复制下面的代码片段粘贴在专题页面&lt;body&gt;的下边，如下图</h3>
+		    		<p><img src="images/shareimg.jpg" alt=""></p>
+		    		<h3>代码片段</h3>
+<pre><code>
+&lt;!--  自定义分享代码  开始    --&gt;
+&lt;div id="shareConfig" data-title="凤凰网陕西" data-text="影响陕西的力量" data-img="https://y1.ifengimg.com/ifengimcp/pic/20150320/2cacf6cc607ab1b10e55_size89_w1024_h1024.jpg" style="display:none"&gt;&lt;/div&gt;
+&lt;script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"&gt;&lt;/script&gt;
+&lt;script src="http://p3.ifengimg.com/a/2017/0809/wxshare.js"&gt;&lt;/script&gt;
+&lt;!--  自定义分享代码  结束    --&gt;
+</code></pre>
+		    		
+			    	<h3>更换自定义内容</h3>
+		    		<ul>
+		    			<li>data-title：分享标题</li>
+		    			<li>data-text：分享描述</li>
+		    			<li>data-img：分享图片 300*300</li>
+		    		</ul>
+		    	</div>
+		    </dd>
+		  </dl>
+		</section>
+
+
+
+	</div>
+	<div class="am-cf"></div>
+</section>
+<a href="#amz-offcanvas" class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+  <a href="#top" title="">
+    <i class="am-gotop-icon am-icon-arrow-up"></i>
+  </a>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">源码复制成功！</div>
+    <div class="am-modal-bd">
+    </div>
+<!--<div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div> -->
+  </div>
+</div>
+
+
+
+<footer class="footer amz-footer">
+  <p class="am-text-center"><a href="http://sn.ifeng.com" target="_blank"><img src="images/logo_f.png"></a> ©2015 陕ICP备12008221号-1 </p>
+</footer>
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui.min.js"></script>
+<script src="//s.amazeui.org/assets/2.x/js/handlebars.min.js"></script>
+<script src="//s.amazeui.org/assets/2.x/js/main.min.js"></script>
+<script>
+(function($){
+	$('.am-nav').scrollspynav({offsetTop: 5});
+	
+	$('.list_type').one('click',function(){
+		var datanum=$(this).attr('data-list');
+		$(this).siblings().load("data/new_file"+datanum+".html",function(){
+			$('.am-tabs-nav').find('li:eq(1)').one('click',function(){
+				var ahref=$(this).find('a').attr('href');
+				$(ahref).find('code').each(function(i, block) {
+					hljs.highlightBlock(block);
+				});
+				/*$(this).parents('.am-tabs-nav').siblings('.am-tabs-bd').find('code').each(function(i, block) {
+					hljs.highlightBlock(block);
+				});*/
+			});
+			
+		});
+	});
+	
+	//代码高亮初始化
+	$('pre code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});
+	
+	var $modal = $("#my-alert");
+	$("body").on("click",".doc-act-copy",function(){
+	        var copycont = $(this).parents(".am-tabs-nav").siblings('.am-tabs-bd').find('code').text(); //对象是content
+	        $("footer").before('<textarea type="hidden" id="copycont">'+copycont+'</textarea>');
+	        var copy = $("#copycont");
+	        copy.select(); // 选择对象
+	        document.execCommand("Copy"); // 执行浏览器复制命令
+	        $("#copycont").remove();
+	        $modal.modal('toggle');
+	        setTimeout(function(){
+	        	$modal.modal('close');
+	        },1000);
+	        //alert("复制成功！");
+		});
+	
+
+})(jQuery);
+</script>
+</body>
+</html>
+

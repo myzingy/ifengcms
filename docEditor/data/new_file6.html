@@ -1,0 +1,328 @@
+
+                    <!-- demo3 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab3-1">demo3：效果展示</a></li>
+                            <li><a href="#tab3-2">demo3：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab3-1">
+                                <img src="images/demo_3.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab3-2">
+<pre><code>
+&lt;!-- demo3开始 --&gt;
+&lt;!-- 幻灯片初始化 --&gt;
+&lt;script type="text/javascript"&gt;
+jQuery.noConflict();
+(function($) {
+    $(document).ready(function(){
+        $('.demo_3 .flexslider_demo_3').flexslider({
+            animation: "slide",
+            controlNav: false,
+            slideshow: false
+        });
+          
+        var allnum = ($('.demo_3 li').length - 4);
+        $(".demo_3 #allnum").text(allnum);
+        
+        $(".demo_3 .flex-direction-nav a").click(function (){
+          var actnum = $(".demo_3 ul.slides li").index($(".demo_3 .flex-active-slide"))
+          $(".demo_3 #actnum").text(actnum);
+        });
+
+    }); 
+})(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_3"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo3演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;div class="flexslider flexslider_demo_3"&gt;
+            &lt;h4 class="picno"&gt;&lt;em id="actnum"&gt;1&lt;/em&gt; &lt;span&gt; &lt;br&gt; PHOTO/&lt;em id="allnum"&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h4&gt;
+            &lt;ul class="slides"&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y3.ifengimg.com/bb4a22ab0e2a06f8/2015/0224/rdn_54ebcfbf8e617.jpg" /&gt;
+                    &lt;div class="clear"&gt;&lt;/div&gt;
+                    &lt;h2&gt;&lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2015_02/24/3580523_0.shtml" target="_blank"&gt;上善若水 武行天下”长安武林大拜年&lt;/a&gt;&lt;/h2&gt;
+                    &lt;p&gt;上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年&lt;/p&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y3.ifengimg.com/bb4a22ab0e2a06f8/2015/0224/rdn_54ebcfbf8e617.jpg" /&gt;
+                    &lt;div class="clear"&gt;&lt;/div&gt;
+                    &lt;h2&gt;&lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2015_02/24/3580523_0.shtml" target="_blank"&gt;上善若水 武行天下”长安武林大拜年&lt;/a&gt;&lt;/h2&gt;
+                    &lt;p&gt;上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年&lt;/p&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y3.ifengimg.com/bb4a22ab0e2a06f8/2015/0224/rdn_54ebcfbf8e617.jpg" /&gt;
+                    &lt;div class="clear"&gt;&lt;/div&gt;
+                    &lt;h2&gt;&lt;a href="http://sn.ifeng.com/zixun/shiye/detail_2015_02/24/3580523_0.shtml" target="_blank"&gt;上善若水 武行天下”长安武林大拜年&lt;/a&gt;&lt;/h2&gt;
+                    &lt;p&gt;上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年上善若水 武行天下”长安武林大拜年&lt;/p&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo3结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- demo15 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab15-1">demo15：效果展示</a></li>
+                            <li><a href="#tab15-2">demo15：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab15-1">
+                                <img src="images/demo_15.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab15-2">
+<pre><code>
+&lt;!-- demo15开始 --&gt;
+&lt;script type="text/javascript"&gt;
+jQuery.noConflict();
+(function($) {
+    $(document).ready(function(){
+        $('.demo_15 .flexslider_demo_15').flexslider({
+          animation: "slide",
+          controlNav:false
+        });
+    }); 
+})(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_15"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo15演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;!-- 轮播内容开始 --&gt;
+        &lt;div class="flexslider flexslider_demo_15"&gt;
+            &lt;ul class="slides"&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y3.ifengimg.com/06755d8f0e294264/2015/0201/rdn_54cd917995591.jpg"&gt;
+                    &lt;div class="bottom"&gt;
+                        &lt;div class="left fl"&gt;
+                            &lt;div class="box"&gt;
+                                &lt;p&gt;第&lt;span&gt;01&lt;/span&gt;张&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="right fl"&gt;
+                            &lt;a href="#"&gt;
+                                &lt;h3&gt;2015陕西两会&lt;/h3&gt;
+                                &lt;p&gt;1月25日上午，陕西省第十二届人民代表大会第三次会议开幕。&lt;/p&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y3.ifengimg.com/06755d8f0e294264/2015/0201/rdn_54cd91d9a35f4.jpg"&gt;
+                    &lt;div class="bottom"&gt;
+                        &lt;div class="left fl"&gt;
+                            &lt;div class="box"&gt;
+                                &lt;p&gt;第&lt;span&gt;02&lt;/span&gt;张&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="right fl"&gt;
+                            &lt;a href="#"&gt;
+                                &lt;h3&gt;2015陕西两会&lt;/h3&gt;
+                                &lt;p&gt;陕西省十二届人大三次会议开幕 代表委员们步入会场。 &lt;/p&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;img src="http://y0.ifengimg.com/06755d8f0e294264/2015/0201/rdn_54cd8a536f423.jpg"&gt;
+                    &lt;div class="bottom"&gt;
+                        &lt;div class="left fl"&gt;
+                            &lt;div class="box"&gt;
+                                &lt;p&gt;第&lt;span&gt;03&lt;/span&gt;张&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="right fl"&gt;
+                            &lt;a href="#"&gt;
+                                &lt;h3&gt;2015陕西两会&lt;/h3&gt;
+                                &lt;p&gt;出席省政协十一届三次会议的政协委员步入会场。&lt;/p&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;!-- 轮播内容结束--&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo15结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- demo38 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab38-1">demo38：效果展示</a></li>
+                            <li><a href="#tab38-2">demo38：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab38-1">
+                                <img src="images/demo_38.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab38-2">
+<pre><code>
+&lt;!-- demo38开始 --&gt;
+&lt;script type="text/javascript"&gt;
+(function($){
+$(window).ready(function(){
+    $('#part38_slider').flexslider({
+      animation: "slide",
+      controlNav:false,
+      start: function(ev){
+        $("#part38_slider .allnum").html(ev.count);
+        $("#part38_slider .nowpage").html(ev.animatingTo+1);
+      },
+      before: function(ev){
+        $("#part38_slider .nowpage").html(ev.animatingTo+1);
+      }
+    });
+});
+})(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_38"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo38&lt;/h3&gt;&lt;/div&gt;
+        &lt;!-- 轮播内容开始 --&gt;
+        &lt;div class="flexslider" id="part38_slider"&gt;
+            &lt;ul class="slides"&gt;
+                &lt;li&gt;
+                    &lt;a href="#"&gt;&lt;img src="http://y0.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f23c555f3d0.png"&gt;&lt;/a&gt;
+                    &lt;div class="text"&gt;
+                        &lt;div class="w_750 fl"&gt;
+                            &lt;h3&gt;习近平五四访北大 听学生吟诵毛泽东诗歌&lt;/h3&gt;
+                            &lt;p&gt;习近平在新疆考察:访清真寺脱鞋进大殿，给保定学院支教代表回信不雅视频敲诈后用景区工程当回报。长江大桥隧道 多年前 寺脱鞋进大殿，给保定学院支教代表回信不雅视频敲诈后用景区工程当回报。&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div class="w_210 fl"&gt;
+                            &lt;h3 class="nowpage"&gt;&lt;/h3&gt;
+                            &lt;p&gt;PHOTO/&lt;span class="allnum"&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;br class="clear"/&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href="#"&gt;&lt;img src="http://y1.ifengimg.com/06755d8f0e294264/2015/0911/rdn_55f24bc3b5ebd.jpg"&gt;&lt;/a&gt;
+                    &lt;div class="text"&gt;
+                        &lt;div class="w_750 fl"&gt;
+                            &lt;h3&gt;习近平五四访北大 听学生吟诵毛泽东诗歌&lt;/h3&gt;
+                            &lt;p&gt;习近平在新疆考察:访清真寺脱鞋进大殿，给保定学院支教代表回信不雅视频敲诈后用景区工程当回报。长江大桥隧道 多年前 寺脱鞋进大殿，给保定学院支教代表回信不雅视频敲诈后用景区工程当回报。&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div class="w_210 fl"&gt;
+                            &lt;h3 class="nowpage"&gt;&lt;/h3&gt;
+                            &lt;p&gt;PHOTO/&lt;span class="allnum"&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;br class="clear"/&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;!-- 轮播内容结束--&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo38结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!--demo60-->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab60-1">demo60：效果展示</a></li>
+                            <li><a href="#tab60-2">demo60：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab60-1">
+                                <img src="images/demo_60.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab60-2">
+<pre><code>
+&lt;!-- demo60开始 --&gt;
+&lt;script type="text/javascript"&gt;
+    jQuery.noConflict();
+    (function($){
+        $(document).ready(function(){
+            $('.demo_60 .flexslider_60').flexslider({
+                animation: "slide",
+                controlNav:false,
+                start:function(){
+                    var tallpage = $(".flexslider_60 .slides li").length;
+                    $(".demo_60 .pages .tallpages").html(tallpage-2);
+                },
+                after:function(mag){
+                    $(".demo_60 .pages .curpage").html((mag.currentSlide+1));
+                }
+            });
+        });
+    })(jQuery);
+&lt;/script&gt;
+&lt;div class="demo demo_60"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo60演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;!-- 轮播内容开始 --&gt;
+        &lt;div class="flexslider fl flexslider_60"&gt;
+            &lt;ul class="slides"&gt;&lt;!--  图片尺寸 860*542 --&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p1.ifengimg.com/a/2017_11/85d17a991a62aad_size565_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;龙山观花点效果图&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p1.ifengimg.com/a/2017_11/7989d53ccb5ca82_size459_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;洋县梨园景区牡丹园景观设计总体鸟瞰图&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p2.ifengimg.com/a/2017_11/ada7b374e6d45bc_size392_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;金沙湖效果图&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p3.ifengimg.com/a/2017_11/0084806d398e39e_size553_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p2.ifengimg.com/a/2017_11/cbb2ecc877d3246_size709_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p2.ifengimg.com/a/2017_11/50eeea6f11c0506_size626_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p3.ifengimg.com/a/2017_11/acb4dc4a5ebdbff_size740_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p2.ifengimg.com/a/2017_11/ef5637bb3ba95b6_size680_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p0.ifengimg.com/a/2017_11/5212d9d0a5a6ea2_size457_w1000_h600.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;3月油菜花海 就在汉中洋县&lt;/h3&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a&gt;&lt;img src="http://p2.ifengimg.com/a/2017_11/cb7a859eca599b1_size6122_w13759_h7858.jpg" width="860" height="542" /&gt;&lt;/a&gt;
+                    &lt;h3&gt;2017洋县观花地图&lt;/h3&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;!-- 轮播内容结束--&gt;
+        &lt;div class="pages fl"&gt;
+            &lt;h3 class="curpage"&gt;1&lt;/h3&gt;
+            &lt;p&gt;PHOTO/&lt;span class="tallpages"&gt;0&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;br class="clear"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo60结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+

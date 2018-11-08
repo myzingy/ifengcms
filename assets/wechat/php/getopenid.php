@@ -10,8 +10,8 @@ header('location:'.$url_to);
 
 
 function getUserOpenid($code){
-    $appid = "wxc23b7df9375cc300";
-    $appsecret = "d21884f6ad9f6408c0b69d6d0d970f76";
+    $appid = "wxeac5ee619fe202cb";
+    $appsecret = "57982c3f587b987211eb0dbb62e4739c";
     $access_token = "";
     //Get access_token
     $access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code='.$code.'&grant_type=authorization_code';

@@ -1,0 +1,234 @@
+﻿
+                    <!-- demo9 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab9-1">demo9：效果展示</a></li>
+                            <li><a href="#tab9-2">demo9：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab9-1">
+                                <img src="images/demo_9.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab9-2">
+<pre><code>
+&lt;!-- demo9开始 --&gt;
+&lt;div class="demo demo_9"&gt;
+    &lt;div class="demo_c"&gt;
+        &lt;div class="title"&gt;&lt;h3&gt;demo9演示&lt;/h3&gt;&lt;/div&gt;
+        &lt;div class="video"&gt;
+            &lt;div class="videoL"&gt;
+                &lt;div class="pic"&gt;
+                    &lt;div id="playerDiv_demo_9"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="videoR"&gt;
+                &lt;div class="video_Scroll"&gt;
+                    &lt;ul id="LayerConPlay_demo_9"&gt;
+                        &lt;li name="0446401e-9d74-e48e-0145-ff8292cecdcc" class="cur"&gt;
+                            &lt;span&gt;&lt;a href="javascript:void(0)"&gt;&lt;img src="http://y2.ifengimg.com/4d96d4970984895f/2014/0414/rdn_534b985fb79b3.jpg" width="115" height="85" border="0" /&gt;&lt;/a&gt;&lt;/span&gt;
+                            &lt;a href="javascript:void(0)"&gt;&lt;div class="text"&gt;&lt;b&gt;郑培凯&lt;/b&gt;&lt;p&gt;中国文化为世界文明作出重大贡献&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;
+                            &lt;div class="clear"&gt;&lt;/div&gt;
+                            &lt;div class="dotted"&gt;&lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li name="04d90e15-d9e2-33f4-b46d-6c6d00958463"&gt;
+                            &lt;span&gt;&lt;a href="javascript:void(0)"&gt;&lt;img src="http://y3.ifengimg.com/4d96d4970984895f/2014/0414/rdn_534b98e43ba22.jpg" width="115" height="85" border="0" /&gt;&lt;/a&gt;&lt;/span&gt;
+                            &lt;a href="javascript:void(0)"&gt;&lt;div class="text"&gt;&lt;b&gt;肖爱玲&lt;/b&gt;&lt;p&gt;汉文化的复兴对陕西文化重要意义&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;
+                            &lt;div class="clear"&gt;&lt;/div&gt;
+                            &lt;div class="dotted"&gt;&lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li name="0400cb6e-dd83-3eaf-48c9-ab50c5896384"&gt;
+                            &lt;span&gt;&lt;a href="javascript:void(0)"&gt;&lt;img src="http://y3.ifengimg.com/4d96d4970984895f/2014/0414/rdn_534b9943aa392.jpg" width="115" height="85" border="0" /&gt;&lt;/a&gt;&lt;/span&gt;
+                            &lt;a href="javascript:void(0)"&gt;&lt;div class="text"&gt;&lt;b&gt;赵全章&lt;/b&gt;&lt;p&gt;让汉文化成为长安文化的文化标签&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;
+                            &lt;div class="clear"&gt;&lt;/div&gt;
+                            &lt;div class="dotted"&gt;&lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li name="90443fb3-9e73-4b60-93f7-e4af7e9c9d36"&gt;
+                            &lt;span&gt;&lt;a href="javascript:void(0)"&gt;&lt;img src="http://y0.ifengimg.com/4d96d4970984895f/2014/0414/rdn_534b9a5c1e1b1.jpg" width="115" height="85" border="0" /&gt;&lt;/a&gt;&lt;/span&gt;
+                            &lt;a href="javascript:void(0)"&gt;&lt;div class="text"&gt;&lt;b&gt;史景迁&lt;/b&gt;&lt;p&gt;一个美国人眼中的中国文化与历史&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;
+                            &lt;div class="clear" id="distance"&gt;&lt;/div&gt;
+                        &lt;/li&gt;  
+
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 联播视频引入js--&gt;
+        &lt;script type="text/javascript"&gt;
+			var play = new PlayItems({
+				showDivId: 'playerDiv_demo_9', // 播放器容器id，默认值为 playerDiv ,可选，不传时使用//注销,其他参数同理
+				parentIds: "LayerConPlay_demo_9", // 连播条目标签节点id，必选，如有多个列表逗号','分隔,如 'playitem1,playitem2'
+				swfWidth: '520', // 播放器宽度，可选，默认值为 400
+				swfHeight: '390', // 播放器高度，可选，默认值为 300
+				playitemcss: 'cur', // 条目播放时样式，可选，默认值为 current
+				autoPlay: 'true', // 是否自动播放，可选，默认值为 true
+				firstAutoPlay: 'false', // 第一条是否自动播放，只有autoPlay设置为 true时才生效，可选，默认值为 true
+				autoLoop: 'true', // 列表是否循环播放，可选，默认值为 true
+				postUrl: 'http://y0.ifengimg.com/bb4a22ab0e2a06f8/2015/0215/rdn_54e005bf7fae8.png', //封面图片
+				subject: '', // 前贴片参数，可选，无默认值，只pc端生效
+				ADOrderFirst: '1', // 147规则，可选，无默认值
+				index: 0 // 从第几条开始播放，0是第一条，可选，默认从0播放
+			});
+			play.init();
+        &lt;/script&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo9结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- demo68 -->
+                    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab68-1">demo68：效果展示</a></li>
+                            <li><a href="#tab68-2">demo68：源码</a></li>
+                            <li style="float:right;" class="am-padding-xs"><button class="am-btn am-btn-xs doc-act-copy am-icon-copy am-btn-danger">复制代码</button></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div class="am-tab-panel am-fade am-active am-in" id="tab68-1">
+                                <img src="images/demo_68.jpg" alt="">
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab68-2">
+<pre><code>
+&lt;!-- demo68开始 --&gt;
+&lt;div class="demo demo_68"&gt;
+	&lt;div class="demo_c"&gt;
+		&lt;div class="title"&gt;&lt;h3&gt;demo68演示&lt;/h3&gt;&lt;/div&gt;
+		&lt;div class="videos clearfix" id="videos"&gt;
+			&lt;div class="video-btn"&gt;
+				&lt;div class="btnimg"&gt;
+					&lt;img src="http://p0.ifengimg.com/a/2017/1019/08e7fcb7a2e197fsize121_w190_h300.png" /&gt;
+				&lt;/div&gt;
+				&lt;div class="video-txt"&gt;
+					&lt;h3&gt;&lt;a href="http://finance.ifeng.com/a/20171018/15730792_0.shtml" target="_blank" title=""&gt;苏州相城区委常委沈磊&lt;/a&gt; &lt;/h3&gt;
+					&lt;p&gt;9月25日，苏州相城区委常委、苏州相城经济技术开发区党工委副书记、管委会副主任沈磊接受专访时探讨新时代下政府和企业齐头并进的发展之路，并表示相城经济技术开发区将成为企业步入发展快车道的有力后盾。&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="video-btn"&gt;
+				&lt;div class="h70"&gt;&lt;/div&gt;
+				&lt;div class="btnimg"&gt;
+					&lt;img src="http://p0.ifengimg.com/a/2017/1019/1c26fe5517ea5fbsize132_w190_h300.png" /&gt;
+				&lt;/div&gt;
+				&lt;div class="video-txt"&gt;
+					&lt;h3&gt;&lt;a href="http://finance.ifeng.com/a/20171019/15732815_0.shtml" target="_blank" title=""&gt;漕湖街道办主任苏长荣&lt;/a&gt; &lt;/h3&gt;
+					&lt;p&gt;9月25日，相城区漕湖街道办事处主任苏长荣接受在“走进相城经济技术开发区”的联合媒体行采访团专访时，围绕漕湖街道建设“幸福家园美丽漕湖”作了简要介绍。&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="video-btn"&gt;
+				&lt;div class="btnimg"&gt;
+					&lt;img src="http://p0.ifengimg.com/a/2017/1019/4bfc3e7a9c99233size129_w190_h300.png" /&gt;
+				&lt;/div&gt;
+				&lt;div class="video-txt"&gt;
+					&lt;h3&gt;&lt;a href="http://finance.ifeng.com/a/20171018/15730724_0.shtml" target="_blank" title=""&gt;北渔社区书记周仁根&lt;/a&gt; &lt;/h3&gt;
+					&lt;p&gt;9月25日，相城区北渔社区书记周仁根在围绕北渔社区开展新型社区型企业时表示，将挑战企业发展常态化，开展新型社区型企业，打好生态建设和企业发展的“组合拳”。&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="video-btn"&gt;
+				&lt;div class="h70"&gt;&lt;/div&gt;
+				&lt;div class="btnimg"&gt;
+					&lt;img src="http://p0.ifengimg.com/a/2017/1019/e68b5223efa9763size114_w190_h300.png" /&gt;
+				&lt;/div&gt;
+				&lt;div class="video-txt"&gt;
+					&lt;h3&gt;&lt;a href="http://finance.ifeng.com/a/20171018/15730734_0.shtml" target="_blank" title=""&gt;易德龙董事长钱新栋&lt;/a&gt; &lt;/h3&gt;
+					&lt;p&gt;9月25日，易德龙董事长钱新栋在接受采访时表示，易德龙会始终秉承着苏商诚信理性的经营理念，紧跟时代脉搏，抓紧社会机遇将易德龙推向更广阔的平台。&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div id="video-k"&gt;
+				&lt;div class="close" id="close"&gt;&lt;/div&gt;
+				&lt;div class="playBox" id="playBox" style="position:absolute;  z-index: 999; opacity: 0;"&gt;
+					&lt;!--视频容器--&gt;
+					&lt;div id="playerDiv1"&gt;
+						正在加载...
+					&lt;/div&gt;
+					&lt;!--播放列表--&gt;
+					&lt;div&gt;
+						&lt;ul id="playitem1"&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;script src="http://p2.ifengimg.com/l/2017/42/500682deb51507e/utils.min.js"&gt;&lt;/script&gt;
+			&lt;script&gt;
+				function videoRender() {
+					var vidJson = [{
+							name: "0158c179-ede8-489e-8ee5-afd9e68956dc",
+							WidthG: 998,
+							HeightG: 562
+						},
+						{
+							name: "0122501d-4151-48e1-a246-c2a518497942",
+							WidthG: 998,
+							HeightG: 562
+						},
+						{
+							name: "01ebfede-6bdd-4272-bb7e-75642ff20b11",
+							WidthG: 998,
+							HeightG: 562
+						},
+						{
+							name: "01b6e0f4-5e0b-4a6f-a32c-3735763202ec",
+							WidthG: 998,
+							HeightG: 562
+						}
+					]
+					var playBox = document.getElementById('playBox');
+					var videos = document.getElementById('videos');
+					var video_k = document.getElementById('video-k');
+					var timer = null;
+					function writeVid(n) {
+						playBox.style.opacity = 0;
+						timer = setTimeout(function() {
+							ulHtml = ""
+							ulHtml = '&lt;li name=' + vidJson[n].name + ' class=""&gt;&lt;/li&gt;';
+							document.getElementById("playitem1").innerHTML = ulHtml;
+							var play = new PlayItems({
+								showDivId: 'playerDiv1', // 播放器容器id，默认值为 playerDiv ,可选，不传时使用//注销,其他参数同理
+								parentIds: "playitem1", // 连播条目标签节点id，必选，如有多个列表逗号','分隔,如 'playitem1,playitem2'
+								swfWidth: vidJson[n].WidthG, // 播放器宽度，可选，默认值为 400
+								swfHeight: vidJson[n].HeightG, // 播放器高度，可选，默认值为 300
+								playitems: 'current', // 条目播放时样式，可选，默认值为 current
+								autoPlay: 'true', // 是否自动播放，可选，默认值为 true
+								firstAutoPlay: 'true', // 第一条是否自动播放，只有autoPlay设置为 true时才生效，可选，默认值为 true
+								autoLoop: 'true', // 列表是否循环播放，可选，默认值为 true
+								postUrl: vidJson[n].img, // 播放器预览图，可选，无默认值
+								subject: '2016ctds', // 前贴片参数，可选，无默认值，只pc端生效
+								ADOrderFirst: '1', // 147规则，可选，无默认值
+								index: 0, // 从第几条开始播放，0是第一条，可选，默认从0播放
+								playerCB: function() {} // 条目切换时回调方法，可选
+							});
+							play.init();
+							playBox.style.opacity = 1;
+							video_k.style.display = 'block';
+						}, 100)
+					}
+					var btnimg = utils.byClass('btnimg', videos);
+					var close = document.getElementById('close');
+					for(var i = 0; i &lt; btnimg.length; i++) {
+						(function(i) {
+							btnimg[i].onclick = function() {
+								writeVid(i);
+								close.style.display = "block";
+							}
+						})(i)
+					}
+					close.onclick = function() {
+						document.getElementById('playerDiv1').innerHTML = " ";
+						video_k.style.display = 'none';
+						this.style.display = "none";
+						clearTimeout(timer);
+					}
+				}
+				videoRender()
+			&lt;/script&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- demo68结束 --&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>

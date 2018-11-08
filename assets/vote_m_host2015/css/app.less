@@ -1,0 +1,336 @@
+//引入基础
+@import "basic.less";
+html,body{width:100%; height:100%; font: 14px/1.5 "Microsoft Yahei",tahoma,arial,sans-serif;}
+body{background-color:#fff;}
+img{width:100%;}
+.page{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+// 声音组建样式
+.fn-audio{
+  position:fixed;
+  z-index:100;
+  right:2%;
+  top:1%;
+  .btn{
+    border:none;
+  }
+  .btn_audio{
+    span{
+      display:inline-block;
+      width:30px;
+      height:30px;
+    }
+    .audio_open{
+      .animation(animation-rotate-un,2s,linear,infinite,normal,forwards);
+    }
+    .audio_close{
+      display:none;
+    }
+  }
+}
+
+//加载页面
+#loading{
+  width:100%;
+  height:100%;
+  background-color:#ebebeb;
+  text-align:center;
+  .center_v;
+  .content{
+    .logo{
+      width:40px;
+      line-height:0;
+      font-size:0;
+      display:inline-block;
+      .animation(animation-rotate-un,1600ms,linear,infinite,normal,forwards);
+      .transform-origin(center,center);
+    }
+    width:80px;
+  }
+}
+
+
+#main{
+  display:none;
+}
+
+.page_list{
+  background:#dd1b19 url(../images/bg.jpg) no-repeat center 0;
+  background-size:100% auto;
+  .players{
+    width:96%;
+    margin:0 2%;
+    margin-bottom:4rem;
+    .player{
+      width:46%;
+      margin:0 2%;
+      margin-bottom:1em;
+      a{
+        font-size:0;
+        line-height:0;
+        display:block;
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        width:100%;
+        height:0;
+        padding-bottom:100%;
+        background-color:#fff;
+        overflow:hidden;
+        img{width:100%;}
+      }
+      .img{
+        position:relative;
+        display:block;
+        .status{
+          position: absolute;
+          display: block;
+          line-height: 1em;
+          top: 5px;
+          left: 5px;
+          padding: 0.3em 0.6em;
+          border-radius: 0.3em;
+          font-size: 14px;
+          background-color: #C30E17;
+          color: #F8C375;
+        }
+      }
+      .infor1{
+        width:96%;
+        padding:5px 2%;
+        background-color:#fff;
+        color:#252525;
+        font-size:12px;
+
+      }
+      .infor2{
+        width:96%;
+        padding:0 2%;
+        background:url(../images/inforbg.png) repeat-x 0 0;
+        background-size:auto 100%;
+        padding-top:2%;
+        padding-bottom:4%;
+        text-shadow: 0.5px 0.866px 0px rgb( 255, 224, 166 );
+        .no{
+          font-weight:bold;
+        }
+        .num{color:#e33026;}
+        .votenum{
+          padding-left:20px;
+          background:url(../images/like_heart.png) no-repeat 0 4px;
+          background-size:18px 15px;
+        }
+      }
+    }
+  }
+  .foot{
+    width:90%;
+    margin:0 5%;
+    color:#fff;
+    font-size:12px;
+    padding-bottom:6rem;
+    .img_l{width:180/514*100%;}
+    .img_r{width:334/514*100%;}
+    h3{
+      font-size:14px;
+    }
+    a{
+      color:#fcde9d;
+    }
+  }
+}
+
+
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  2%{
+    -webkit-transform: translate3d(-1.5px, 0, 0);
+            transform: translate3d(-1.5px, 0, 0);
+  }
+
+  4%{
+    -webkit-transform: translate3d(1.5px, 0, 0);
+            transform: translate3d(1.5px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% ,25%{
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  5%,15%{
+    -webkit-transform: translate3d(-1.5px, 0, 0);
+            transform: translate3d(-1.5px, 0, 0);
+  }
+
+  10%,20%{
+    -webkit-transform: translate3d(1.5px, 0, 0);
+            transform: translate3d(1.5px, 0, 0);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+          animation-name: shake;
+}
+
+.tip_cont{
+  position:fixed;
+  bottom:20%;
+  left:0;
+  width:100%;
+  z-index: 100;
+  .cont_v{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+  }
+  .openbtn{
+    width:20%;
+    position:relative;
+    img{
+      width:100%;
+    }
+    .top_img{
+      position:absolute;
+      top:0;
+      left:7%;
+      width:87%;
+      .animation_duration(3s);
+      .animation_delay(2s);
+    }
+  }
+  .cont{
+    font-size:0;
+    line-height:0;
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    .cont_img{
+      position:relative;
+      width:100%;
+      .img_l{width:260/640*100%;}
+      .img_r{width:380/640*100%;}
+    }
+    .closebtn{
+      position:absolute;
+      background-color:transparent;
+      width:6%;
+      border:0;
+      top:10%;
+      right:4%;
+    }
+    img{
+      width:100%;
+    }
+  }
+}
+
+.page_show{
+  background:#dd1b19 url(../images/bg.jpg) no-repeat center 0;
+  background-size:100% auto;
+  .banner{
+    width:32%;
+    padding:1rem 34%;
+  }
+  #back{
+    line-height:0;
+    font-size:0;
+    margin:10px 0;
+    display:block;
+  }
+  .players{
+    width:90%;
+    margin:0 5%;
+    margin-bottom:2rem;
+    .player{
+      width:100%;
+      margin-bottom:1em;
+      a{
+        font-size:0;
+        line-height:0;
+        display:block;
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        width:100%;
+        height:0;
+        padding-bottom:100%;
+        background-color:#fff;
+        overflow:hidden;
+        img{width:100%;}
+      }
+      .img{
+        position:relative;
+        display:block;
+        .status{
+          position: absolute;
+          display: block;
+          line-height: 1em;
+          top: 5px;
+          left: 5px;
+          padding: 0.3em 0.6em;
+          border-radius: 0.3em;
+          font-size: 14px;
+          background-color: #C30E17;
+          color: #F8C375;
+        }
+      }
+      .infor1{
+        width:96%;
+        padding:5px 2%;
+        background-color:#fff;
+        color:#252525;
+
+      }
+      .infor2{
+        width:96%;
+        padding:0 2%;
+        background:url(../images/inforbg.png) repeat-x 0 0;
+        background-size:auto 100%;
+        padding-top:2%;
+        padding-bottom:4%;
+        text-shadow: 0.5px 0.866px 0px rgb( 255, 224, 166 );
+        .no{
+          font-weight:bold;
+        }
+        .num{color:#e33026;}
+        .votenum{
+          padding-left:20px;
+          background:url(../images/like_heart.png) no-repeat 0 4px;
+          background-size:18px 15px;
+        }
+      }
+    }
+  }
+  .foot{
+    width:90%;
+    margin:0 5%;
+    color:#fff;
+    font-size:12px;
+    padding-bottom:6rem;
+    .img_l{width:180/514*100%;}
+    .img_r{width:334/514*100%;}
+    h3{
+      font-size:14px;
+    }
+    a{
+      color:#fcde9d;
+    }
+  }
+}
+
+
+
+
+
+

@@ -3,11 +3,10 @@
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/animate.css">
 <link rel="stylesheet" href="<?php print base_url()?>assets/vote_m_host2015/css/app.css?43trfh">
 <script type="text/javascript" src="<?php print base_url()?>assets/vote_m_host2015/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php print base_url()?>assets/wechat/js/wechat_share_jquery.js"></script>
-
-<div id="shareConfig" data-title="<?php echo $title; ?>" data-text="<?php echo $subject; ?>" data-img="<?php echo $thumb; ?> " style="display:none"></div>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="http://p3.ifengimg.com/a/2017/0809/wxshare.js"></script>
+<div id="shareConfig" data-title="<?php echo $title; ?>" data-text="<?php echo $subject; ?>" data-img="<?php echo $thumb; ?> " style="display:none"></div>
+
 
 
 <div id="loading">

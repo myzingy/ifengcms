@@ -51,7 +51,8 @@ class draw_model extends Base_model
 			$data['prize']=array(
 				'status'=>$row->pid?1:0,
 				'name'=>$row->pname,
-				'time'=>date('Y-m-d H:i:s',$row->addtime)
+				'time'=>date('Y-m-d H:i:s',$row->addtime),
+				'pid'=>$row->pid
 			);
 
             return $data;

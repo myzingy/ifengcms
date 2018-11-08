@@ -122,6 +122,7 @@ class draw_lib
 		$name=trim($this->CI->input->get('name'));
 		$phone=trim($this->CI->input->get('phone'));
 		$openid=trim($this->CI->input->get('openid'));
+                $domore=trim($this->CI->input->get('domore'));
 		$info=$this->CI->draw_model->getDrawAllInfo($id);
 		if(!$info){
 			return array('status'=>10000,'error'=>'抽奖活动不存在！');
@@ -213,6 +214,7 @@ class draw_lib
 			$info['status']=1;
 			$info['msg']='中奖了,恭喜你获得'.$prize_data[$gailv[0]]->name;
 			$info['prizeName']=$prize_data[$gailv[0]]->name;
+                        $info['prizeId']=$prize_data[$gailv[0]]->id;
 			$this->CI->draw_model->update('DH'
 				,array('pid'=>$gailv[0],'pname'=>$prize_data[$gailv[0]]->name)
 				,array('id'=>$history_id)

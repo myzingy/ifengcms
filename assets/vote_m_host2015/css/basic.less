@@ -1,0 +1,417 @@
+// 清除浏览器的默认样式开始
+* { margin: 0; padding: 0; list-style: none; }
+/* KISSY CSS Reset
+理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
+2. reset 的目的不是让默认样式在所有浏览器下一致，而是减少默认样式有可能带来的问题。
+3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
+特色：1. 适应中文；2. 基于最新主流浏览器。
+维护：玉伯<lifesinger@gmail.com>, 正淳<ragecarrier@gmail.com> */
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ { margin: 0; padding: 0; }
+/** 设置默认字体 **/
+body, button, input, select, textarea /* for ie */ { font: 14px/1.5 tahoma, arial, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; }
+/* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; }
+/* 统一等宽字体 */
+small { font-size: 12px; }
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+/** 重置表单元素 **/
+legend { color: #000; }
+/* for ie6 */
+fieldset, img { border: 0; }
+/* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea { font-size: 100%; }
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table { border-collapse: collapse; border-spacing: 0; }
+// 清除浏览器的默认样式结束
+
+.fl{float:left;}
+.fr{float:right;}
+.cl{clear:both;}
+.clear{clear:both;}
+
+
+//文字的堆砌方式
+.text-left{
+  text-align:left;
+}
+.text-right{
+  text-align:right;
+}
+.text-center{
+  text-align:center;
+}
+
+//透明度
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+//圆角
+.border-radius (@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+//阴影
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color:#000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+//垂直居中对其的盒子
+.center_v{
+    /* Center vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+//input的placeholder颜色
+.placeholder(@color: @input-color-placeholder){
+  &::-moz-placeholder           { color: @color; } // Firefox
+  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+
+//单行文字溢出省略
+.single_text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+//多单行文字溢出省略
+.multi_text(@linenum){
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:@linenum;
+  -webkit-box-orient: vertical;
+}
+
+
+.animation(@name,@duration,@speed,@number,@direction, @mode){
+  //@name 动画的名称
+  //@duration 规定动画完成一个周期所花费的秒或毫秒
+  //@speed 规定动画完成一个周期所花费的秒或毫秒 
+          //linear (动画从头到尾的速度是相同的)
+          //ease (默认。动画以低速开始，然后加快，在结束前变慢。)
+          //ease-in (动画以低速开始。)
+          //ease-out (动画以低速结束。)
+          //ease-out (动画以低速结束。)
+          //ease-in-out (动画以低速开始和结束。)
+          //cubic-bezier(n,n,n,n) (在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。)
+  //@delay 定义动画开始前等待的时间，以秒或毫秒计
+  //@number 定义动画播放次数的数值 n 或 infinite（规定动画应该无限次播放）。 
+  //@direction 规定动画是否在下一周期逆向地播放。normal（默认值。动画应该正常播放。） alternate（动画应该轮流反向播放。）； 
+  //@State 规定动画是否在下一周期逆向地播放。 paused（规定动画已暂停。） running（规定动画正在播放。）； 
+  //@mode 规定动画是否在下一周期逆向地播放。  
+          //none(不改变默认行为。)
+          //forwards(当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）)
+          //backwards(在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）)
+          //both(向前和向后填充模式都被应用)
+
+animation: @name @duration @speed  @number @direction @mode;
+-ms-animation:@name @duration @speed  @number @direction @mode;
+-moz-animation:@name @duration @speed  @number @direction @mode;
+-webkit-animation:@name @duration @speed  @number @direction @mode;
+-o-animation:@name @duration @speed  @number @direction @mode;
+}
+
+.animation_duration(@time){
+  animation-duration:@time;
+  -ms-animation-duration:@time;
+  -moz-animation-duration:@time;
+  -webkit-animation-duration:@time;
+  -o-animation-duration:@time;
+}
+.animation_delay(@time){
+  animation-delay:@time;
+  -ms-animation-delay:@time;
+  -moz-animation-delay:@time;
+  -webkit-animation-delay:@time;
+  -o-animation-delay:@time;
+}
+
+
+//动画的定义
+.animation{
+  from {
+    width:100px;
+    height:100px;
+    background-color:blue;
+  }
+  to {
+    width:300px;
+    height:300px;
+    background-color:red;
+  }
+}
+@keyframes animation{ .animation}
+@-moz-keyframes animation{ .animation}
+@-webkit-keyframes animation { .animation}
+@-o-keyframes animation { .animation}
+// 动画的示例
+.animation_demo{
+  width:100px;
+  height:100px;
+  background-color:blue;
+  .animation(animation,2s,ease-in-out,1,normal,forwards);
+}
+//过度动画
+.transition(@property,@duration,@timing-function,@delay){
+  //@property 过渡效果的 CSS 属性的名称
+    //none  没有属性会获得过渡效果
+    //all  所有属性都将获得过渡效果。
+    //property  定义应用过渡效果的 CSS 属性名称列表，列表以逗号分隔。如：width,height
+  //@duration 完成过渡效果需要多少秒或毫秒
+    //time 如：'2s' '10000ms'
+  //@timing-function  速度效果的速度曲线
+    //linear (动画从头到尾的速度是相同的)
+    //ease (默认。动画以低速开始，然后加快，在结束前变慢。)
+    //ease-in (动画以低速开始。)
+    //ease-out (动画以低速结束。)
+    //ease-out (动画以低速结束。)
+    //ease-in-out (动画以低速开始和结束。)
+    //cubic-bezier(n,n,n,n) (在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。)
+  //@delay  过渡效果何时开始
+    //time 如：'2s' '10000ms'
+  transition:@property @duration @timing-function @delay;
+  -ms-transition:@property @duration @timing-function @delay;
+  -moz-transition:@property @duration @timing-function @delay;
+  -webkit-transition:@property @duration @timing-function @delay;
+  -o-transition:@property @duration @timing-function @delay;
+}
+//过度动画示例
+.transition_demo{
+  width:100px;
+  height:100px;
+  background-color:blue;
+  .transition(all,2s,ease,0s);
+  &:hover{
+    width:300px;
+    height:300px;
+    background-color:red;
+  }
+}
+
+//none  定义不进行转换。
+//matrix(n,n,n,n,n,n) 定义 2D 转换，使用六个值的矩阵。
+//matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n) 定义 3D 转换，使用 16 个值的 4x4 矩阵。  
+//translate(x,y)  定义 2D 转换
+//translate3d(x,y,z)  定义 3D 转换。 
+//translateX(x) 定义转换，只是用 X 轴的值
+//translateY(y) 定义转换，只是用 Y 轴的值
+//translateZ(z) 定义 3D 转换，只是用 Z 轴的值。 
+//scale(x,y)  定义 2D 缩放转换
+//scale3d(x,y,z)  定义 3D 缩放转换。 
+//scaleX(x) 通过设置 X 轴的值来定义缩放转换。
+//scaleY(y) 通过设置 Y 轴的值来定义缩放转换。
+//scaleZ(z) 通过设置 Z 轴的值来定义 3D 缩放转换。  
+//rotate(angle) 定义 2D 旋转，在参数中规定角度。
+//rotate3d(x,y,z,angle) 定义 3D 旋转。 
+//rotateX(angle)  定义沿着 X 轴的 3D 旋转。
+//rotateY(angle)  定义沿着 Y 轴的 3D 旋转。
+//rotateZ(angle)  定义沿着 Z 轴的 3D 旋转。
+//skew(x-angle,y-angle) 定义沿着 X 和 Y 轴的 2D 倾斜转换。
+//skewX(angle)  定义沿着 X 轴的 2D 倾斜转换。
+//skewY(angle)  定义沿着 Y 轴的 2D 倾斜转换。  
+//perspective(n)  为 3D 转换元素定义透视视图。
+.transform(){
+
+
+transform:rotate(7deg);
+-ms-transform:rotate(7deg);   /* IE 9 */
+-moz-transform:rotate(7deg);  /* Firefox */
+-webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);  /* Opera */
+}
+
+//3d偏移
+.transform_translate3d(@x,@y,@z){
+  transform:translate3d(@x,@y,@z);
+  -ms-transform:translate3d(@x,@y,@z);   /* IE 9 */
+  -moz-transform:translate3d(@x,@y,@z);  /* Firefox */
+  -webkit-transform:translate3d(@x,@y,@z); /* Safari 和 Chrome */
+  -o-transform:translate3d(@x,@y,@z);  /* Opera */
+}
+.transform_translate3d_demo{
+  width:200px;
+  height:200px;
+  background-color:#ddd;
+  .border-radius(30px);
+  .transform_translate3d(60px,90px,100px);
+}
+//3d偏移旋转
+.transform_scale3d(@x,@y,@z){
+  transform:scale3d(@x,@y,@z);
+  -ms-transform:scale3d(@x,@y,@z);   /* IE 9 */
+  -moz-transform:scale3d(@x,@y,@z);  /* Firefox */
+  -webkit-transform:scale3d(@x,@y,@z); /* Safari 和 Chrome */
+  -o-transform:scale3d(@x,@y,@z);  /* Opera */
+}
+.transform_scale3d_demo{
+  width:200px;
+  height:200px;
+  background-color:#ddd;
+  .border-radius(30px);
+  .transition(all,2s,ease,0s);
+  &:hover{
+    .transform_scale3d(1.1,1.2,1.3);
+  }
+}
+
+
+
+//角度旋转
+.transform_rotate(@angle){
+  transform:rotate(@angle);
+  -ms-transform:rotate(@angle);   /* IE 9 */
+  -moz-transform:rotate(@angle);  /* Firefox */
+  -webkit-transform:rotate(@angle); /* Safari 和 Chrome */
+  -o-transform:rotate(@angle);  /* Opera */
+}
+.transform_rotate_demo{
+  width:200px;
+  height:200px;
+  background-color:#ddd;
+  .border-radius(30px);
+  .transform_rotate(30deg);
+}
+//3dX轴旋转
+.transform_rotateX(@angle){
+  transform:rotateX(@angle);
+  -ms-transform:rotateX(@angle);   /* IE 9 */
+  -moz-transform:rotateX(@angle);  /* Firefox */
+  -webkit-transform:rotateX(@angle); /* Safari 和 Chrome */
+  -o-transform:rotateX(@angle);  /* Opera */
+}
+.transform_rotateX_demo{
+  width:200px;
+  height:200px;
+  background-color:#999;
+  .border-radius(20px);
+  .transform_rotateX(60deg);
+}
+//3dY轴旋转
+.transform_rotateY(@angle){
+  transform:rotateY(@angle);
+  -ms-transform:rotateY(@angle);   /* IE 9 */
+  -moz-transform:rotateY(@angle);  /* Firefox */
+  -webkit-transform:rotateY(@angle); /* Safari 和 Chrome */
+  -o-transform:rotateY(@angle);  /* Opera */
+}
+.transform_rotateY_demo{
+  width:200px;
+  height:200px;
+  background-color:#999;
+  .border-radius(20px);
+  .transform_rotateY(60deg);
+}
+//3dZ轴旋转
+.transform_rotateZ(@angle){
+  transform:rotateZ(@angle);
+  -ms-transform:rotateZ(@angle);   /* IE 9 */
+  -moz-transform:rotateZ(@angle);  /* Firefox */
+  -webkit-transform:rotateZ(@angle); /* Safari 和 Chrome */
+  -o-transform:rotateZ(@angle);  /* Opera */
+}
+.transform_rotateZ_demo{
+  width:200px;
+  height:200px;
+  background-color:#999;
+  .border-radius(20px);
+  .transform_rotateZ(60deg);
+}
+
+//3dX轴倾斜
+.transform_skewX(@angle){
+  transform:skewX(@angle);
+  -ms-transform:skewX(@angle);   /* IE 9 */
+  -moz-transform:skewX(@angle);  /* Firefox */
+  -webkit-transform:skewX(@angle); /* Safari 和 Chrome */
+  -o-transform:skewX(@angle);  /* Opera */
+}
+.transform_skewX_demo{
+  width:200px;
+  height:200px;
+  background-color:#ddd;
+  .border-radius(30px);
+  .transform_skewX(30deg);
+}
+//3dY轴倾斜
+.transform_skewY(@angle){
+  transform:skewY(@angle);
+  -ms-transform:skewY(@angle);   /* IE 9 */
+  -moz-transform:skewX(@angle);  /* Firefox */
+  -webkit-transform:skewY(@angle); /* Safari 和 Chrome */
+  -o-transform:skewY(@angle);  /* Opera */
+}
+.transform_skewY_demo{
+  width:200px;
+  height:200px;
+  background-color:#ddd;
+  .border-radius(30px);
+  .transform_skewY(30deg);
+}
+//旋转动画
+.animation-rotate{
+  from {
+    .transform_rotate(0deg);
+  }
+  to {
+    .transform_rotate(360deg);
+  }
+}
+@keyframes animation-rotate{ .animation-rotate}
+@-moz-keyframes animation-rotate{ .animation-rotate}
+@-webkit-keyframes animation-rotate { .animation-rotate}
+@-o-keyframes animation-rotate { .animation-rotate}
+
+//反向旋转动画
+.animation-rotate-un{
+  from {
+    .transform_rotate(0deg);
+  }
+  to {
+    .transform_rotate(-360deg);
+  }
+}
+@keyframes animation-rotate-un{ .animation-rotate-un}
+@-moz-keyframes animation-rotate-un{ .animation-rotate-un}
+@-webkit-keyframes animation-rotate-un { .animation-rotate-un}
+@-o-keyframes animation-rotate-un { .animation-rotate-un}
+
+//旋转中心
+.transform-origin(@x,@y){
+  -ms-transform-origin:@x @y;   /* IE 9 */
+  -moz-transform-origin:@x @y;  /* Firefox */
+  -webkit-transform-origin:@x @y; /* Safari 和 Chrome */
+  -o-transform-origin:@x @y;  /* Opera */
+}
+
+

@@ -16,8 +16,9 @@
 	};
 	PUBLIC__WECHAT_OPENID=getOpenID();
 	if(!PUBLIC__WECHAT_OPENID){
-		var REDIRECT_URI = 'http://www.duduxy.com/wechat/php/getWechatAuth.php'
-		var APPID='wxc23b7df9375cc300';
+		var REDIRECT_URI = 'http://cms.wisheli.com/assets/wechat/php/getWechatAuth.php'
+		//var APPID='wxc23b7df9375cc300';
+		var APPID='wxeac5ee619fe202cb';
 		var BACK_URl = encodeURIComponent(location.href);
 		var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+APPID+'&redirect_uri='+REDIRECT_URI+'&response_type=code&scope=snsapi_userinfo&state='+BACK_URl+'#wechat_redirect';
 		location.href=url;

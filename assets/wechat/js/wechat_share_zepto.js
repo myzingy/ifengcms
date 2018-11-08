@@ -8,7 +8,7 @@
   			that=$.extend(this,{
   				init:function(){
   					$.ajax({
-			            url:'http://www.duduxy.com/wechat/php/wechat.share.php',
+			            url:'http://cms.wisheli.com/assets/wechat/php/wechat.share.php',
 			            dataType:'jsonp',
 			            async:false,
 			            data:"&shareurl="+encodeURIComponent(window.location.href),

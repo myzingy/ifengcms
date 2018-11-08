@@ -1,7 +1,7 @@
 <?php
 
 require_once "jssdk.php";
-$jssdk = new JSSDK("wxc23b7df9375cc300", "d21884f6ad9f6408c0b69d6d0d970f76");
+$jssdk = new JSSDK("wxeac5ee619fe202cb", "57982c3f587b987211eb0dbb62e4739c");
 $signPackage = $jssdk->GetSignPackage();
 
 $wechat_conf = array(

@@ -3,8 +3,8 @@
 //define( 'APPID', 'wx23d35cf9f1616aa2' );
 //define( 'SECRET', '10771aa3c4f79222c0b65d5d6a059a05' );
 #嘟嘟校园
-define( 'APPID', 'wxc23b7df9375cc300');
-define( 'SECRET', 'd21884f6ad9f6408c0b69d6d0d970f76');
+define( 'APPID', 'wxeac5ee619fe202cb');
+define( 'SECRET', '57982c3f587b987211eb0dbb62e4739c');
 
 //define( 'APPID', 'wx4c8335254e4b5b93' );
 //define( 'SECRET', '60c1e5a1d49e26ef549fc59a02cf1133' );
