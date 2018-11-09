@@ -29,7 +29,7 @@
  */
 class Auth_form_processing
 {
-	function Auth_form_processing()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();

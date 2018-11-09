@@ -25,7 +25,7 @@
  */
 class User_email
 {
-	function User_email()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();

@@ -35,7 +35,7 @@ class CI_Bredis {
 	 *
 	 * The constructor can be passed an array of config values
 	 */
-	function CI_Bredis()
+	function __construct()
 	{
 		//$this->log=BaeLog::getInstance();
 		$this->hostname		= getenv('HTTP_BAE_ENV_ADDR_REDIS_IP');
