@@ -11,8 +11,8 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://ifengcms.vking.wang/";
-//$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].preg_replace("/index\.php.*/i","",$_SERVER['PHP_SELF']);
+//$config['base_url']	= "http://ifengcms.vking.wang/";
+$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].preg_replace("/index\.php.*/i","",$_SERVER['PHP_SELF']);
 /*
 |--------------------------------------------------------------------------
 | Index File
