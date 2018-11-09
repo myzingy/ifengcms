@@ -45,9 +45,9 @@ class Preference_model extends Base_model
 	 */
  	var $object_keyword = "BeP::Object::";
  	
-	function Preference_model()
+	function __construct()
 	{
-		parent::Base_model();		
+		parent::__construct();
 
 		define("PREFERENCES", $this->config->item('backendpro_table_prefix') . 'preferences');
 

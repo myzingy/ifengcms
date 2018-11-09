@@ -50,7 +50,7 @@ class BeP_site
 	 */
 	var $javascript_code_blocks = array();
 
-	function BeP_site()
+	function __construct()
 	{
 		log_message('info','BackendPro->BeP_Site : Class loaded');
 		$CI = &get_instance();

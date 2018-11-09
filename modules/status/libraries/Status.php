@@ -27,7 +27,7 @@ class Status
 	var $flash_var = "status";
 	var $types = array('info','warning','error','success');
 
-	function Status()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();

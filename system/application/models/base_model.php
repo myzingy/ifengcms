@@ -25,9 +25,9 @@
  */
 class Base_model extends Model
 {
-	function Base_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 
 		// Create empty function array
 		$this->_TABLES = array();

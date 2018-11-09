@@ -25,7 +25,7 @@
  */
 class Userlib
 {
-	function Userlib()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();

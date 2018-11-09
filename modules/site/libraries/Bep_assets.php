@@ -86,7 +86,7 @@ class Bep_assets
 	 */
 	var $packer = null;
 	
-	function Bep_assets()
+	function __construct()
 	{
 		log_message('info','BackendPro->BeP_Assets : Class loaded');
 		$this->CI = &get_instance();

@@ -68,7 +68,7 @@ class Bep_assetfile
 	 */
 	var $is_external = false;
 	
-	function Bep_assetfile($full_path)
+	function __construct($full_path)
 	{		
 		$this->full_path = $full_path;
 		

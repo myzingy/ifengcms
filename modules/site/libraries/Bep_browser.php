@@ -44,7 +44,7 @@ class Bep_browser
 	 */
 	var $browser_mappings = array();
 
-	function Bep_browser()
+	function __construct()
 	{
 		log_message('info','BackendPro->Browser : Browser Class loaded');
 		$this->CI = &get_instance();
