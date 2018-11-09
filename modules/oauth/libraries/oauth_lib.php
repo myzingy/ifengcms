@@ -2,7 +2,7 @@
 class oauth_lib
 {
 	const COOK_NAME ='WeChatWeiLan';	
-	function oauth_lib(){
+	function __construct(){
 		// Get CI Instance
 		// Get CI Instance
 		$this->CI = &get_instance();

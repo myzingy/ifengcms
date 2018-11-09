@@ -4,8 +4,8 @@ class oauth extends Public_Controller
 	/**
 	 * Constructor
 	 */
-	function oauth(){
-		parent::Public_Controller();
+	function __construct(){
+		parent::__construct();
 		// Load the Auth_form_processing class
 		$this->load->library('oauth_lib');
 		$this->load->helper('cookie');
