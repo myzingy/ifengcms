@@ -29,7 +29,7 @@ class Articlelib
 		'admin'=>array('type'=>1,'header'=>'编辑新闻','img'=>'trim'),//required
 		'user'=>array('type'=>2,'header'=>'用户新闻','img'=>'trim'),
 	);	
-	function Articlelib()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();

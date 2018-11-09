@@ -25,9 +25,9 @@
  */
 class MY_Validation extends CI_Validation
 {
-	function MY_Validation()
+	function __construct()
 	{
-		parent::CI_Validation();
+		parent::__construct();
 
 		// Get CI Instance
 		$this->CI = &get_instance();
