@@ -82,7 +82,7 @@ class CI_Router
      *
      * Runs the route mapping function.
      */
-    function CI_Router()
+    function __construct()
     {
         // {{{ Matchbox
 

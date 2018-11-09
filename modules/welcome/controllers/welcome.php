@@ -24,9 +24,9 @@
  */
 class Welcome extends Public_Controller
 {
-	function Welcome()
+	function __construct()
 	{
-		parent::Public_Controller();
+		parent::__construct();
 		
 	}
 
