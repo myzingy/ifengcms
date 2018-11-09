@@ -27,9 +27,9 @@ class auth extends Public_Controller
 	/**
 	 * Constructor
 	 */
-	function auth()
+	function __construct()
 	{
-		parent::Public_Controller();
+		parent::__construct();
 
 		// Load the Auth_form_processing class
 		$this->load->library('auth_form_processing');
