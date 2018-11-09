@@ -4,8 +4,8 @@ class draw extends Admin_Controller
 	/**
 	 * Constructor
 	 */
-	function draw(){
-		parent::Admin_Controller();
+	function __construct(){
+		parent::__construct();
 		// Load the Auth_form_processing class
 		$this->load->library('draw_lib');
 	}
