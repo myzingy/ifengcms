@@ -13,7 +13,7 @@
     <div id="header">
         <div id="site"><?php print $this->preference->item('site_name')?></div>
         <div id="info">
-        	<?php if(check('System',NULL,FALSE)):?>
+        	<?php if(false && check('System',NULL,FALSE)):?>
         	<?php print anchor('open/fighter','战斗机统计平台',array('class'=>'icon_shield','target'=>'_blank'))?>&nbsp;&nbsp;&nbsp;&nbsp;
         	<?php endif;?>
         	<?php print anchor('',$this->lang->line('backendpro_view_website'),array('class'=>'icon_world_go','target'=>'_blank'))?>&nbsp;&nbsp;&nbsp;&nbsp;
