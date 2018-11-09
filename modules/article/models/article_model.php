@@ -32,9 +32,9 @@ class Article_model extends Base_model
 		4=>array('name'=>'推广','tpl'=>'details_ads','block'=>'<b class="label">推广</b>'),
 		5=>array('name'=>'微信关键字','tpl'=>'details_ads','block'=>'<b class="label">微信关键字</b>'),
 	);	
-	function Article_model()
+	function __construct()
 	{
-		parent::Base_model();
+		parent::__construct();
 
 		$pro_prefix = $this->config->item('backendpro_table_prefix');
 		$cms_prefix = $this->config->item('ifengcms_table_prefix');

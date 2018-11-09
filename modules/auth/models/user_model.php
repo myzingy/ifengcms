@@ -25,9 +25,9 @@
  */
 class User_model extends Base_model
 {
-	function User_model()
+	function __construct()
 	{
-		parent::Base_model();
+		parent::__construct();
 
 		$this->_prefix = $this->config->item('backendpro_table_prefix');
 		$this->_TABLES = array(    'Users' => $this->_prefix . 'users',
