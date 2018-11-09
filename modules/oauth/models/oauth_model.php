@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class oauth_model extends Base_model
 {
-	function oauth_model(){
-		parent::Base_model();
+	function __construct(){
+		parent::__construct();
 
 		$pro_prefix = $this->config->item('backendpro_table_prefix');
 		$cms_prefix = $this->config->item('ifengcms_table_prefix');

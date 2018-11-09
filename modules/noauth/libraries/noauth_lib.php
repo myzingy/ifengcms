@@ -25,7 +25,7 @@
  */
 class Noauth_lib
 {
-	function Noauth_lib()
+	function __construct()
 	{
 		// Get CI Instance
 		$this->CI = &get_instance();
