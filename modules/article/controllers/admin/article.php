@@ -27,9 +27,9 @@ class article extends Admin_Controller
 	/**
 	 * Constructor
 	 */
-	function article()
+	function __construct()
 	{
-		parent::Admin_Controller();
+		parent::__construct();
 
 		// Load the Auth_form_processing class
 		$this->load->library('articlelib');
