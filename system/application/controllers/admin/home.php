@@ -24,7 +24,7 @@ class Home extends Admin_Controller
 {
 	function Home()
 	{
-		parent::Admin_Controller();
+		parent::__construct();
 
 		log_message('debug','BackendPro : Home class loaded');
 	}
