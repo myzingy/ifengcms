@@ -21,7 +21,7 @@
  */
 class Statistic_widget
 {
-	function Statistic_widget()
+	function __construct()
 	{
 		$this->CI =& get_instance();
 
