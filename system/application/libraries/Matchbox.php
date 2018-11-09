@@ -81,7 +81,7 @@ class CI_Matchbox
      * @return void
      * @access public
      */
-    function CI_Matchbox()
+    function __construct()
     {
         @include(APPPATH . 'config/matchbox' . EXT);
 

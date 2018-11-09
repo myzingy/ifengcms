@@ -24,9 +24,9 @@
  */
 class Admin_Controller extends Site_Controller
 {
-	function Admin_Controller()
+	function __construct()
 	{
-		parent::Site_Controller();
+		parent::__construct();
 
 		// Set base crumb
 		$this->bep_site->set_crumb($this->lang->line('backendpro_control_panel'),'admin');

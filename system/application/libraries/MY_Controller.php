@@ -26,9 +26,9 @@
 class Site_Controller extends Controller
 {
 	var $_container;
-	function Site_Controller()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		// Load Base CodeIgniter files
 		$this->load->database();

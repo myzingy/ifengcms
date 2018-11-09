@@ -24,9 +24,9 @@
  */
 class Public_Controller extends Site_Controller
 {
-	function Public_Controller()
+	function __construct()
 	{
-		parent::Site_Controller();
+		parent::__construct();
 
 		// Set container variable
 		$this->_container = $this->config->item('backendpro_template_public') . "container.php";
