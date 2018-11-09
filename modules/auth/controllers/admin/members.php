@@ -24,9 +24,9 @@
  */
 class Members extends Admin_Controller
 {
-	function Members()
+	function __construct()
 	{
-		parent::Admin_Controller();
+		parent::__construct();
 
 		$this->load->helper('form');
 
