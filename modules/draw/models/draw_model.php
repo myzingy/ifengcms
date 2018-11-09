@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class draw_model extends Base_model
 {
-	function draw_model(){
-		parent::Base_model();
+	function __construct(){
+		parent::__construct();
 
 		$this->_prefix = $this->config->item('ifengcms_table_prefix');
 		$this->_TABLES = array(

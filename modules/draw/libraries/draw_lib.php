@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class draw_lib
 {
-	function draw_lib(){
+	function __construct(){
 		// Get CI Instance
 		$this->CI = &get_instance();
 		$this->CI->load->helper('form');
