@@ -222,10 +222,13 @@ class Base_model extends Model
 			$url_param=str_replace($page[0],"",$url_param);
 		}
 		//�����ַ�urlencode
-		$url_param=preg_replace_callback("/[^a-z0-9-_,\/]/i",create_function(
-		 	'$matches',
-        	'return urlencode($matches[0]);'
-        ),$url_param);
+//		$url_param=preg_replace_callback("/[^a-z0-9-_,\/]/i",create_function(
+//		 	'$matches',
+//        	'return urlencode($matches[0]);'
+//        ),$url_param);
+        $url_param=preg_replace_callback("/[^a-z0-9-_,\/]/i",function($matches){
+            return urlencode($matches[0]);
+            },$url_param);
 		if(!preg_match("/[^\/]+/",$url_param)){//�Զ���index
 			$url_param.="/index";
 		}
