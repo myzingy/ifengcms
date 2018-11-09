@@ -198,7 +198,7 @@ class CI_Loader
      *
      * @access    public
      */
-    function CI_Loader()
+    function __construct()
     {
         // {{{ Matchbox
 
